@@ -20,6 +20,7 @@ class Page extends Model
         'meta_description',
         'meta_keywords',
         'featured_image',
+        'banner_image',
         'is_active',
         'order'
     ];
@@ -53,6 +54,18 @@ class Page extends Model
             return asset($this->featured_image);
         }
         return asset('storage/' . $this->featured_image);
+    }
+
+    public function getBannerImageUrlAttribute()
+    {
+        if (!$this->banner_image) {
+            return null;
+        }
+
+        if (str_starts_with($this->banner_image, 'assets')) {
+            return asset($this->banner_image);
+        }
+        return asset('storage/' . $this->banner_image);
     }
 
     // Auto-generate slug from title if not provided

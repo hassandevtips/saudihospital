@@ -14,6 +14,7 @@ class Feature extends Model
     protected $fillable = [
         'title',
         'description',
+        'link',
         'icon_class',
         'is_active',
         'order'

@@ -18,6 +18,10 @@ class FeatureForm
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
+                TextInput::make('link')
+                    ->label('Link URL')
+                    ->helperText('Optional: URL or relative path to link the feature to (e.g., /page, https://example.com)')
+                    ->columnSpanFull(),
                 TextInput::make('icon_class')
                     ->required(),
                 Toggle::make('is_active')

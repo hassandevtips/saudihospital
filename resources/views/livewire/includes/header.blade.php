@@ -1,30 +1,4 @@
 <div>
-    <div id="search-popup" class="search-popup">
-        <div class="popup-inner">
-            <div class="upper-box clearfix">
-                <figure class="logo-box pull-left"><a href="/"><img src="{{ asset($settings['logo']) }}"
-                            alt="{{ $settings['site_name'] }}"></a>
-                </figure>
-                <div class="close-search pull-right"><span class="far fa-times"></span></div>
-            </div>
-            <div class="overlay-layer"></div>
-            <div class="auto-container">
-                <div class="search-form">
-                    <form method="post" action="#">
-                        <div class="form-group">
-                            <fieldset>
-                                <input type="search" class="form-control" name="search-input" value=""
-                                    placeholder="Type your keyword and hit" required>
-                                <button type="submit"><i class="far fa-search"></i></button>
-                            </fieldset>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <!-- main header -->
     <header class="main-header header-style-two">
         <!-- header-top -->
@@ -40,7 +14,12 @@
                         </ul>
                     </div>
                     <div class="right-column">
-                        <div class="schedule">العربية</div>
+                        @if($toggleLanguage)
+                        <div class="schedule" wire:click="switchToToggleLanguage"
+                            style="cursor: pointer; display: inline-block; margin-right: 15px;">
+                            {{ $toggleLanguage->native_name }}
+                        </div>
+                        @endif
                         <ul class="social-links clearfix">
                             <li><a href="{{ $settings['facebook'] }}"><i class="fab fa-facebook-f"></i></a></li>
                             <li><a href="{{ $settings['twitter'] }}"><i class="fab fa-twitter"></i></a></li>
@@ -56,7 +35,7 @@
             <div class="auto-container">
                 <div class="outer-box">
                     <div class="logo-box">
-                        <figure class="logo"><a href="/"><img src="{{ asset($settings['logo']) }}"
+                        <figure class="logo"><a href="/" wire:navigate><img src="{{ asset($settings['logo']) }}"
                                     alt="{{ $settings['site_name'] }}"></a></figure>
                     </div>
                     <div class="menu-area clearfix">
@@ -73,9 +52,7 @@
                         </nav>
                     </div>
                     <div class="nav-right">
-                        <div class="search-box-outer search-toggler">
-                            <i class="icon-5"></i>
-                        </div>
+
                         <div class="btn-box">
                             <a href="#" class="theme-btn btn-one">Appointment</a>
                         </div>
@@ -89,7 +66,7 @@
             <div class="auto-container">
                 <div class="outer-box">
                     <div class="logo-box">
-                        <figure class="logo"><a href="/"><img src="{{ asset($settings['logo']) }}"
+                        <figure class="logo"><a href="/" wire:navigate><img src="{{ asset($settings['logo']) }}"
                                     alt="{{ $settings['site_name'] }}"></a></figure>
                     </div>
                     <div class="menu-area clearfix">
@@ -117,7 +94,7 @@
         <div class="close-btn"><i class="fas fa-times"></i></div>
 
         <nav class="menu-box">
-            <div class="nav-logo"><a href="/"><img src="{{ asset($settings['logo']) }}"
+            <div class="nav-logo"><a href="/" wire:navigate><img src="{{ asset($settings['logo']) }}"
                         alt="{{ $settings['site_name'] }}" title="{{ $settings['site_name'] }}"></a></div>
             <div class="menu-outer">
                 <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->

@@ -6,7 +6,7 @@
             <div class="content-box">
                 <h1>Our Medical Team</h1>
                 <ul class="bread-crumb clearfix">
-                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('home') }}" wire:navigate>Home</a></li>
                     <li>Department Doctors</li>
                 </ul>
             </div>

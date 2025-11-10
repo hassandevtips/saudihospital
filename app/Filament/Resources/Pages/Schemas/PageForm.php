@@ -68,6 +68,15 @@ class PageForm
                     ->imageEditor()
                     ->columnSpanFull(),
 
+                FileUpload::make('banner_image')
+                    ->image()
+                    ->label('Banner Image')
+                    ->directory('pages')
+                    ->disk('public')
+                    ->imageEditor()
+                    ->helperText('Banner image displayed at the top of the page')
+                    ->columnSpanFull(),
+
                 TextInput::make('meta_title')
                     ->label('Meta Title')
                     ->maxLength(255)

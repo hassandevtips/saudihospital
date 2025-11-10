@@ -17,6 +17,14 @@ class FeaturesTable
             ->columns([
                 TextColumn::make('title')
                     ->searchable(),
+                TextColumn::make('link')
+                    ->label('Link')
+                    ->searchable()
+                    ->url(fn($record) => $record->link ?: null)
+                    ->openUrlInNewTab()
+                    ->limit(30)
+                    ->toggleable()
+                    ->placeholder('No link'),
                 TextColumn::make('icon_class')
                     ->searchable(),
                 IconColumn::make('is_active')

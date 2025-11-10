@@ -14,14 +14,18 @@
             <div class="row clearfix">
                 @forelse($features as $index => $feature)
                 <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
-                    <div class="feature-block-two wow fadeInUp animated" data-wow-delay="{{ $index * 200 }}ms"
-                        data-wow-duration="1500m">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="{{ $feature->icon_class }}"></i></div>
-                            <h3><a href="#">{{ $feature->title }}</a></h3>
-                            <p>{{ $feature->description }}</p>
+                    <a href="{{ $feature->link ?? '#' }}">
+                        <div class="feature-block-two wow fadeInUp animated" data-wow-delay="{{ $index * 200 }}ms"
+                            data-wow-duration="1500m">
+                            <div class="inner-box">
+                                <div class="icon-box"><i class="{{ $feature->icon_class }}"></i></div>
+                                <h3>
+                                    <{{ $feature->title }}
+                                </h3>
+                                <p>{{ $feature->description }}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 @empty
                 <div class="col-lg-3 col-md-6 col-sm-12 feature-block">

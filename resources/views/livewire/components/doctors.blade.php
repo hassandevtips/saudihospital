@@ -6,7 +6,7 @@
 
                 <h2>Saudi Hospital
                     Senior Doctors</h2>
-                <a href="team.html" class="theme-btn btn-two">View All Doctors</a>
+                <a href="/doctors" class="theme-btn btn-two">View All Doctors</a>
             </div>
             <div class="row clearfix">
                 @forelse($doctors as $index => $doctor)

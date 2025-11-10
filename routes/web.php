@@ -21,6 +21,16 @@ Route::get('/optimize-clear', function () {
     return 'Optimize Clear';
 });
 
+// Migrate Database
+Route::get('/migrate', function () {
+    try {
+        Artisan::call('migrate');
+        return 'Migrate Database Success';
+    } catch (\Exception $e) {
+        return 'Migrate Database Failed: ' . $e->getMessage();
+    }
+});
+
 
 // Dynamic page routes
 Route::get('/{slug}', PageView::class)

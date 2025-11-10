@@ -1,29 +1,65 @@
 @props(['menu'])
 
+@php
+// Ensure we have the current locale set
+$currentLocale = app()->getLocale();
+
+// Get menu items - they should already be translated by the Menu model
+$menuItems = $menu && isset($menu->items) ? $menu->items : [];
+@endphp
+
 <ul class="navigation clearfix">
-    @if($menu && $menu->items)
-    @foreach($menu->items as $item)
-    <li class="{{ isset($item['children']) && count($item['children']) > 0 ? 'dropdown' : '' }}">
-        <a href="{{ $item['url'] ?? '#' }}" @if(isset($item['blank']) && $item['blank']) target="_blank" @endif>
-            {{ $item['title'] }}
+    @if(!empty($menuItems))
+    @foreach($menuItems as $item)
+    @php
+    $hasChildren = isset($item['children']) && is_array($item['children']) && count($item['children']) > 0;
+    $itemUrl = $item['url'] ?? '#';
+    $itemTitle = $item['title'] ?? '';
+    $itemBlank = isset($item['blank']) && $item['blank'];
+    // Check if this is an internal link that should use wire:navigate
+    $isInternalLink = !$itemBlank
+    && $itemUrl !== '#'
+    && !str_starts_with($itemUrl, 'http://')
+    && !str_starts_with($itemUrl, 'https://')
+    && !str_starts_with($itemUrl, 'mailto:')
+    && !str_starts_with($itemUrl, 'tel:');
+    @endphp
+    <li class="{{ $hasChildren ? 'dropdown' : '' }}">
+        <a wire:navigate href="{{ $itemUrl }}" @if($itemBlank) target="_blank" @endif @if($isInternalLink) wire:navigate
+            @endif>
+            {{ $itemTitle }}
         </a>
 
-        @if(isset($item['children']) && count($item['children']) > 0)
+        @if($hasChildren)
         @php
         $childrenCount = count($item['children']);
-        $columnsNeeded = min(4, ceil($childrenCount / 3));
-        $chunkedChildren = array_chunk($item['children'], ceil($childrenCount / $columnsNeeded));
+        $columnsNeeded = min(4, max(1, ceil($childrenCount / 3)));
+        $itemsPerColumn = max(1, ceil($childrenCount / $columnsNeeded));
+        $chunkedChildren = array_chunk($item['children'], $itemsPerColumn);
+        $colSize = 12 / $columnsNeeded;
         @endphp
         <div class="megamenu">
             <div class="row clearfix">
                 @foreach($chunkedChildren as $childGroup)
-                <div class="col-lg-{{ 12 / $columnsNeeded }} column">
+                <div class="col-lg-{{ $colSize }} column">
                     <ul>
                         @foreach($childGroup as $child)
+                        @php
+                        $childUrl = $child['url'] ?? '#';
+                        $childTitle = $child['title'] ?? '';
+                        $childBlank = isset($child['blank']) && $child['blank'];
+                        // Check if this is an internal link that should use wire:navigate
+                        $isChildInternalLink = !$childBlank
+                        && $childUrl !== '#'
+                        && !str_starts_with($childUrl, 'http://')
+                        && !str_starts_with($childUrl, 'https://')
+                        && !str_starts_with($childUrl, 'mailto:')
+                        && !str_starts_with($childUrl, 'tel:');
+                        @endphp
                         <li>
-                            <a href="{{ $child['url'] ?? '#' }}" @if(isset($child['blank']) && $child['blank'])
-                                target="_blank" @endif>
-                                {{ $child['title'] }}
+                            <a href="{{ $childUrl }}" @if($childBlank) target="_blank" @endif @if($isChildInternalLink)
+                                wire:navigate @endif>
+                                {{ $childTitle }}
                             </a>
                         </li>
                         @endforeach
@@ -37,7 +73,7 @@
     @endforeach
     @else
     {{-- Default menu if no dynamic menu is set --}}
-    <li><a href="/">Home</a></li>
+    <li><a href="/" wire:navigate>Home</a></li>
     <li class="dropdown"><a href="#">About Us</a>
         <div class="megamenu">
             <div class="row clearfix">

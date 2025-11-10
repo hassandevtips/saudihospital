@@ -8324,3 +8324,19 @@
  .page-banner {
      padding-top: 10rem !important;
  }
+
+ .text-white {
+     color: #fff !important;
+ }
+
+ .text-white a {
+     color: #fff !important;
+ }
+
+ .text-white li::before {
+     color: #fff !important;
+ }
+
+ p {
+     padding: 10px 0 !important;
+ }
