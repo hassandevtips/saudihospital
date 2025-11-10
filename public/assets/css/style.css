@@ -983,7 +983,7 @@
      visibility: hidden;
      padding: 10px 0px;
      border-radius: 0px;
-     background-color: #0097ad;
+     background-color: #141417;
      transition: all 500ms ease;
      -moz-transition: all 500ms ease;
      -webkit-transition: all 500ms ease;
@@ -8339,4 +8339,14 @@
 
  p {
      padding: 10px 0 !important;
+ }
+
+
+ .header-style-one {
+     background: #fff !important;
+     position: relative !important;
+ }
+
+ .header-style-one .navigation>li>a {
+     color: #000 !important;
  }

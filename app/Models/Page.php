@@ -95,6 +95,8 @@ class Page extends Model
             'department-template' => 'Department Template',
             'home' => 'Home Page',
             'contact' => 'Contact Page',
+            'news-template' => 'News Template',
+            'board-members' => 'Board Members',
         ];
     }
 }

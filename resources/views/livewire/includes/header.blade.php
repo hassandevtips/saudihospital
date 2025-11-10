@@ -1,6 +1,11 @@
+<?php
+// Get Currnt Route name
+$currentRouteName = Route::currentRouteName();
+$isHomePage = $currentRouteName === 'home';
+?>
 <div>
     <!-- main header -->
-    <header class="main-header header-style-two">
+    <header class="main-header  @if($isHomePage??false) header-style-two @else header-style-one @endif">
         <!-- header-top -->
 
         <div class="header-top">
@@ -8,8 +13,21 @@
                 <div class="top-inner">
                     <div class="left-column">
                         <ul class="info clearfix">
-                            <li>{{ $settings['tagline'] }}</li>
+                            <li style="margin-right: 20px;">{{ $settings['tagline'] }}</li>
 
+                            <!-- Top Menu from menu table -->
+                            @php
+                            $menuItems = \App\Models\Menu::with('items.children')
+                            ->where('key', 'top-menu')
+                            ->first()?->items ?? [];
+                            @endphp
+                            @foreach($menuItems as $item)
+                            <li>
+                                <a href="{{ $item['url'] }}" target="{{ $item['blank'] ? '_blank' : '_self' }}">
+                                    {{ $item['title'] }}
+                                </a>
+                            </li>
+                            @endforeach
 
                         </ul>
                     </div>

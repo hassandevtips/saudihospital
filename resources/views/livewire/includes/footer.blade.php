@@ -47,7 +47,7 @@
                                 <ul class="links-list clearfix">
                                     @forelse($departments as $department)
                                     <li>
-                                        <a href="{{ route('department-doctors') }}?department={{ $department->id }}">
+                                        <a href="{{ route('doctors', ['department' => $department->id]) }}">
                                             {{ $department->name }}
                                         </a>
                                     </li>

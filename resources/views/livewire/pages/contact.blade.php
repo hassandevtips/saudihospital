@@ -1,34 +1,58 @@
-{{-- Contact Page Template --}}
-<section class="page-title pt-10">
-    <div class="bg-layer bg-primary" style=""></div>
-    <div class="auto-container">
-        <div class="content-box">
-            <h1>{{ $page->title }}</h1>
-            <ul class="bread-crumb clearfix">
-                <li><a href="{{ route('home') }}" wire:navigate>Home</a></li>
-                <li>{{ $page->title }}</li>
-            </ul>
-        </div>
-    </div>
-</section>
+<section>
+    {{-- Contact Page Template --}}
+    @include('livewire.includes.page-hero');
 
-<div class="container py-5">
-    <div class="row">
-        <div class="col-lg-8 mb-4">
-            <h2 style="color: #02799c;">Get in Touch</h2>
-            <div class="page-content">
-                {!! $page->content !!}
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card shadow">
-                <div class="card-body">
-                    <h4 style="color: #02799c;">Contact Information</h4>
-                    <p><i class="fas fa-phone text-primary"></i> {{ $settings['phone'] ?? 'N/A' }}</p>
-                    <p><i class="fas fa-envelope text-primary"></i> {{ $settings['email'] ?? 'N/A' }}</p>
-                    <p><i class="fas fa-map-marker-alt text-primary"></i> {{ $settings['address'] ?? 'N/A' }}</p>
+
+    <!-- contact-info-section -->
+    <section class="contact-info-section centred">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-6 col-sm-12 info-column">
+                    <div class="single-item">
+                        <div class="icon-box"><i class="icon-57"></i></div>
+                        <h3>Office Location</h3>
+                        <p>{{ $settings['address'] ?? 'N/A' }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 info-column">
+                    <div class="single-item">
+                        <div class="icon-box"><i class="icon-58"></i></div>
+                        <h3>Company Email</h3>
+                        <p><a href="mailto:{{ $settings['email'] ?? 'N/A' }}">{{ $settings['email'] ?? 'N/A' }}</a></p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 info-column">
+                    <div class="single-item">
+                        <div class="icon-box"><i class="icon-59"></i></div>
+                        <h3>Contact Us</h3>
+                        <p><a href="tel:{{ $settings['phone'] ?? 'N/A' }}">{{ $settings['phone'] ?? 'N/A' }}</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+    <!-- contact-info-section end -->
+
+
+    <!-- contact-style-two -->
+    <section class="contact-style-two p_relative">
+        <div class="pattern-layer">
+            <div class="pattern-1" style="background-image: url(assets/images/shape/shape-55.png);"></div>
+            <div class="pattern-2" style="background-image: url(assets/images/shape/shape-56.png);"></div>
+        </div>
+        <div class="auto-container">
+            <div class="row clearfix">
+                <div class="col-lg-8 col-md-12 col-sm-12 big-column offset-lg-2">
+                    <div class="form-inner">
+                        <h2>{{ __('Leave a Comment') }}</h2>
+                        <livewire:contact-form />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- contact-style-two end -->
+
+
+</section>

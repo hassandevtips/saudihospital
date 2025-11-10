@@ -23,18 +23,21 @@
                         <div class="inner-box">
                             <figure class="image-box">
                                 <img src="{{ $item->image_url }}" alt="{{ $item->title }}">
-                                <a href="#"><i class="fas fa-link"></i></a>
+                                <a wire:navigate href="{{ route('news-details', ['id' => $item->id]) }}"><i
+                                        class="fas fa-link"></i></a>
                             </figure>
                             <div class="lower-content">
                                 <div class="inner">
-                                    <h3><a href="#">{{ $item->title }}</a></h3>
+                                    <h3><a wire:navigate href="{{ route('news-details', ['id' => $item->id]) }}">{{
+                                            $item->title }}</a></h3>
                                     <ul class="post-info clearfix">
                                         <li><i class="icon-34"></i>{{ $item->published_date->format('d M, Y') }}
                                         </li>
                                         <li><i class="icon-35"></i><a href="#">{{ $item->author }}</a></li>
                                     </ul>
                                     <p>{{ Str::limit($item->content, 100) }}</p>
-                                    <div class="link"><a href="#">Read more</a></div>
+                                    <div class="link"><a wire:navigate
+                                            href="{{ route('news-details', ['id' => $item->id]) }}">Read more</a></div>
                                 </div>
                             </div>
                         </div>

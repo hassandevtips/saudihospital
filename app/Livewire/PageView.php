@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\BoardMember;
 use App\Models\Page;
 use App\Models\SiteSetting;
 use Livewire\Component;
@@ -41,13 +42,20 @@ class PageView extends Component
             'home' => 'livewire.pages.home',
             'department-template' => 'livewire.pages.department-template',
             'contact' => 'livewire.pages.contact',
+            'news-template' => 'livewire.pages.news-template',
+            'board-members' => 'livewire.pages.board-members',
             default => 'livewire.pages.default',
         };
+
+        $boardMembers = $templateView === 'livewire.pages.board-members'
+            ? BoardMember::query()->active()->get()
+            : collect();
 
         return view('livewire.page-view', [
             'page' => $this->page,
             'settings' => $this->settings,
             'templateView' => $templateView,
+            'boardMembers' => $boardMembers,
         ]);
     }
 }

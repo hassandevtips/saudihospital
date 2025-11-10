@@ -1,17 +1,6 @@
 <div>
     {{-- Banner Section --}}
-    <section class="page-title pt-10">
-        <div class="bg-layer bg-primary" style=""></div>
-        <div class="auto-container">
-            <div class="content-box">
-                <h1>Our Medical Team</h1>
-                <ul class="bread-crumb clearfix">
-                    <li><a href="{{ route('home') }}" wire:navigate>Home</a></li>
-                    <li>Department Doctors</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+    @include('livewire.includes.page-hero');
 
 
     <div class="container py-5">

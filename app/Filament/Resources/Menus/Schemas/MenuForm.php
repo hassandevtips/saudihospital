@@ -39,7 +39,16 @@ class MenuForm
                     ->mutateRelationshipDataBeforeCreateUsing(function (array $data, $livewire): array {
                         // Filament should automatically set menu_id via relationship,
                         // but ensure it's explicitly set as a fallback
-                        $owner = $livewire->getOwnerRecord();
+                        $owner = null;
+
+                        if (method_exists($livewire, 'getOwnerRecord')) {
+                            $owner = $livewire->getOwnerRecord();
+                        } elseif (method_exists($livewire, 'getRecord')) {
+                            $owner = $livewire->getRecord();
+                        } elseif (property_exists($livewire, 'record')) {
+                            $owner = $livewire->record;
+                        }
+
                         if ($owner && method_exists($owner, 'getKey')) {
                             $data['menu_id'] = $owner->getKey();
                         }

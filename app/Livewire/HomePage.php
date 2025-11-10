@@ -12,7 +12,8 @@ class HomePage extends Component
         $content = HomePageContent::getContent();
 
         return view('livewire.pages.home-page', [
-            'content' => $content
+            'content' => $content,
+            'isHomePage' => true,
         ]);
     }
 }

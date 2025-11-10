@@ -2,38 +2,77 @@
 
 namespace App\Livewire;
 
+use App\Mail\ContactMessageSubmitted;
+use App\Models\ContactSubmission;
 use App\Models\SiteSetting;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class ContactForm extends Component
 {
-    public $name = '';
-    public $email = '';
-    public $date = '';
-    public $phone;
-
-    public function mount()
-    {
-        $this->phone = SiteSetting::get('phone', '0096265564414');
-    }
-
-    public function submitAppointment()
-    {
-        $this->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'date' => 'required',
-        ]);
-
-        // Here you can add logic to save the appointment
-        // For now, just show a success message
-        session()->flash('message', 'Appointment request sent successfully!');
-
-        $this->reset(['name', 'email', 'date']);
-    }
+    public array $form = [
+        'name' => '',
+        'email' => '',
+        'phone' => '',
+        'subject' => '',
+        'message' => '',
+    ];
 
     public function render()
     {
-        return view('livewire.components.contact-form');
+        return view('livewire.contact-form');
+    }
+
+    protected function rules(): array
+    {
+        return [
+            'form.name' => ['required', 'string', 'max:255'],
+            'form.email' => ['required', 'email', 'max:255'],
+            'form.phone' => ['nullable', 'string', 'max:50'],
+            'form.subject' => ['nullable', 'string', 'max:255'],
+            'form.message' => ['nullable', 'string'],
+        ];
+    }
+
+    public function submit(): void
+    {
+        $validated = $this->validate()['form'];
+
+        $submission = ContactSubmission::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'] ?? null,
+            'subject' => $validated['subject'] ?? null,
+            'message' => $validated['message'] ?? null,
+            'ip_address' => request()->ip(),
+        ]);
+
+        $recipient = config('mail.contact_recipient', config('mail.from.address'));
+
+        if (empty($recipient)) {
+            $recipientSetting = SiteSetting::get('email');
+
+            if (is_array($recipientSetting)) {
+                $recipient = $recipientSetting[app()->getLocale()] ?? reset($recipientSetting);
+            } else {
+                $recipient = $recipientSetting;
+            }
+        }
+
+        if (! empty($recipient)) {
+            Mail::to($recipient)->send(new ContactMessageSubmitted($submission));
+        }
+
+        $this->form = [
+            'name' => '',
+            'email' => '',
+            'phone' => '',
+            'subject' => '',
+            'message' => '',
+        ];
+
+        session()->flash('contact_success', __('Thank you! Your message has been sent successfully.'));
+
+        $this->dispatch('contact-submitted');
     }
 }

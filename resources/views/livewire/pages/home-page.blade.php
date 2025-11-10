@@ -260,8 +260,7 @@
         </div>
     </section>
 
-    {{-- Contact Form Component --}}
-    @livewire('contact-form')
+
 
     {{-- News Component --}}
     @livewire('news')
