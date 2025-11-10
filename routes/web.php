@@ -18,7 +18,7 @@ Route::get('/storage-link', function () {
 // Optimize Clear
 Route::get('/optimize-clear', function () {
     Artisan::call('optimize:clear');
-    return 'Optimize Clear';
+    return 'Optimize Clear test';
 });
 
 // Migrate Database
