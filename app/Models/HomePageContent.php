@@ -16,6 +16,7 @@ class HomePageContent extends Model
         'about_description',
         'key_highlights',
         'services_offered',
+        'tabs',
         'pharmacy_title',
         'pharmacy_description',
         'pharmacy_services',
@@ -35,6 +36,7 @@ class HomePageContent extends Model
         'stats_beds',
         'stats_clinics',
         'stats_centers',
+        'tabs',
         'pharmacy_title',
         'pharmacy_description',
         'pharmacy_services',
@@ -51,6 +53,7 @@ class HomePageContent extends Model
         'about_description' => 'array',
         'key_highlights' => 'array',
         'services_offered' => 'array',
+        'tabs' => 'array',
         'pharmacy_title' => 'array',
         'pharmacy_description' => 'array',
         'pharmacy_services' => 'array',
@@ -130,6 +133,46 @@ class HomePageContent extends Model
                 }
                 return is_string($item) ? $item : null;
             }, $services));
+        }
+        return [];
+    }
+
+    public function getPharmacyServicesList()
+    {
+        $services = $this->getTranslation('pharmacy_services', app()->getLocale(), false);
+        if (!$services) {
+            $services = $this->getTranslation('pharmacy_services', config('app.locale'), false)
+                ?? $this->getTranslation('pharmacy_services', 'en', false)
+                ?? $this->pharmacy_services;
+        }
+
+        if (is_array($services)) {
+            return array_filter(array_map(function ($item) {
+                if (is_array($item)) {
+                    return $item;
+                }
+                return null;
+            }, $services));
+        }
+        return [];
+    }
+
+    public function getTabsList()
+    {
+        $tabs = $this->getTranslation('tabs', app()->getLocale(), false);
+        if (!$tabs) {
+            $tabs = $this->getTranslation('tabs', config('app.locale'), false)
+                ?? $this->getTranslation('tabs', 'en', false)
+                ?? $this->tabs;
+        }
+
+        if (is_array($tabs)) {
+            return array_filter(array_map(function ($item) {
+                if (is_array($item)) {
+                    return $item;
+                }
+                return null;
+            }, $tabs));
         }
         return [];
     }

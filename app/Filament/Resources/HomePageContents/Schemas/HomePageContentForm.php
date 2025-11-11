@@ -98,6 +98,52 @@ class HomePageContentForm
                     ->default(5)
                     ->required(),
 
+                // Tabs Section
+                Placeholder::make('tabs_section_label')
+                    ->label('Tabs Section')
+                    ->content('')
+                    ->columnSpanFull(),
+
+                Repeater::make('tabs')
+                    ->label('Tabs')
+                    ->schema([
+                        TextInput::make('title')
+                            ->label('Tab Title')
+                            ->required()
+                            ->placeholder('e.g., Patient Relations'),
+                        TextInput::make('icon')
+                            ->label('Icon Class')
+                            ->required()
+                            ->placeholder('e.g., icon-17')
+                            ->helperText('Icon class from your theme (e.g., icon-17, icon-18, etc.)'),
+                        TextInput::make('heading')
+                            ->label('Content Heading')
+                            ->required()
+                            ->placeholder('e.g., Patient Relations'),
+                        Textarea::make('description')
+                            ->label('Description')
+                            ->rows(3)
+                            ->required(),
+                        Repeater::make('list_items')
+                            ->label('List Items')
+                            ->schema([
+                                TextInput::make('item')
+                                    ->label('Item')
+                                    ->required(),
+                            ])
+                            ->defaultItems(3)
+                            ->collapsible(),
+                        FileUpload::make('image')
+                            ->label('Tab Image')
+                            ->image()
+                            ->directory('home-page/tabs')
+                            ->disk('public')
+                            ->imageEditor(),
+                    ])
+                    ->defaultItems(1)
+                    ->collapsible()
+                    ->columnSpanFull(),
+
                 // Pharmacy Section
                 Placeholder::make('pharmacy_section_label')
                     ->label('Pharmacy Section')

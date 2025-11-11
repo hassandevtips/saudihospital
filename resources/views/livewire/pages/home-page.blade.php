@@ -83,60 +83,61 @@
     {{-- Doctors Component --}}
     @livewire('doctors')
 
-    {{-- Tabs Section (Static for now) --}}
+    {{-- Tabs Section --}}
+    @php
+    $tabs = $content->getTabsList();
+    @endphp
+    @if(count($tabs) > 0)
     <section class="service-section p_relative bg-color-1">
         <div class="auto-container">
             <div class="tabs-box">
                 <div class="tab-btn-box p_relative d_block mb_70 centred">
                     <ul class="tab-btns tab-buttons clearfix">
-                        <li class="tab-btn active-btn" data-tab="#tab-1">
-                            <div class="icon-box"><i class="icon-17"></i></div>
-                            <h4>Patient Relations</h4>
+                        @foreach($tabs as $index => $tab)
+                        <li class="tab-btn {{ $index === 0 ? 'active-btn' : '' }}" data-tab="#tab-{{ $index + 1 }}">
+                            <div class="icon-box"><i class="{{ $tab['icon'] ?? 'icon-17' }}"></i></div>
+                            <h4>{{ $tab['title'] ?? 'Tab ' . ($index + 1) }}</h4>
                         </li>
-                        <li class="tab-btn" data-tab="#tab-2">
-                            <div class="icon-box"><i class="icon-18"></i></div>
-                            <h4>Medical Tourism</h4>
-                        </li>
-                        <li class="tab-btn" data-tab="#tab-3">
-                            <div class="icon-box"><i class="icon-19"></i></div>
-                            <h4>Saudi Hospital History</h4>
-                        </li>
-                        <li class="tab-btn" data-tab="#tab-4">
-                            <div class="icon-box"><i class="icon-20"></i></div>
-                            <h4>Partners and Network</h4>
-                        </li>
-                        <li class="tab-btn" data-tab="#tab-5">
-                            <div class="icon-box"><i class="icon-21"></i></div>
-                            <h4>Our Core Values</h4>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="tabs-content">
-                    <div class="tab active-tab" id="tab-1">
+                    @foreach($tabs as $index => $tab)
+                    <div class="tab {{ $index === 0 ? 'active-tab' : '' }}" id="tab-{{ $index + 1 }}">
                         <div class="inner-box">
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-12 col-sm-12 content-column">
                                     <div class="content_block_two">
                                         <div class="content-box">
                                             <div class="text">
-                                                <h3>Patient Relations</h3>
-                                                <p>At Saudi Hospital, our Patient Relations Department is dedicated to
-                                                    ensuring your healthcare journey is smooth, respectful, and
-                                                    compassionate.</p>
+                                                <h3>{{ $tab['heading'] ?? $tab['title'] ?? 'Tab Content' }}</h3>
+                                                <p>{{ $tab['description'] ?? '' }}</p>
                                             </div>
+                                            @if(isset($tab['list_items']) && is_array($tab['list_items']) &&
+                                            count($tab['list_items']) > 0)
                                             <ul class="list-style-one clearfix">
-                                                <li>Receive and address patient feedback</li>
-                                                <li>Resolve concerns and complaints efficiently</li>
-                                                <li>Patient rights education and support</li>
+                                                @foreach($tab['list_items'] as $listItem)
+                                                <li>{{ is_array($listItem) && isset($listItem['item']) ?
+                                                    $listItem['item'] : $listItem }}</li>
+                                                @endforeach
                                             </ul>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 image-column">
                                     <div class="image_block_two">
                                         <div class="image-box p_relative d_block">
-                                            <figure class="image p_relative d_block"><img
-                                                    src="{{ asset('assets/images/service/service-15.jpg') }}" alt="">
+                                            @php
+                                            $tabImage = $tab['image'] ?? null;
+                                            $imageUrl = $tabImage
+                                            ? (str_starts_with($tabImage, 'assets')
+                                            ? asset($tabImage)
+                                            : asset('storage/' . $tabImage))
+                                            : asset('assets/images/service/service-15.jpg');
+                                            @endphp
+                                            <figure class="image p_relative d_block"><img src="{{ $imageUrl }}"
+                                                    alt="{{ $tab['title'] ?? '' }}">
                                             </figure>
                                         </div>
                                     </div>
@@ -144,10 +145,12 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </section>
+    @endif
 
     {{-- Stats Section --}}
     <section class="funfact-style-two p_relative" style="margin-top: 100px;">
@@ -218,14 +221,7 @@
                             </div>
                             <div class="inner-box">
                                 <div class="row clearfix">
-                                    @if($content->pharmacy_services && is_array($content->pharmacy_services))
-                                    @php
-                                    $pharmacyServices = isset($content->pharmacy_services[app()->getLocale()])
-                                    ? $content->pharmacy_services[app()->getLocale()]
-                                    : (is_array($content->pharmacy_services) ? reset($content->pharmacy_services) : []);
-                                    if (!is_array($pharmacyServices)) $pharmacyServices = [];
-                                    @endphp
-                                    @forelse($pharmacyServices as $service)
+                                    @forelse($content->getPharmacyServicesList() as $service)
                                     <div class="col-lg-12 col-md-6 col-sm-12 single-column">
                                         <div class="single-item">
                                             <h4><a href="#">{{ is_array($service) && isset($service['title']) ?
@@ -243,14 +239,6 @@
                                         </div>
                                     </div>
                                     @endforelse
-                                    @else
-                                    <div class="col-lg-12 col-md-6 col-sm-12 single-column">
-                                        <div class="single-item">
-                                            <h4><a href="#">Inpatient Pharmacy Services</a></h4>
-                                            <p>24/7 medication dispensing for hospitalized patients.</p>
-                                        </div>
-                                    </div>
-                                    @endif
                                 </div>
                             </div>
                         </div>
