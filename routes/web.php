@@ -32,8 +32,13 @@ Route::get('/optimize-clear', function () {
 });
 
 // Show Config
-Route::get('/config', function () {;
-    return  Artisan::call('config:show');
+Route::get('/filament-clear', function () {
+    try {
+        Artisan::call('filament:optimize-clear');
+        return 'Filament Clear';
+    } catch (\Exception $e) {
+        return 'Filament Clear Failed: ' . $e->getMessage();
+    }
 });
 
 // Migrate Database

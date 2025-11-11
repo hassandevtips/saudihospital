@@ -43,14 +43,9 @@
 
                                 <form wire:submit.prevent="submitAppointment">
                                     <div class="row clearfix">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 column">
-                                            <div class="form-group">
-                                                <input type="date" wire:model.defer="form.appointment_date" required="">
-                                                @error('form.appointment_date')
-                                                <small class="text-danger">{{ $message }}</small>
-                                                @enderror
-                                            </div>
-                                        </div>
+
+
+
                                         <div class="col-lg-6 col-md-6 col-sm-12 column">
                                             <div class="form-group">
                                                 <input type="text" wire:model.defer="form.patient_name"
@@ -74,6 +69,15 @@
                                                 <input type="text" wire:model.defer="form.patient_phone"
                                                     placeholder="Phone" required="">
                                                 @error('form.patient_phone')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 column">
+                                            <div class="form-group">
+                                                <input class="form-control" type="date"
+                                                    wire:model.defer="form.appointment_date" required="">
+                                                @error('form.appointment_date')
                                                 <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
