@@ -15,6 +15,9 @@ $menuItems = $menu && isset($menu->items) ? $menu->items : [];
     $hasChildren = isset($item['children']) && is_array($item['children']) && count($item['children']) > 0;
     $itemUrl = $item['url'] ?? '#';
     $itemTitle = $item['title'] ?? '';
+    if (is_array($itemTitle)) {
+    $itemTitle = $itemTitle[$currentLocale] ?? $itemTitle[config('app.fallback_locale')] ?? reset($itemTitle) ?? '';
+    }
     $itemBlank = isset($item['blank']) && $item['blank'];
     // Check if this is an internal link that should use wire:navigate
     $isInternalLink = !$itemBlank
@@ -47,6 +50,10 @@ $menuItems = $menu && isset($menu->items) ? $menu->items : [];
                         @php
                         $childUrl = $child['url'] ?? '#';
                         $childTitle = $child['title'] ?? '';
+                        if (is_array($childTitle)) {
+                        $childTitle = $childTitle[$currentLocale] ?? $childTitle[config('app.fallback_locale')] ??
+                        reset($childTitle) ?? '';
+                        }
                         $childBlank = isset($child['blank']) && $child['blank'];
                         // Check if this is an internal link that should use wire:navigate
                         $isChildInternalLink = !$childBlank

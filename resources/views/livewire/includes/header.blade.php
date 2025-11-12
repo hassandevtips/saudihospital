@@ -53,7 +53,8 @@ $isHomePage = $currentRouteName === 'home';
             <div class="auto-container">
                 <div class="outer-box">
                     <div class="logo-box">
-                        <figure class="logo"><a href="/" wire:navigate><img src="{{ asset($settings['logo']) }}"
+                        <figure class="logo"><a href="/" wire:navigate><img src="{{
+                            ($isHomePage??true) ? asset($settings['logo']) : asset('assets/images/logo2.png') }}"
                                     alt="{{ $settings['site_name'] }}"></a></figure>
                     </div>
                     <div class="menu-area clearfix">

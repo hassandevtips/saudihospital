@@ -1,3 +1,3 @@
 <div>
-    @include($templateView, ['boardMembers' => $boardMembers])
+    @include($templateView, ['boardMembers' => $boardMembers, 'faqs' => $faqs])
 </div>

@@ -20,7 +20,7 @@
                             <div class="inner-box">
                                 <div class="icon-box"><i class="{{ $feature->icon_class }}"></i></div>
                                 <h3>
-                                    <{{ $feature->title }}
+                                    {{ $feature->title }}
                                 </h3>
                                 <p>{{ $feature->description }}</p>
                             </div>

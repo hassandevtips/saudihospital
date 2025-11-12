@@ -43,21 +43,8 @@ class PageForm
 
                 RichEditor::make('content')
                     ->label('Page Content')
-                    ->toolbarButtons([
-                        'bold',
-                        'italic',
-                        'underline',
-                        'strike',
-                        'link',
-                        'bulletList',
-                        'orderedList',
-                        'blockquote',
-                        'codeBlock',
-                        'h2',
-                        'h3',
-                        'undo',
-                        'redo',
-                    ])
+
+                    ->helperText('Add your HTML or rich text content here.') // Optional helper text
                     ->columnSpanFull(),
 
                 FileUpload::make('featured_image')

@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\BoardMember;
+use App\Models\Faq;
 use App\Models\Page;
 use App\Models\SiteSetting;
 use Livewire\Component;
@@ -44,6 +45,8 @@ class PageView extends Component
             'contact' => 'livewire.pages.contact',
             'news-template' => 'livewire.pages.news-template',
             'board-members' => 'livewire.pages.board-members',
+            'faqs-template' => 'livewire.pages.faqs-template',
+            'page-with-sub-links' => 'livewire.pages.page-with-sub-links',
             default => 'livewire.pages.default',
         };
 
@@ -51,11 +54,16 @@ class PageView extends Component
             ? BoardMember::query()->active()->get()
             : collect();
 
+        $faqs = $templateView === 'livewire.pages.faqs-template'
+            ? Faq::query()->active()->get()
+            : collect();
+
         return view('livewire.page-view', [
             'page' => $this->page,
             'settings' => $this->settings,
             'templateView' => $templateView,
             'boardMembers' => $boardMembers,
+            'faqs' => $faqs,
         ]);
     }
 }
