@@ -102,6 +102,7 @@ class Page extends Model
             'home' => 'Home Page',
             'contact' => 'Contact Page',
             'news-template' => 'News Template',
+            'working-hours-template' => 'Working Hours Template',
             'faqs-template' => 'FAQs Template',
             'board-members' => 'Board Members',
             'page-with-sub-links' => 'Page with Sub Links',

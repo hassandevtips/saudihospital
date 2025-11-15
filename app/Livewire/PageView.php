@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\BoardMember;
 use App\Models\Faq;
+use App\Models\Location;
 use App\Models\Page;
 use App\Models\SiteSetting;
 use Livewire\Component;
@@ -56,6 +57,7 @@ class PageView extends Component
             'pregnancy' => 'livewire.pages.pregnancy',
             'protien' => 'livewire.pages.protien',
             'calorie' => 'livewire.pages.calorie',
+            'working-hours-template' => 'livewire.pages.working-hours-template',
             default => 'livewire.pages.default',
         };
 
@@ -67,6 +69,23 @@ class PageView extends Component
             ? Faq::query()->active()->get()
             : collect();
 
+        $locations = $templateView === 'livewire.pages.working-hours-template'
+            ? Location::query()->active()->get()
+            : collect();
+
+        // Map locations for Google Maps JavaScript
+        $locationsForMap = $locations->map(function ($location) {
+            return [
+                'id' => $location->id,
+                'name' => $location->name,
+                'address' => $location->address,
+                'lat' => (float) $location->latitude,
+                'lng' => (float) $location->longitude,
+                'phone' => $location->phone,
+                'email' => $location->email,
+                'marker_icon' => $location->marker_icon ? asset('storage/' . $location->marker_icon) : null,
+            ];
+        });
 
         return view('livewire.page-view', [
             'page' => $this->page,
@@ -74,6 +93,8 @@ class PageView extends Component
             'templateView' => $templateView,
             'boardMembers' => $boardMembers,
             'faqs' => $faqs,
+            'locations' => $locations,
+            'locationsForMap' => $locationsForMap,
         ]);
     }
 }
