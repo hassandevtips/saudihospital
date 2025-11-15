@@ -74,4 +74,24 @@ class Location extends Model
             return $day['is_open'] ?? false;
         });
     }
+
+    /**
+     * Get the marker icon URL
+     */
+    public function getMarkerIconUrlAttribute()
+    {
+        if (!$this->marker_icon) {
+            return null;
+        }
+
+        if (str_starts_with($this->marker_icon, 'http')) {
+            return $this->marker_icon;
+        }
+
+        if (str_starts_with($this->marker_icon, 'assets')) {
+            return asset($this->marker_icon);
+        }
+
+        return asset('storage/' . $this->marker_icon);
+    }
 }

@@ -19,4 +19,26 @@ class CreateNews extends CreateRecord
             LocaleSwitcher::make(),
         ];
     }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        // Store non-translatable file fields before parent processing
+        $video = $data['video'] ?? null;
+        $gallery = $data['gallery'] ?? null;
+        
+        // Call parent to handle translatable fields
+        $data = parent::mutateFormDataBeforeCreate($data);
+        
+        // Restore non-translatable file fields after translation processing
+        // The translatable trait might remove these fields
+        if ($video !== null) {
+            $data['video'] = $video;
+        }
+        
+        if ($gallery !== null) {
+            $data['gallery'] = $gallery;
+        }
+        
+        return $data;
+    }
 }

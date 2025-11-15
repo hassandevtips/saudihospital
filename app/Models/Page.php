@@ -115,6 +115,7 @@ class Page extends Model
             'pregnancy' => 'Pregnancy Calculator',
             'protien' => 'Protein Calculator',
             'calorie' => 'Calorie Calculator',
+            'find-a-doctor' => 'Find a Doctor',
         ];
     }
 }

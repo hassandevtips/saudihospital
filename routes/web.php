@@ -11,9 +11,11 @@ use App\Livewire\NewsDetails;
 use App\Livewire\Career\CareerDetails;
 use App\Livewire\FormSubmissionComponent;
 use App\Livewire\ClinicDetails;
+use App\Livewire\FindADoctor;
 
 
 Route::get('/', HomePage::class)->name('home');
+Route::get('/find-a-doctor', FindADoctor::class)->name('find-a-doctor');
 Route::get('/departments', DepartmentDoctors::class)->name('department-doctors');
 Route::get('/departments/{department}', DoctorsTemplate::class)->name('doctors');
 Route::get('/doctors/{doctor}', DoctorDetails::class)->name('doctor-details');

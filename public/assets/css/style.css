@@ -5628,7 +5628,15 @@
 
  .page-title {
      position: relative;
-     padding: 129px 0px 128px 0px;
+     padding: 180px 0px 128px 0px;
+ }
+
+ .bg-layer::after {
+     content: '';
+     background: #0000004a;
+     width: 100%;
+     inset: 0;
+     position: absolute;
  }
 
  .page-title .bg-layer {

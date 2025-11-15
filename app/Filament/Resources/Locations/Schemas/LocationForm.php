@@ -52,6 +52,7 @@ class LocationForm
                         FileUpload::make('marker_icon')
                             ->label('Map Marker Icon')
                             ->image()
+                            ->disk('public')
                             ->directory('locations/markers')
                             ->visibility('public')
                             ->helperText('Upload a custom icon for this location on the map (PNG/JPG, recommended size: 64x64px)')

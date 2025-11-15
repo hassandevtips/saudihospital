@@ -33,6 +33,24 @@ class NewsForm
                     ->disk('public')
                     ->helperText('Image displayed in the breadcrumb section at the top of the news detail page')
                     ->columnSpanFull(),
+                FileUpload::make('video')
+                    ->label('Video')
+                    ->directory('news/videos')
+                    ->disk('public')
+                    ->acceptedFileTypes(['video/mp4', 'video/mpeg', 'video/quicktime', 'video/x-msvideo', 'video/webm'])
+                    ->maxSize(102400)
+                    ->helperText('Upload a video file (MP4, MOV, AVI, WebM). Max size: 100MB')
+                    ->columnSpanFull(),
+                FileUpload::make('gallery')
+                    ->label('Gallery Images')
+                    ->directory('news/gallery')
+                    ->disk('public')
+                    ->image()
+                    ->multiple()
+                    ->reorderable()
+                    ->maxFiles(10)
+                    ->helperText('Upload multiple images for the gallery. You can reorder them by dragging.')
+                    ->columnSpanFull(),
                 TextInput::make('author')
                     ->required()
                     ->default('admin'),

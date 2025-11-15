@@ -58,6 +58,7 @@ class PageView extends Component
             'protien' => 'livewire.pages.protien',
             'calorie' => 'livewire.pages.calorie',
             'working-hours-template' => 'livewire.pages.working-hours-template',
+            'find-a-doctor' => 'livewire.pages.find-a-doctor',
             default => 'livewire.pages.default',
         };
 
@@ -83,7 +84,7 @@ class PageView extends Component
                 'lng' => (float) $location->longitude,
                 'phone' => $location->phone,
                 'email' => $location->email,
-                'marker_icon' => $location->marker_icon ? asset('storage/' . $location->marker_icon) : null,
+                'marker_icon' => $location->marker_icon_url,
             ];
         });
 

@@ -5,7 +5,10 @@ $isHomePage = $currentRouteName === 'home';
 ?>
 <div>
     <!-- main header -->
-    <header class="main-header  @if($isHomePage??false) header-style-two @else header-style-one @endif">
+    @php
+    //@if($isHomePage??false) header-style-two @else header-style-one @endif
+    @endphp
+    <header class="main-header  ">
         <!-- header-top -->
 
         <div class="header-top">
@@ -54,8 +57,7 @@ $isHomePage = $currentRouteName === 'home';
                 <div class="outer-box">
                     <div class="logo-box">
                         <figure class="logo"><a href="/" wire:navigate><img src="{{
-                            ($isHomePage??true) ? asset($settings['logo']) : asset('assets/images/logo2.png') }}"
-                                    alt="{{ $settings['site_name'] }}"></a></figure>
+                             asset($settings['logo']) }}" alt="{{ $settings['site_name'] }}"></a></figure>
                     </div>
                     <div class="menu-area clearfix">
                         <!--Mobile Navigation Toggler-->

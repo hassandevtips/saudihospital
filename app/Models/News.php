@@ -16,6 +16,8 @@ class News extends Model
         'content',
         'image',
         'banner_image',
+        'video',
+        'gallery',
         'author',
         'published_date',
         'is_active'
@@ -26,6 +28,7 @@ class News extends Model
         'published_date' => 'date',
         'title' => 'array',
         'content' => 'array',
+        'gallery' => 'array',
     ];
 
     public function scopeActive($query)
@@ -51,5 +54,35 @@ class News extends Model
             return asset($this->banner_image);
         }
         return asset('storage/' . $this->banner_image);
+    }
+
+    public function getVideoUrlAttribute()
+    {
+        if (!$this->video) {
+            return null;
+        }
+
+        if (str_starts_with($this->video, 'http')) {
+            return $this->video;
+        }
+
+        if (str_starts_with($this->video, 'assets')) {
+            return asset($this->video);
+        }
+        return asset('storage/' . $this->video);
+    }
+
+    public function getGalleryUrlsAttribute()
+    {
+        if (!$this->gallery || !is_array($this->gallery)) {
+            return [];
+        }
+
+        return array_map(function ($image) {
+            if (str_starts_with($image, 'assets')) {
+                return asset($image);
+            }
+            return asset('storage/' . $image);
+        }, $this->gallery);
     }
 }
