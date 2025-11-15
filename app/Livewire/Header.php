@@ -137,11 +137,11 @@ class Header extends Component
 
     public function getMenuItems()
     {
-        if (!$this->menu || !$this->menu->items) {
+        if (!$this->menu) {
             return [];
         }
-        // Items will be automatically translated by the model's accessor
-        return $this->menu->items;
+        // Items will be automatically translated by the model's getItemsArray method
+        return $this->menu->getItemsArray();
     }
 
     public function render()

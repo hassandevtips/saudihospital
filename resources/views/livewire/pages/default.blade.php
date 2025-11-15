@@ -9,7 +9,7 @@
             @endif
 
             <div class="page-content">
-                {!! $page->content !!}
+                {!! html_entity_decode($page->content) !!}
 
                 <!-- Show Doctors Linked To the Page -->
                 @if($page->department()->exists())

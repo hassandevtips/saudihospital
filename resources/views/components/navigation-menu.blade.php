@@ -5,7 +5,7 @@
 $currentLocale = app()->getLocale();
 
 // Get menu items - they should already be translated by the Menu model
-$menuItems = $menu && isset($menu->items) ? $menu->items : [];
+$menuItems = $menu ? $menu->getItemsArray() : [];
 @endphp
 
 <ul class="navigation clearfix">

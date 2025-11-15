@@ -59,6 +59,7 @@ class PageView extends Component
             'calorie' => 'livewire.pages.calorie',
             'working-hours-template' => 'livewire.pages.working-hours-template',
             'find-a-doctor' => 'livewire.pages.find-a-doctor',
+            'our-history-template' => 'livewire.pages.our-history-template',
             default => 'livewire.pages.default',
         };
 

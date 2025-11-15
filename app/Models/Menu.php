@@ -17,6 +17,12 @@ class Menu extends BaseMenu
     ];
 
     /**
+     * Prevent attribute accessor from interfering with relationship access
+     * This is crucial for Filament's Repeater component to work properly
+     */
+    protected $appends = [];
+
+    /**
      * Get menu items relationship
      */
     public function items(): HasMany
@@ -33,40 +39,18 @@ class Menu extends BaseMenu
     }
 
     /**
-     * Backward compatibility: Get items as array (for frontend)
-     * This converts the relationship to the old JSON structure format
-     *
-     * Note: This accessor is bypassed when accessing via ->items() relationship method
+     * Get items as translated array for frontend display
+     * This is a method, not an accessor, to avoid conflicts with the relationship
      */
-    public function getItemsAttribute($value)
+    public function getItemsArray(): array
     {
-        // Never use accessor in admin panel - always use relationship
-        if (request() && request()->is('admin/*')) {
-            // Return the relationship value directly (model instances, not array)
-            if ($this->relationLoaded('items')) {
-                return $this->getRelationValue('items');
-            }
-            // If relationship not loaded, return null to use relationship method instead
-            return null;
+        // Always load the relationship if not loaded
+        if (!$this->relationLoaded('items')) {
+            $this->load('items.children');
         }
 
-        // Check if we have the relationship loaded (new structure)
-        if ($this->relationLoaded('items')) {
-            // For frontend, return translated items as array structure
-            return $this->getTranslatedItemsForFrontend();
-        }
-
-        // Fallback: Check if old JSON items column exists (for backward compatibility during migration)
-        $rawItems = $this->getAttributes()['items'] ?? null;
-        if ($rawItems !== null) {
-            if (is_string($rawItems)) {
-                $rawItems = json_decode($rawItems, true);
-            }
-            return is_array($rawItems) ? $rawItems : [];
-        }
-
-        // Return empty array if no items (frontend only)
-        return [];
+        // Return translated items as array structure
+        return $this->getTranslatedItemsForFrontend();
     }
 
     /**

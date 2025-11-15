@@ -20,14 +20,22 @@ $isHomePage = $currentRouteName === 'home';
 
                             <!-- Top Menu from menu table -->
                             @php
-                            $menuItems = \App\Models\Menu::with('items.children')
+                            $topMenu = \App\Models\Menu::with('items.children')
                             ->where('key', 'top-menu')
-                            ->first()?->items ?? [];
+                            ->first();
+                            $menuItems = $topMenu ? $topMenu->getItemsArray() : [];
                             @endphp
                             @foreach($menuItems as $item)
                             <li>
+                                @php
+                                $title = $item['title'] ?? '';
+                                if (is_array($title)) {
+                                $locale = app()->getLocale();
+                                $title = $title[$locale] ?? $title['en'] ?? ($title[array_key_first($title)] ?? '');
+                                }
+                                @endphp
                                 <a href="{{ $item['url'] }}" target="{{ $item['blank'] ? '_blank' : '_self' }}">
-                                    {{ $item['title'] }}
+                                    {{ $title }}
                                 </a>
                             </li>
                             @endforeach

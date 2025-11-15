@@ -116,6 +116,7 @@ class Page extends Model
             'protien' => 'Protein Calculator',
             'calorie' => 'Calorie Calculator',
             'find-a-doctor' => 'Find a Doctor',
+            'our-history-template' => 'Our History Timeline',
         ];
     }
 }
