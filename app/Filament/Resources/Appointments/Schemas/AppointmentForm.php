@@ -6,6 +6,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\TimePicker;
 use Filament\Schemas\Schema;
 
 class AppointmentForm
@@ -18,6 +19,10 @@ class AppointmentForm
                     ->label('Appointment Date')
                     ->required()
                     ->minDate(now()->startOfDay()),
+                TimePicker::make('appointment_time')
+                    ->label('Appointment Time')
+                    ->required()
+                    ->seconds(false),
                 Select::make('doctor_id')
                     ->relationship('doctor', 'name')
                     ->required()

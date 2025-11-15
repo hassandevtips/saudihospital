@@ -919,7 +919,7 @@
      position: inherit;
      float: left;
      z-index: 2;
-     margin: 0px 15px;
+     margin: 0px 10px;
      -webkit-transition: all 300ms ease;
      -moz-transition: all 300ms ease;
      -ms-transition: all 300ms ease;
@@ -939,7 +939,7 @@
      position: relative;
      display: block;
      text-align: center;
-     font-size: 14px;
+     font-size: 13px;
      line-height: 30px;
      padding: 35px 0px;
      font-weight: 700;
@@ -8349,4 +8349,136 @@
 
  .header-style-one .navigation>li>a {
      color: #000 !important;
+ }
+
+ .page-content,
+ .page-content p {
+     font-size: 18px !important;
+     color: #000;
+ }
+
+ .page-content ul,
+ .page-content li {
+     list-style: inherit !important;
+     margin-left: 20px !important;
+ }
+
+
+ .lang-ar .header-top .info li {
+     margin-left: 10px !important;
+ }
+
+ .nice-select {
+     width: 100% !important;
+ }
+
+
+ @media (max-width: 768px) {
+     .pregnancy-calculator-wrapper {
+         padding: 20px !important;
+     }
+
+     .calculation-tabs {
+         flex-direction: column;
+         align-items: stretch;
+     }
+
+     .calc-tab {
+         width: 100%;
+         margin: 5px 0 !important;
+     }
+
+     .form-row {
+         display: block !important;
+     }
+
+     .form-row>div {
+         width: 100% !important;
+         margin-bottom: 15px;
+     }
+
+     table {
+         font-size: 14px;
+     }
+
+     table th,
+     table td {
+         padding: 8px !important;
+     }
+
+     #pregnancy-result>div>div {
+         grid-template-columns: 1fr !important;
+     }
+ }
+
+ .calc-tab:hover {
+     opacity: 0.9;
+ }
+
+ .form-control:focus {
+     outline: none;
+     border-color: #e91e63;
+     box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+ }
+
+
+ @media (max-width: 768px) {
+     .period-calculator-wrapper {
+         padding: 20px !important;
+     }
+
+     .form-row {
+         display: block !important;
+     }
+
+     .form-row>div {
+         width: 100% !important;
+         margin-bottom: 15px;
+     }
+
+     #calendar-grid>div {
+         font-size: 12px;
+         padding: 8px !important;
+         min-height: 35px !important;
+     }
+
+     #prev-month,
+     #next-month {
+         padding: 6px 10px !important;
+         font-size: 14px;
+     }
+
+     #calendar-month {
+         font-size: 16px;
+     }
+ }
+
+
+ @media (max-width: 768px) {
+     .bmi-calculator-wrapper {
+         padding: 20px !important;
+     }
+
+     .unit-tab {
+         padding: 8px 20px !important;
+         font-size: 14px !important;
+     }
+
+     .form-row {
+         display: block !important;
+     }
+
+     .form-row>div {
+         width: 100% !important;
+         margin-bottom: 15px;
+     }
+
+     table {
+         font-size: 14px;
+     }
+
+     table th,
+     table td {
+         padding: 8px !important;
+     }
  }

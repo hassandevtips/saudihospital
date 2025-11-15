@@ -29,6 +29,7 @@ $dir = $isRTL ? 'rtl' : 'ltr';
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+
     @if($isRTL)
     <!-- Arabic Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap"
@@ -49,6 +50,7 @@ $dir = $isRTL ? 'rtl' : 'ltr';
     <link href="{{ asset('assets/css/jquery-ui.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/nice-select.css') }}" rel="stylesheet">
     @if($isRTL)
     <!-- RTL Stylesheet -->
     <link href="{{ asset('assets/css/rtl.css') }}" rel="stylesheet">
@@ -253,6 +255,33 @@ $dir = $isRTL ? 'rtl' : 'ltr';
             document.addEventListener('livewire:navigating', function () {
                 $("#preloader").hide();
                 $("#main-content").show();
+            });
+
+            // Function to initialize nice-select
+            function initNiceSelect() {
+                // Destroy existing nice-select instances first
+                if ($('.nice-select').length) {
+                    $('select:not(.ignore)').each(function() {
+                        var $select = $(this);
+                        var $niceSelect = $select.next('.nice-select');
+                        if ($niceSelect.length) {
+                            $niceSelect.remove();
+                            $select.show();
+                        }
+                    });
+                }
+                // Reinitialize nice-select
+                $('select:not(.ignore)').niceSelect();
+            }
+
+            // Initialize on page load
+            initNiceSelect();
+
+            // Reinitialize after Livewire navigation
+            document.addEventListener('livewire:navigated', function () {
+                setTimeout(function() {
+                    initNiceSelect();
+                }, 100);
             });
         });
     </script>

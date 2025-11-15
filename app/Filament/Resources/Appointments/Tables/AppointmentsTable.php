@@ -23,6 +23,10 @@ class AppointmentsTable
                     ->label('Date')
                     ->date()
                     ->sortable(),
+                TextColumn::make('appointment_time')
+                    ->label('Time')
+                    ->time('h:i A')
+                    ->sortable(),
                 TextColumn::make('patient_name')
                     ->label('Patient')
                     ->searchable()

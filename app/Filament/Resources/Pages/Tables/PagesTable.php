@@ -33,6 +33,11 @@ class PagesTable
                         'blank' => 'info',
                         default => 'gray',
                     }),
+                TextColumn::make('department.name')
+                    ->label('Department')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
                 ImageColumn::make('featured_image')
                     ->circular(),
                 IconColumn::make('is_active')

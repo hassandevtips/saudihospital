@@ -47,6 +47,15 @@ class PageView extends Component
             'board-members' => 'livewire.pages.board-members',
             'faqs-template' => 'livewire.pages.faqs-template',
             'page-with-sub-links' => 'livewire.pages.page-with-sub-links',
+            'suggestions-template' => 'livewire.pages.suggestions-template',
+            'career-template' => 'livewire.pages.career-template',
+            'clinics-template' => 'livewire.pages.clinics-template',
+            'bmi-template' => 'livewire.pages.bmi-template',
+            'ideal_weight_calculator' => 'livewire.pages.ideal_weight_calculator',
+            'period' => 'livewire.pages.period',
+            'pregnancy' => 'livewire.pages.pregnancy',
+            'protien' => 'livewire.pages.protien',
+            'calorie' => 'livewire.pages.calorie',
             default => 'livewire.pages.default',
         };
 
@@ -57,6 +66,7 @@ class PageView extends Component
         $faqs = $templateView === 'livewire.pages.faqs-template'
             ? Faq::query()->active()->get()
             : collect();
+
 
         return view('livewire.page-view', [
             'page' => $this->page,

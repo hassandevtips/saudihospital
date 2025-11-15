@@ -22,7 +22,17 @@ class NewsForm
                     ->columnSpanFull(),
                 FileUpload::make('image')
                     ->image()
-                    ->disk('public'),
+                    ->label('News Image')
+                    ->directory('news')
+                    ->disk('public')
+                    ->columnSpanFull(),
+                FileUpload::make('banner_image')
+                    ->image()
+                    ->label('Breadcrumb Banner Image')
+                    ->directory('news/banners')
+                    ->disk('public')
+                    ->helperText('Image displayed in the breadcrumb section at the top of the news detail page')
+                    ->columnSpanFull(),
                 TextInput::make('author')
                     ->required()
                     ->default('admin'),

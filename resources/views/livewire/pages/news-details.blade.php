@@ -1,5 +1,5 @@
 <section>
-    @include('livewire.includes.page-hero');
+    @include('livewire.includes.page-hero' ,['banner_image_url' => $news->banner_image_url]);
     <!-- sidebar-page-container -->
     <section class="sidebar-page-container p_relative">
         <div class="auto-container">

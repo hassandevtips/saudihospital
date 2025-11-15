@@ -22,7 +22,8 @@ class Page extends Model
         'featured_image',
         'banner_image',
         'is_active',
-        'order'
+        'order',
+        'department_id'
     ];
 
     protected $casts = [
@@ -42,6 +43,11 @@ class Page extends Model
     public function scopeTemplate($query, $template)
     {
         return $query->where('template', $template);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 
     public function getFeaturedImageUrlAttribute()
@@ -99,6 +105,15 @@ class Page extends Model
             'faqs-template' => 'FAQs Template',
             'board-members' => 'Board Members',
             'page-with-sub-links' => 'Page with Sub Links',
+            'suggestions-template' => 'Suggestions Template',
+            'career-template' => 'Career Template',
+            'clinics-template' => 'Clinics Template',
+            'bmi-template' => 'BMI Calculator Template',
+            'ideal_weight_calculator' => 'Ideal Weight Calculator',
+            'period' => 'Period Calculator',
+            'pregnancy' => 'Pregnancy Calculator',
+            'protien' => 'Protein Calculator',
+            'calorie' => 'Calorie Calculator',
         ];
     }
 }

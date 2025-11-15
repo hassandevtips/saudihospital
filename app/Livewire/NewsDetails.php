@@ -15,6 +15,7 @@ class NewsDetails extends Component
         $news = $id;
         $this->page = (object) [
             'title' => $news->title . ' Details',
+            'banner_image_url' => $news->banner_image_url,
         ];
 
         $this->news = $news;

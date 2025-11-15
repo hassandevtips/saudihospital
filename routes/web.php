@@ -8,6 +8,9 @@ use App\Livewire\DoctorsTemplate;
 use App\Livewire\DoctorDetails;
 use Illuminate\Support\Facades\Artisan;
 use App\Livewire\NewsDetails;
+use App\Livewire\Career\CareerDetails;
+use App\Livewire\FormSubmissionComponent;
+use App\Livewire\ClinicDetails;
 
 
 Route::get('/', HomePage::class)->name('home');
@@ -15,6 +18,13 @@ Route::get('/departments', DepartmentDoctors::class)->name('department-doctors')
 Route::get('/departments/{department}', DoctorsTemplate::class)->name('doctors');
 Route::get('/doctors/{doctor}', DoctorDetails::class)->name('doctor-details');
 Route::get('/news/{id}', NewsDetails::class)->name('news-details');
+Route::get('/careers/{slug}', CareerDetails::class)->name('career-details');
+Route::get('/clinics/{slug}', ClinicDetails::class)->name('clinic.details');
+
+// Form Submission Routes - Multiple types (internship, training, volunteer, etc.)
+Route::get('/forms/{type}', FormSubmissionComponent::class)
+    ->where('type', 'internship|training|volunteer|research|fellowship|shadowing')
+    ->name('form-submission');
 
 Route::get('/storage-link', function () {
     Artisan::call('storage:link');
@@ -38,16 +48,6 @@ Route::get('/filament-clear', function () {
         return 'Filament Clear';
     } catch (\Exception $e) {
         return 'Filament Clear Failed: ' . $e->getMessage();
-    }
-});
-
-// Migrate Database
-Route::get('/migrate', function () {
-    try {
-        Artisan::call('migrate');
-        return 'Migrate Database Success';
-    } catch (\Exception $e) {
-        return 'Migrate Database Failed: ' . $e->getMessage();
     }
 });
 

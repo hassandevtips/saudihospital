@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Pages\Schemas;
 
+use App\Models\Department;
 use App\Models\Page;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
@@ -39,6 +40,14 @@ class PageForm
                     ->default('default')
                     ->required()
                     ->helperText('Choose a template for this page')
+                    ->columnSpanFull(),
+
+                Select::make('department_id')
+                    ->label('Department')
+                    ->options(Department::active()->pluck('name', 'id'))
+                    ->searchable()
+                    ->nullable()
+                    ->helperText('Link this page to a department (optional)')
                     ->columnSpanFull(),
 
                 RichEditor::make('content')

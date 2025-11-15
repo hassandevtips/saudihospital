@@ -1,8 +1,8 @@
 <section class="page-title ">
-    <div class="bg-layer " style="
-        background-image: url('{{ $page->banner_image_url ?? asset('assets/images/background/page-title.jpg') }}');
-
-        "></div>
+    <div class="bg-layer " @if(isset($banner_image_url) && $banner_image_url)
+        style="background-image: url('{{ $banner_image_url }}');" @else
+        style="background-image: url('{{ $page->banner_image_url ?? asset('assets/images/background/page-title.jpg') }}');"
+        @endif></div>
     <div class="auto-container">
         <div class="content-box @if($page->banner_image_url ?? false) text-white @endif">
             <h1 class="@if($page->banner_image_url ?? false) text-white @endif">{{ $page->title }}</h1>
