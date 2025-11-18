@@ -24,7 +24,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                         <div class="links-widget footer-widget ml_100">
                             <div class="widget-title">
-                                <h3>Links</h3>
+                                <h3>{{ gt('links', 'Links') }}</h3>
                             </div>
                             <div class="widget-content">
                                 <ul class="links-list clearfix">
@@ -57,7 +57,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                         <div class="links-widget footer-widget ml_30">
                             <div class="widget-title">
-                                <h3>Our Departments</h3>
+                                <h3>{{ gt('our_departments', 'Our Departments') }}</h3>
                             </div>
                             <div class="widget-content">
                                 <ul class="links-list clearfix">
@@ -77,7 +77,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                         <div class="contact-widget footer-widget ml_50">
                             <div class="widget-title">
-                                <h3>Contacts</h3>
+                                <h3>{{ gt('contacts', 'Contacts') }}</h3>
                             </div>
                             <div class="widget-content">
                                 <ul class="info clearfix">
@@ -99,7 +99,7 @@
         <div class="footer-bottom centred">
             <div class="auto-container">
                 <div class="copyright">
-                    <p>Copyright © 2025 Al Saudi Hospital All Rights Reserved <br>Designed By : GULF TECH
+                    <p>{{ gt('copyright', 'Copyright © 2025 Al Saudi Hospital All Rights Reserved') }} <br>{{ gt('designed-by', 'Designed By : GULF TECH') }}
                     </p>
                 </div>
             </div>

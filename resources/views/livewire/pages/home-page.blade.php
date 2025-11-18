@@ -163,7 +163,7 @@
                             <span class="count-text" data-speed="1500"
                                 data-stop="{{ $content->stats_doctors ?? 100 }}">0</span>
                         </div>
-                        <p>Specialized Doctor</p>
+                        <p>{{ gt('specialized_doctor', 'Specialized Doctor') }}</p>
                     </div>
                 </div>
                 <div class="counter-block-one wow slideInUp animated" data-wow-delay="200ms" data-wow-duration="1500ms">
@@ -173,7 +173,7 @@
                             <span class="count-text" data-speed="1500"
                                 data-stop="{{ $content->stats_beds ?? 120 }}">0</span>
                         </div>
-                        <p>Equipped Medical Bed</p>
+                        <p>{{ gt('medical-bed', 'Equipped Medical Bed') }}</p>
                     </div>
                 </div>
                 <div class="counter-block-one wow slideInUp animated" data-wow-delay="400ms" data-wow-duration="1500ms">
@@ -183,7 +183,7 @@
                             <span class="count-text" data-speed="1500"
                                 data-stop="{{ $content->stats_clinics ?? 20 }}">0</span>
                         </div>
-                        <p>Specialized Medical Clinic</p>
+                        <p>{{ gt('medical-clinic', 'Specialized Medical Clinic') }}</p>
                     </div>
                 </div>
                 <div class="counter-block-one wow slideInUp animated" data-wow-delay="600ms" data-wow-duration="1500ms">
@@ -193,7 +193,7 @@
                             <span class="count-text" data-speed="1500"
                                 data-stop="{{ $content->stats_centers ?? 5 }}">0</span>
                         </div>
-                        <p>Specialization Centers</p>
+                        <p>{{ gt('specialization-centers', 'Specialization Centers') }}</p>
                     </div>
                 </div>
             </div>
@@ -254,8 +254,8 @@
 
         <div class="auto-container">
             <div class="sec-title centred light mb_45">
-                <span class="sub-title">Emergency Help</span>
-                <h2>Need a Doctor for Check-up? Call for an <br />Emergency Service!</h2>
+                <span class="sub-title">{{ gt('emergency-help', 'Emergency Help') }}</span>
+                <h2>{{ gt('need_a_doctor', 'Need a Doctor for Check-up? Call for an Emergency Service!') }}</h2>
             </div>
             <div class="support-box p_relative centred">
                 <div class="icon-box"><img src="assets/images/icons/icon-2.png" alt=""></div>
@@ -264,22 +264,22 @@
             <div class="row clearfix">
                 <div class="col-lg-4 col-md-12 col-sm-12 form-column">
                     <div class="form-inner">
-                        <h3>Get Appointment If You <span style="color: #fff;">Need Cosultation</span></h3>
+                        <h3>{{ gt('get_appointment', 'Get Appointment If You Need Consultation') }}</h3>
                         <form wire:submit.prevent="submitAppointment" class="default-form">
                             <div class="form-group">
-                                <input type="text" wire:model.defer="form.patient_name" placeholder="Your Name"
-                                    required="">
+                                <input type="text" wire:model.defer="form.patient_name"
+                                    placeholder="{{ gt('your_name', 'Your Name') }}" required="">
                             </div>
                             <div class="form-group">
-                                <input type="email" wire:model.defer="form.patient_email" placeholder="Email"
-                                    required="">
+                                <input type="email" wire:model.defer="form.patient_email"
+                                    placeholder="{{ gt('email', 'Email') }}" required="">
                                 @error('form.patient_email')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="tel" wire:model.defer="form.patient_phone" placeholder="Phone Number"
-                                    required="">
+                                <input type="tel" wire:model.defer="form.patient_phone"
+                                    placeholder="{{ gt('phone_number', 'Phone Number') }}" required="">
                                 @error('form.patient_phone')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -287,19 +287,21 @@
                             <div class="form-group">
                                 <div class="icon"><i class="far fa-angle-down"></i></div>
                                 <input type="text" wire:model.defer="form.appointment_date"
-                                    placeholder="Appointment date" id="datepicker">
+                                    placeholder="{{ gt('appointment_date', 'Appointment Date') }}" id="datepicker">
                                 @error('form.appointment_date')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <textarea wire:model.defer="form.message" placeholder="Message (optional)"></textarea>
+                                <textarea wire:model.defer="form.message"
+                                    placeholder="{{ gt('message_optional', 'Message (optional)') }}"></textarea>
                                 @error('form.message')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group message-btn">
-                                <button type="submit" class="theme-btn btn-two">Make Appointment</button>
+                                <button type="submit" class="theme-btn btn-two">{{ gt('make_appointment', 'Make
+                                    Appointment') }}</button>
                             </div>
                         </form>
                     </div>
@@ -325,7 +327,7 @@
     <section class="project-section alternat-2 p_relative" style="margin-top: 60px; margin-bottom: 40px;">
         <div class="auto-container">
             <div class="sec-title centred mb_50">
-                <h2>{{ $content->insurances_title ?? 'Insurances' }}</h2>
+                <h2 style="font-size: clamp(1.5rem, 4vw, 2rem);">{{ $content->insurances_title ?? 'Insurances' }}</h2>
             </div>
             <div class="project-carousel-2 owl-carousel owl-theme owl-dots-none owl-nav-none"
                 style="margin-top: -40px;">
@@ -376,4 +378,183 @@
         </div>
     </section>
     @endif
+
+    {{-- Responsive Styles for Home Page --}}
+    <style>
+        @media (max-width: 991px) {
+
+            /* About Section */
+            .about-section .image_block_one .image-box {
+                margin-right: 0 !important;
+                margin-bottom: 30px;
+            }
+
+            .about-section .content_block_one .content-box {
+                margin-left: 0 !important;
+            }
+
+            /* Stats Section */
+            .funfact-style-two .inner-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .counter-block-one {
+                width: 50%;
+                margin-bottom: 30px;
+            }
+
+            /* Pharmacy Section */
+            .chooseus-style-three .image-layer {
+                position: relative !important;
+                height: 300px;
+                margin-bottom: 30px;
+            }
+
+            .chooseus-style-three .content_block_eight .content-box {
+                padding: 30px 20px;
+            }
+
+            /* Contact/Appointment Section */
+            .contact-section .form-inner {
+                margin-bottom: 30px;
+            }
+
+            .contact-section .video-inner {
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 767px) {
+
+            /* About Section Mobile */
+            .about-section {
+                padding: 50px 0 !important;
+            }
+
+            .about-section .image_block_one .image-box .text {
+                position: relative !important;
+                width: 100% !important;
+                margin-top: 20px;
+            }
+
+            .about-section .content_block_one .content-box .inner-box .single-item {
+                margin-bottom: 20px;
+            }
+
+            /* Tabs Section Mobile */
+            .service-section .tab-btns li {
+                width: 100%;
+                margin-bottom: 15px !important;
+            }
+
+            .service-section .tabs-content .tab .inner-box .image-column {
+                margin-top: 30px;
+            }
+
+            /* Stats Section Mobile */
+            .funfact-style-two {
+                margin-top: 50px !important;
+            }
+
+            .counter-block-one {
+                width: 50%;
+            }
+
+            .counter-block-one .inner-box {
+                padding: 20px 10px;
+            }
+
+            .counter-block-one .icon-box {
+                font-size: 40px !important;
+            }
+
+            .counter-block-one .count-outer {
+                font-size: 28px;
+            }
+
+            .counter-block-one p {
+                font-size: 12px;
+            }
+
+            /* Pharmacy Section Mobile */
+            .chooseus-style-three {
+                padding: 50px 0 100px 0 !important;
+            }
+
+            .chooseus-style-three .image-layer {
+                display: none;
+            }
+
+            .chooseus-style-three .content_block_eight .content-box .text h2 {
+                font-size: 24px !important;
+                line-height: 34px !important;
+            }
+
+            /* Contact/Appointment Section Mobile */
+            .contact-section {
+                padding: 50px 0 !important;
+            }
+
+            .contact-section .sec-title h2 {
+                font-size: 24px;
+                line-height: 34px;
+            }
+
+            .contact-section .support-box h3 {
+                font-size: 18px;
+            }
+
+            .contact-section .form-inner {
+                padding: 30px 20px;
+            }
+
+            .contact-section .form-inner h3 {
+                font-size: 20px;
+                line-height: 28px;
+            }
+
+            .contact-section .video-inner {
+                min-height: 250px !important;
+                padding: 100px 0 !important;
+            }
+        }
+
+        @media (max-width: 575px) {
+
+            /* About Section Extra Small */
+            .about-section .sec-title h2 {
+                font-size: 24px;
+                line-height: 34px;
+            }
+
+            .about-section .sec-title .sub-title {
+                font-size: 14px;
+            }
+
+            /* Counter Section Extra Small */
+            .counter-block-one {
+                width: 50%;
+            }
+
+            .counter-block-one .count-outer {
+                font-size: 24px;
+            }
+
+            .counter-block-one p {
+                font-size: 11px;
+                line-height: 16px;
+            }
+
+            /* Tabs Extra Small */
+            .service-section .tab-btns li h4 {
+                font-size: 14px;
+            }
+
+            .service-section .tab-btns li .icon-box {
+                font-size: 30px;
+            }
+        }
+    </style>
 </div>

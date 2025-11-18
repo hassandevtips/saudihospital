@@ -12,7 +12,7 @@
         <div class="auto-container">
             <div class="sec-title centred mb_50">
 
-                <h2>Latest News & Blogs
+                <h2>{{ gt('latest_news', 'Latest News & Blogs') }}
                 </h2>
             </div>
             <div class="row clearfix">

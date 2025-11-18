@@ -16,7 +16,7 @@ $isHomePage = $currentRouteName === 'home';
                 <div class="top-inner">
                     <div class="left-column">
                         <ul class="info clearfix">
-                            <li style="margin-right: 20px;">{{ $settings['tagline'] }}</li>
+                            <li style="{{ app()->getLocale() === 'ar' ? 'margin-left: 20px;' : 'margin-right: 20px;' }}">{{ $settings['tagline'] }}</li>
 
                             <!-- Top Menu from menu table -->
                             @php
@@ -45,7 +45,7 @@ $isHomePage = $currentRouteName === 'home';
                     <div class="right-column">
                         @if($toggleLanguage)
                         <div class="schedule" wire:click="switchToToggleLanguage"
-                            style="cursor: pointer; display: inline-block; margin-right: 15px;">
+                            style="cursor: pointer; display: inline-block; {{ app()->getLocale() === 'ar' ? 'margin-left: 15px;' : 'margin-right: 15px;' }}">
                             {{ $toggleLanguage->native_name }}
                         </div>
                         @endif
@@ -81,9 +81,8 @@ $isHomePage = $currentRouteName === 'home';
                         </nav>
                     </div>
                     <div class="nav-right">
-
                         <div class="btn-box">
-                            <a wire:navigate href="{{ url('departments') }}" class="theme-btn btn-one">Appointment</a>
+                            <a wire:navigate href="{{ url('departments') }}" class="theme-btn btn-one">{{ gt('appointment', 'Appointment') }}</a>
                         </div>
                     </div>
                 </div>
@@ -108,7 +107,7 @@ $isHomePage = $currentRouteName === 'home';
                             <i class="icon-5"></i>
                         </div>
                         <div class="btn-box">
-                            <a href="#" class="theme-btn btn-one">Appointment</a>
+                            <a href="#" class="theme-btn btn-one">{{ gt('appointment', 'Appointment') }}</a>
                         </div>
                     </div>
                 </div>
@@ -147,4 +146,250 @@ $isHomePage = $currentRouteName === 'home';
             </div>
         </nav>
     </div><!-- End Mobile Menu -->
+    
+    <style>
+        /* Header Layout Fixes */
+        .header-lower {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .header-lower .outer-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .header-lower .logo-box {
+            flex-shrink: 0;
+            z-index: 10;
+        }
+        
+        .header-lower .logo-box figure {
+            margin: 0;
+        }
+        
+        .header-lower .logo-box figure img {
+            max-height: 60px;
+            width: auto;
+        }
+        
+        .header-lower .menu-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header-lower .nav-right {
+            flex-shrink: 0;
+            z-index: 10;
+        }
+        
+        /* Mobile Menu Visibility and Functionality */
+        @media (max-width: 1199px) {
+            .mobile-nav-toggler {
+                display: block !important;
+                cursor: pointer;
+                position: relative;
+                z-index: 1000;
+                padding: 10px;
+                background: transparent;
+                border: none;
+            }
+            
+            .mobile-nav-toggler .icon-bar {
+                display: block;
+                width: 30px;
+                height: 3px;
+                background: #02799c;
+                margin: 6px 0;
+                transition: all 0.3s ease;
+                border-radius: 2px;
+            }
+            
+            .mobile-nav-toggler:hover .icon-bar {
+                background: #015f7a;
+            }
+            
+            /* Ensure mobile menu is properly positioned */
+            .mobile-menu {
+                position: fixed;
+                right: 0;
+                top: 0;
+                width: 300px;
+                max-width: 85%;
+                height: 100%;
+                background: #fff;
+                z-index: 99999;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: all 0.4s ease;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            
+            body.mobile-menu-visible .mobile-menu {
+                transform: translateX(0);
+            }
+            
+            .mobile-menu .menu-backdrop {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 99998;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.4s ease;
+            }
+            
+            body.mobile-menu-visible .mobile-menu .menu-backdrop {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .mobile-menu .close-btn {
+                position: absolute;
+                right: 25px;
+                top: 25px;
+                font-size: 24px;
+                color: #222;
+                cursor: pointer;
+                z-index: 10;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                border-radius: 50%;
+                transition: all 0.3s ease;
+            }
+            
+            .mobile-menu .close-btn:hover {
+                background: #f5f5f5;
+                transform: rotate(90deg);
+            }
+        }
+        
+        /* RTL Header Adjustments */
+        body.rtl .header-lower .outer-box {
+            flex-direction: row-reverse;
+        }
+        
+        body.rtl .header-top .left-column {
+            text-align: right;
+        }
+        
+        body.rtl .header-top .right-column {
+            text-align: left;
+        }
+        
+        /* RTL Mobile Menu */
+        @media (max-width: 1199px) {
+            body.rtl .mobile-menu {
+                right: auto !important;
+                left: 0 !important;
+                transform: translateX(-100%) !important;
+            }
+            
+            body.rtl.mobile-menu-visible .mobile-menu {
+                transform: translateX(0) !important;
+            }
+            
+            body.rtl .mobile-menu .close-btn {
+                right: auto;
+                left: 25px;
+            }
+            
+            body.rtl .mobile-menu .menu-box {
+                text-align: right;
+                padding: 30px;
+            }
+            
+            body.rtl .mobile-menu .navigation li {
+                text-align: right;
+            }
+            
+            body.rtl .mobile-menu .navigation li a {
+                text-align: right;
+                justify-content: flex-end;
+            }
+            
+            body.rtl .mobile-menu .dropdown-btn {
+                left: 0;
+                right: auto;
+            }
+        }
+        
+        @media (max-width: 991px) {
+            body.rtl .header-top .left-column,
+            body.rtl .header-top .right-column {
+                text-align: center;
+            }
+            
+            .header-lower .outer-box {
+                padding: 0 15px;
+            }
+        }
+        
+        /* Mobile Responsive Header */
+        @media (max-width: 767px) {
+            .header-lower {
+                padding: 15px 0;
+            }
+            
+            .header-lower .logo-box figure img {
+                max-height: 50px;
+            }
+            
+            .header-lower .nav-right .btn-box {
+                display: none;
+            }
+            
+            .header-top .info {
+                display: none;
+            }
+            
+            .header-lower .outer-box {
+                gap: 10px;
+            }
+            
+            .mobile-nav-toggler {
+                order: 3;
+            }
+            
+            .header-lower .logo-box {
+                order: 2;
+            }
+            
+            .header-lower .nav-right {
+                order: 1;
+            }
+            
+            body.rtl .mobile-nav-toggler {
+                order: 1;
+            }
+            
+            body.rtl .header-lower .logo-box {
+                order: 2;
+            }
+            
+            body.rtl .header-lower .nav-right {
+                order: 3;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            .header-lower .logo-box figure img {
+                max-height: 45px;
+            }
+            
+            .mobile-nav-toggler .icon-bar {
+                width: 25px;
+            }
+        }
+    </style>
 </div>

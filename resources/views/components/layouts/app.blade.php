@@ -12,7 +12,12 @@ $dir = $isRTL ? 'rtl' : 'ltr';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <title>{{ $page->title ?? 'Saudi Hospital' }}</title>
+    @php
+    $siteName = \App\Models\SiteSetting::get('site_name', 'Saudi Hospital');
+    $page = \App\Models\Page::where('slug', request()->path())->first();
+    @endphp
+
+    <title>{{ $page->title ?? $siteName }}</title>
 
     <!-- Fav Icon -->
     <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
@@ -76,11 +81,9 @@ $dir = $isRTL ? 'rtl' : 'ltr';
         body.rtl h6,
         body.rtl p,
         body.rtl a,
-        body.rtl span,
         body.rtl strong,
         body.rtl em,
         body.rtl b,
-        body.rtl i,
         body.rtl u,
         body.rtl s,
         body.rtl small,
@@ -183,8 +186,271 @@ $dir = $isRTL ? 'rtl' : 'ltr';
         body.rtl .text-right {
             text-align: left !important;
         }
+
+        /* RTL Header Fixes */
+        body.rtl .header-top .left-column {
+            text-align: right;
+        }
+
+        body.rtl .header-top .right-column {
+            text-align: left;
+        }
+
+        body.rtl .header-top .info li {
+            float: right;
+            margin-right: 0;
+            margin-left: 20px;
+        }
+
+        body.rtl .header-top .social-links li {
+            float: right;
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+        body.rtl .header-lower .outer-box {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+        }
+
+        body.rtl .logo-box {
+            margin-right: 0;
+            margin-left: auto;
+        }
+
+        body.rtl .menu-area {
+            margin-right: auto;
+            margin-left: 0;
+        }
+
+        body.rtl .nav-right {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        /* RTL Mobile Menu */
+        body.rtl .mobile-menu {
+            right: auto !important;
+            left: 0 !important;
+        }
+
+        body.rtl .mobile-menu .close-btn {
+            right: auto;
+            left: 30px;
+        }
+
+        body.rtl .mobile-menu .menu-box {
+            text-align: right;
+        }
+
+        body.rtl .mobile-menu .navigation li {
+            text-align: right;
+        }
+
+        body.rtl .mobile-nav-toggler {
+            margin-left: 0;
+            margin-right: 15px;
+        }
     </style>
     @endif
+
+    <!-- Additional Responsive Enhancements -->
+    <style>
+        /* Mobile Menu Enhancements */
+        @media (max-width: 991px) {
+            .mobile-menu {
+                position: fixed;
+                right: 0;
+                top: 0;
+                width: 300px;
+                max-width: 80%;
+                height: 100%;
+                background: #fff;
+                z-index: 999999;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu.mobile-menu-visible {
+                transform: translateX(0);
+            }
+
+            .mobile-menu .menu-backdrop {
+                position: fixed;
+                right: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: -1;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu-visible .menu-backdrop {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        /* Ensure Bootstrap Grid Works Properly */
+        @media (max-width: 575px) {
+
+            .col-lg-3,
+            .col-lg-4,
+            .col-lg-6,
+            .col-lg-8,
+            .col-lg-12,
+            .col-md-3,
+            .col-md-4,
+            .col-md-6,
+            .col-md-8,
+            .col-md-12 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (min-width: 576px) and (max-width: 767px) {
+            .col-sm-12 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            .col-md-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+
+            .col-md-12 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+
+        /* Touch-Friendly Buttons */
+        @media (max-width: 767px) {
+
+            .theme-btn,
+            button,
+            a.btn,
+            input[type="submit"],
+            input[type="button"] {
+                min-height: 44px;
+                min-width: 44px;
+                padding: 12px 20px;
+            }
+        }
+
+        /* Prevent Horizontal Scroll */
+        body {
+            overflow-x: hidden;
+        }
+
+        .row {
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+
+        /* Responsive Images */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Responsive Tables */
+        @media (max-width: 767px) {
+            table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
+        /* Owl Carousel Responsive */
+        @media (max-width: 767px) {
+            .owl-carousel .owl-item img {
+                width: auto;
+                max-width: 100%;
+            }
+        }
+
+        /* Fix for iOS Safari */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                -webkit-text-size-adjust: 100%;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Viewport Height Fix for Mobile Browsers */
+        @media (max-width: 767px) {
+
+            .banner-style-two .slide-item,
+            .page-title {
+                min-height: 100vh;
+                min-height: -webkit-fill-available;
+            }
+        }
+
+        /* Hamburger Menu Icon */
+        .mobile-nav-toggler {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        @media (max-width: 1199px) {
+            .mobile-nav-toggler {
+                display: block;
+            }
+        }
+
+        /* RTL Mobile Adjustments */
+        @media (max-width: 1199px) {
+            body.rtl .mobile-menu {
+                right: auto !important;
+                left: 0 !important;
+                transform: translateX(-100%) !important;
+            }
+
+            body.rtl .mobile-menu-visible .mobile-menu {
+                transform: translateX(0) !important;
+            }
+
+            body.rtl .mobile-menu .close-btn {
+                right: auto;
+                left: 25px;
+            }
+
+            body.rtl .mobile-menu .menu-box {
+                padding-right: 30px;
+                padding-left: 30px;
+            }
+
+            body.rtl .mobile-menu .navigation li {
+                text-align: right;
+            }
+
+            body.rtl .mobile-menu .navigation li a {
+                text-align: right;
+            }
+
+            body.rtl .mobile-menu .dropdown-btn {
+                left: 0;
+                right: auto;
+            }
+        }
+    </style>
 
     @livewireStyles
     @stack('styles')
@@ -196,7 +462,7 @@ $dir = $isRTL ? 'rtl' : 'ltr';
         <div id="preloader" style="display: none;">
             <div class="loader-content loader-text">
                 <h1>الهوية الجديدة للرعاية الصحية</h1>
-                <h3>The New Definition of Healthcare</h3>
+                <h3>{{ gt('home_heading', 'The New Definition of Healthcare') }}</h3>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progress"></div>
                 </div>

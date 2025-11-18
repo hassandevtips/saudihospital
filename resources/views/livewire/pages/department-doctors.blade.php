@@ -6,8 +6,8 @@
     <div class="container py-5">
         <div class="row mb-4">
             <div class="col-12 text-center">
-                <h2 class="mb-3" style="color: #02799c;">Select Department</h2>
-                <p class="text-muted">Choose a department to view our specialized doctors</p>
+                <h2 class="mb-3" style="color: #02799c; font-size: clamp(1.5rem, 4vw, 2rem);">Select Department</h2>
+                <p class="text-muted" style="font-size: clamp(0.875rem, 2vw, 1rem);">Choose a department to view our specialized doctors</p>
             </div>
         </div>
 
@@ -49,8 +49,8 @@
         @if($selectedDepartment && $doctors->count() > 0)
         <div class="row mt-5">
             <div class="col-12 text-center">
-                <h2 class="mb-3" style="color: #02799c;">{{ $this->getSelectedDepartmentName() }} Doctors</h2>
-                <p class="text-muted">Meet our specialized medical professionals</p>
+                <h2 class="mb-3" style="color: #02799c; font-size: clamp(1.5rem, 4vw, 2rem);">{{ $this->getSelectedDepartmentName() }} Doctors</h2>
+                <p class="text-muted" style="font-size: clamp(0.875rem, 2vw, 1rem);">Meet our specialized medical professionals</p>
             </div>
         </div>
 
@@ -133,4 +133,59 @@
             }
         });
     </script>
+
+    {{-- Responsive Styles for Department Doctors Page --}}
+    <style>
+        @media (max-width: 767px) {
+            .department-card,
+            .doctor-card {
+                margin-bottom: 20px;
+            }
+            
+            .department-card .card-body,
+            .doctor-card .card-body {
+                padding: 20px 15px;
+            }
+            
+            .department-card h5 {
+                font-size: 16px;
+                margin-top: 10px;
+            }
+            
+            .doctor-image-wrapper img {
+                width: 120px !important;
+                height: 120px !important;
+            }
+            
+            .doctor-card h5 {
+                font-size: 18px;
+            }
+            
+            .doctor-card .font-weight-bold {
+                font-size: 14px;
+            }
+            
+            .doctor-contact p {
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            .department-card img,
+            .department-icon {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            .doctor-image-wrapper img {
+                width: 100px !important;
+                height: 100px !important;
+            }
+        }
+    </style>
 </div>

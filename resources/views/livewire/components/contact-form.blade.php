@@ -4,8 +4,8 @@
 
         <div class="auto-container">
             <div class="sec-title centred light mb_45">
-                <span class="sub-title">Emergency Help</span>
-                <h2>Need a Doctor for Check-up? Call for an <br />Emergency Service!</h2>
+                <span class="sub-title">{{ gt('emergency-help', 'Emergency Help') }}</span>
+                <h2>{{ gt('need_a_doctor', 'Need a Doctor for Check-up? Call for an Emergency Service!') }}</h2>
             </div>
             <div class="support-box p_relative centred">
                 <div class="icon-box"><img src="{{ asset('assets/images/icons/icon-2.png') }}" alt=""></div>
@@ -14,7 +14,7 @@
             <div class="row clearfix">
                 <div class="col-lg-4 col-md-12 col-sm-12 form-column">
                     <div class="form-inner">
-                        <h3>Get Appointment If You <span style="color: #fff;">Need Consultation</span></h3>
+                        <h3>{{ gt('get_appointment', 'Get Appointment If You Need Consultation') }}</h3>
                         @if (session()->has('message'))
                         <div class="alert alert-success">
                             {{ session('message') }}
@@ -22,20 +22,20 @@
                         @endif
                         <form wire:submit="submitAppointment" class="default-form">
                             <div class="form-group">
-                                <input type="text" wire:model="name" placeholder="Your Name" required>
+                                <input type="text" wire:model="name" placeholder="{{ gt('your_name', 'Your Name') }}" required>
                                 @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="form-group">
-                                <input type="email" wire:model="email" placeholder="Email" required>
+                                <input type="email" wire:model="email" placeholder="{{ gt('email', 'Email') }}" required>
                                 @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="form-group">
                                 <div class="icon"><i class="far fa-angle-down"></i></div>
-                                <input type="text" wire:model="date" placeholder="Appointment date" id="datepicker">
+                                <input type="text" wire:model="date" placeholder="{{ gt('appointment_date', 'Appointment Date') }}" id="datepicker">
                                 @error('date') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="form-group message-btn">
-                                <button type="submit" class="theme-btn btn-two">Make Appointment</button>
+                                <button type="submit" class="theme-btn btn-two">{{ gt('make_appointment', 'Make Appointment') }}</button>
                             </div>
                         </form>
                     </div>

@@ -16,7 +16,7 @@
             <div class="row clearfix">
                 <div class="col-lg-8 col-md-12 col-sm-12 big-column offset-lg-2">
                     <div class="form-inner">
-                        <h2>{{ __('Leave a Comment') }}</h2>
+                        <h2>{{ gt('leave_a_comment', 'Leave a Comment') }}</h2>
                         <livewire:contact-form />
                     </div>
                 </div>

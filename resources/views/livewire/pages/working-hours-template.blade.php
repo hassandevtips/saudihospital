@@ -5,9 +5,9 @@
 <section class="locations-section sec-pad">
     <div class="auto-container">
         <div class="sec-title centred mb_50">
-            <span class="sub-title">Our Locations</span>
-            <h2>Find Us on the Map</h2>
-            <p>Visit us at any of our convenient locations</p>
+            <span class="sub-title">{{ gt('our_locations', 'Our Locations') }}</span>
+            <h2>{{ gt('find_us', 'Find Us on the Map') }}</h2>
+            <p>{{ gt('visit_us', 'Visit us at any of our convenient locations') }}</p>
         </div>
 
         {{-- Google Map --}}
@@ -57,7 +57,7 @@
                     <div class="working-hours" style="border-top: 1px solid #eee; padding-top: 15px;">
                         <h4 style="color: #0066b2; margin-bottom: 15px; font-size: 16px;">
                             <i class="fas fa-clock" style="margin-right: 8px;"></i>
-                            Working Hours
+                            {{ gt('working_hours', 'Working Hours') }}
                         </h4>
                         <div class="hours-list">
                             @if($location->working_hours && is_array($location->working_hours))
@@ -93,7 +93,7 @@
                             target="_blank" class="theme-btn btn-one"
                             style="display: inline-block; padding: 10px 30px; background: #0066b2; color: #fff; border-radius: 5px; text-decoration: none; transition: all 0.3s;">
                             <i class="fas fa-directions" style="margin-right: 8px;"></i>
-                            Get Directions
+                            {{ gt('get_directions', 'Get Directions') }}
                         </a>
                     </div>
                 </div>

@@ -32,8 +32,7 @@
                                 <h3><a href="{{ $service->link ?? '#' }}">{{ $service->title }}</a></h3>
                                 <p class="p_relative d_block">{{ $service->description }}</p>
                                 @if($service->link)
-                                <div class="link p_relative d_block"><a href="{{ $service->link }}">Read
-                                        More</a></div>
+                                <div class="link p_relative d_block"><a href="{{ $service->link }}">{{ gt('read-more', 'Read More') }}</a></div>
                                 @endif
                             </div>
                         </div>

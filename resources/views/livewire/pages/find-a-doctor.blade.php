@@ -237,8 +237,8 @@
             <div class="search-box">
                 <div class="row">
                     <div class="col-12 text-center mb-4">
-                        <h2 style="color: #02799c; font-weight: 700;">Find Your Doctor</h2>
-                        <p class="text-muted">Search by name, specialization, or browse by department</p>
+                        <h2 style="color: #02799c; font-weight: 700;">{{ gt('find_your_doctor', 'Find Your Doctor') }}</h2>
+                        <p class="text-muted">{{ gt('search_by_name', 'Search by name, specialization, or browse by department') }}</p>
                     </div>
                 </div>
 
@@ -278,7 +278,7 @@
             {{-- Alphabet Filter --}}
             <div class="row mt-4">
                 <div class="col-12">
-                    <h5 class="text-center mb-3" style="color: #333; font-weight: 600;">Browse by Name</h5>
+                    <h5 class="text-center mb-3" style="color: #333; font-weight: 600;">{{ gt('browse_by_name', 'Browse by Name') }}</h5>
                     <div class="alphabet-filter">
                         @foreach($alphabet as $letter)
                         <div class="letter-badge {{ $selectedLetter == $letter ? 'active' : '' }}"
@@ -323,8 +323,8 @@
             </div>
             @else
             <div class="text-center mb-4">
-                <h3 style="color: #02799c; font-weight: 700;">All Doctors</h3>
-                <p class="text-muted">Browse our complete team of medical professionals</p>
+                <h3 style="color: #02799c; font-weight: 700;">{{ gt('all_doctors', 'All Doctors') }}</h3>
+                <p class="text-muted">{{ gt('browse_our_complete', 'Browse our complete team of medical professionals') }}</p>
             </div>
             @endif
 
