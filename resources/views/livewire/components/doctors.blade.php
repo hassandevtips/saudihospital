@@ -4,9 +4,8 @@
         <div class="auto-container">
             <div class="sec-title p_relative left mb_50">
 
-                <h2>Saudi Hospital
-                    Senior Doctors</h2>
-                <a href="{{ route('department-doctors') }}" class="theme-btn btn-two">View All Doctors</a>
+                <h2>{{ gt('senior_doctors') }}</h2>
+                <a href="{{ route('department-doctors') }}" class="theme-btn btn-two">{{ gt('view_all_doctors') }}</a>
             </div>
             <div class="row clearfix">
                 @forelse($doctors as $index => $doctor)

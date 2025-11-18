@@ -21,11 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Helper For General Translations
-        View::composer('*', function ($view) {
-            $view->with('gt', function ($key, $default = null, $locale = null) {
-                return GeneralTranslation::get($key, $locale, $default);
-            });
-        });
+        //
     }
 }

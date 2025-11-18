@@ -8,8 +8,8 @@
         </div>
         <div class="auto-container">
             <div class="sec-title centred mb_50">
-                <span class="sub-title">We Act With Honesty</span>
-                <h2>The New Definition of Healthcare</h2>
+                <span class="sub-title">{{ gt('we_act') }}</span>
+                <h2>{{ gt('home_heading') }}</h2>
             </div>
             <div class="row clearfix">
                 @forelse($features as $index => $feature)

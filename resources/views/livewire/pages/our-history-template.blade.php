@@ -16,58 +16,46 @@ return [
 
 <!-- Heritage Timeline Section -->
 <section class="heritage-timeline-section">
-    {{-- Vertical Timeline Dots Navigation (Right Side) --}}
-    <div class="timeline-dots-nav d-none d-lg-block">
+    {{-- Fixed Navigation Bullets (Right Side) --}}
+    <div class="timeline-nav-bullets">
         @foreach($timelineItems as $index => $item)
-        <a href="#section-{{ $item['id'] }}" class="timeline-dot {{ $index === 0 ? 'active' : '' }}"
-            data-section="section-{{ $item['id'] }}" title="{{ $item['title'] }}">
+        <a href="#section-{{ $item['id'] }}" class="nav-bullet {{ $index === 0 ? 'active' : '' }}"
+            data-section="section-{{ $item['id'] }}" data-title="{{ $item['title'] }}">
+            <span class="bullet-tooltip">{{ $item['title'] }}</span>
         </a>
         @endforeach
     </div>
 
     <div class="container">
-        {{-- Main Story Section with Quote --}}
+        {{-- Main Story Section --}}
         <section id="main-story" class="timeline-section-item main-story">
             <div class="section-content text-center">
+                <div class="timeline-vertical-line"></div>
                 <h1 class="section-main-title">{{ $page->title }}</h1>
                 @if($page->content)
-                <div class="section-description">
-                    {!! html_entity_decode($page->getTranslation('content', app()->getLocale())) !!}
-                </div>
+                <p class="section-main-subtitle">{!! strip_tags(html_entity_decode($page->getTranslation('content',
+                    app()->getLocale()))) !!}</p>
                 @endif
-                <div class="scroll-indicator-text mt-5">
-                    <small>{{ __('Scroll') }}</small>
-                    <div class="scroll-arrow"></div>
-                </div>
+                <div class="timeline-vertical-line-bottom"></div>
             </div>
         </section>
 
         {{-- Timeline Items --}}
         @forelse($timelineItems as $index => $item)
-        <section id="section-{{ $item['id'] }}"
-            class="timeline-section-item {{ $index % 2 == 0 ? 'image-left' : 'image-right' }}"
-            data-section="section-{{ $item['id'] }}">
-
-            {{-- Section Header with Quote/Title --}}
-            @if($index === 0 && $item['title'])
-            <div class="section-quote-header text-center mb-5">
-                <h2 class="quote-text">{{ $item['title'] }}</h2>
-            </div>
-            @endif
+        <section id="section-{{ $item['id'] }}" class="timeline-section-item" data-section="section-{{ $item['id'] }}">
 
             <div class="section-content">
-                <div class="row align-items-center">
+                <div class="row align-items-center justify-content-center">
                     @if($item['featured_image'])
                     {{-- With Image Layout --}}
-                    <div class="col-lg-5 {{ $index % 2 == 0 ? 'order-1' : 'order-2' }} mb-4 mb-lg-0">
+                    <div class="col-lg-5 {{ $index % 2 == 0 ? 'order-lg-1' : 'order-lg-2' }} mb-4 mb-lg-0">
                         <div class="timeline-image-wrapper">
                             <img src="{{ $item['featured_image'] }}" alt="{{ $item['title'] }}" class="timeline-image">
                         </div>
                     </div>
-                    <div class="col-lg-7 {{ $index % 2 == 0 ? 'order-2' : 'order-1' }}">
-                        <div class="timeline-text-content">
-                            <h2 class="section-title" style="color: #f7b731;">{{ $item['title'] }}</h2>
-                            <h3 class="section-subtitle">{{ __('Founder (May he rest in peace)') }}</h3>
+                    <div class="col-lg-5 {{ $index % 2 == 0 ? 'order-lg-2' : 'order-lg-1' }}">
+                        <div class="timeline-text-content {{ $index % 2 == 0 ? 'text-lg-start' : 'text-lg-end' }}">
+                            <h2 class="section-title">{{ $item['title'] }}</h2>
                             <div class="section-text">
                                 {!! $item['content'] !!}
                             </div>
@@ -75,8 +63,8 @@ return [
                     </div>
                     @else
                     {{-- Text Only Layout --}}
-                    <div class="col-12">
-                        <div class="timeline-text-content">
+                    <div class="col-lg-8">
+                        <div class="timeline-text-content text-center">
                             <h2 class="section-title">{{ $item['title'] }}</h2>
                             <div class="section-text">
                                 {!! $item['content'] !!}
@@ -85,12 +73,12 @@ return [
                     </div>
                     @endif
                 </div>
-            </div>
 
-            {{-- Vertical Line Connector --}}
-            @if(!$loop->last)
-            <div class="timeline-connector"></div>
-            @endif
+                {{-- Vertical Line Connector --}}
+                @if(!$loop->last)
+                <div class="timeline-vertical-line-bottom"></div>
+                @endif
+            </div>
         </section>
         @empty
         <div class="alert alert-info text-center my-5">
@@ -104,171 +92,184 @@ return [
 <style>
     /* Heritage Timeline Section */
     .heritage-timeline-section {
-        background: #f5f5f5;
         padding: 0;
         position: relative;
+        overflow: hidden;
     }
 
-    /* Vertical Timeline Dots Navigation (Right Side) */
-    .timeline-dots-nav {
+    /* Fixed Navigation Bullets (Right Side) */
+    .timeline-nav-bullets {
         position: fixed;
         right: 30px;
         top: 50%;
         transform: translateY(-50%);
         z-index: 1000;
-        display: flex !important;
+        display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 0;
     }
 
-    .timeline-dot {
+    .nav-bullet {
+        position: relative;
+        display: block;
+        width: 16px;
+        height: 16px;
+        margin: 12px 0;
+        text-decoration: none;
+    }
+
+    .nav-bullet::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background: #d1d1d1;
-        border: 2px solid #d1d1d1;
-        display: block;
+        background: rgba(94, 179, 205, 0.3);
+        border: 2px solid #5eb3cd;
         transition: all 0.3s ease;
-        position: relative;
     }
 
-    .timeline-dot:hover {
-        background: #1a4d8f;
-        border-color: #1a4d8f;
-        transform: scale(1.3);
+    .nav-bullet.active::before {
+        background: #5eb3cd;
+        box-shadow: 0 0 0 4px rgba(94, 179, 205, 0.2);
+        transform: translate(-50%, -50%) scale(1.2);
     }
 
-    .timeline-dot.active {
-        background: #1a4d8f;
-        border-color: #1a4d8f;
-        transform: scale(1.5);
+    .nav-bullet:hover::before {
+        background: #5eb3cd;
+        transform: translate(-50%, -50%) scale(1.3);
     }
 
-    .timeline-dot::before {
+    /* Connecting Line Between Bullets */
+    .nav-bullet::after {
         content: '';
         position: absolute;
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
         width: 2px;
-        height: 20px;
-        background: #d1d1d1;
+        height: 24px;
+        background: rgba(94, 179, 205, 0.3);
     }
 
-    .timeline-dot:last-child::before {
+    .nav-bullet:last-child::after {
         display: none;
+    }
+
+    /* Tooltip on Hover */
+    .bullet-tooltip {
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(26, 77, 143, 0.95);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        pointer-events: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .bullet-tooltip::after {
+        content: '';
+        position: absolute;
+        right: -6px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 6px solid rgba(26, 77, 143, 0.95);
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+    }
+
+    .nav-bullet:hover .bullet-tooltip {
+        opacity: 1;
+        visibility: visible;
+        right: 35px;
+    }
+
+    /* Hide bullets on mobile */
+    @media (max-width: 992px) {
+        .timeline-nav-bullets {
+            display: none;
+        }
     }
 
     /* Timeline Section Items */
     .timeline-section-item {
-        min-height: 100vh;
+        min-height: 80vh;
         display: flex;
         align-items: center;
-        padding: 100px 0;
+        justify-content: center;
+        padding: 10px 0;
         position: relative;
     }
 
-
+    .timeline-section-item.main-story {
+        min-height: 80vh;
+    }
 
     .section-content {
         width: 100%;
+        position: relative;
         animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Vertical Timeline Line */
+    .timeline-vertical-line {
+        width: 3px;
+        height: 200px;
+        background: linear-gradient(180deg, transparent 0%, #5eb3cd 100%);
+        margin: 0 auto 30px;
+    }
+
+    .timeline-vertical-line-bottom {
+        width: 3px;
+        height: 200px;
+        background: linear-gradient(180deg, #5eb3cd 0%, #5eb3cd 100%);
+        margin: 60px auto 0;
     }
 
     /* Main Story */
     .section-main-title {
-        font-size: 3.5rem;
+        font-size: 4rem;
         font-weight: 700;
-        color: #1a4d8f;
-        margin-bottom: 2rem;
+        color: #f5a623;
+        margin-bottom: 1rem;
         line-height: 1.2;
+        letter-spacing: -1px;
     }
 
-    .section-description {
-        font-size: 1.3rem;
-        color: #555;
-        line-height: 1.8;
-        max-width: 900px;
-        margin: 0 auto;
-    }
-
-    /* Scroll Indicator */
-    .scroll-indicator-text {
-        color: #1a4d8f;
-        font-size: 0.9rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-
-    .scroll-arrow {
-        width: 2px;
-        height: 60px;
-        background: linear-gradient(180deg, #1a4d8f 0%, transparent 100%);
-        margin: 10px auto;
-        animation: scrollDown 2s infinite;
-    }
-
-    @keyframes scrollDown {
-
-        0%,
-        100% {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-
-        50% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Quote Header */
-    .section-quote-header {
-        margin-bottom: 80px;
-    }
-
-    .quote-text {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: #1a4d8f;
+    .section-main-subtitle {
+        font-size: 20px;
+        margin-bottom: 0;
+        font-weight: 400;
         line-height: 1.4;
-        max-width: 800px;
-        margin: 0 auto;
-        position: relative;
-        padding: 30px 0;
-    }
-
-    .quote-text::before {
-        content: '"';
-        font-size: 6rem;
-        color: #1a4d8f;
-        opacity: 0.2;
-        position: absolute;
-        top: -20px;
-        left: -40px;
     }
 
     /* Section Titles */
     .section-title {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
         font-weight: 700;
-        color: #f7b731;
-        margin-bottom: 1rem;
+        color: #f5a623;
+        margin-bottom: 1.5rem;
         line-height: 1.3;
     }
 
-    .section-subtitle {
-        font-size: 1.3rem;
-        color: #00b8d4;
-        margin-bottom: 2rem;
-        font-weight: 400;
-    }
-
     .section-text {
-        font-size: 1.1rem;
-        color: #666;
-        line-height: 1.9;
+        font-size: 1.15rem;
+        color: #555;
+        line-height: 1.8;
     }
 
     .section-text p {
@@ -289,14 +290,14 @@ return [
     .timeline-image-wrapper {
         position: relative;
         overflow: hidden;
-        border-radius: 0;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         transition: all 0.4s ease;
     }
 
     .timeline-image-wrapper:hover {
-        transform: translateY(-15px);
-        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     }
 
     .timeline-image {
@@ -307,15 +308,12 @@ return [
     }
 
     .timeline-image-wrapper:hover .timeline-image {
-        transform: scale(1.08);
+        transform: scale(1.05);
     }
 
-    /* Timeline Connector */
-    .timeline-connector {
-        width: 2px;
-        height: 150px;
-        background: linear-gradient(180deg, #1a4d8f 0%, transparent 100%);
-        margin: 60px auto;
+    /* Timeline Text Content */
+    .timeline-text-content {
+        padding: 20px;
     }
 
     /* Animations */
@@ -339,47 +337,51 @@ return [
         }
 
         .section-main-title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
+        }
+
+        .section-main-subtitle {
+            font-size: 1.8rem;
         }
 
         .section-title {
             font-size: 2rem;
         }
 
-        .quote-text {
-            font-size: 1.8rem;
-        }
-
-        .section-description,
         .section-text {
             font-size: 1rem;
-        }
-
-        .timeline-dots-nav {
-            display: none;
         }
 
         .timeline-image-wrapper {
             margin-bottom: 30px;
         }
+
+        .timeline-text-content {
+            text-align: center !important;
+        }
+
+        .timeline-vertical-line,
+        .timeline-vertical-line-bottom {
+            height: 100px;
+        }
     }
 
     @media (max-width: 768px) {
         .section-main-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
+        }
+
+        .section-main-subtitle {
+            font-size: 1.5rem;
         }
 
         .section-title {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
         }
 
-        .quote-text {
-            font-size: 1.5rem;
-        }
-
-        .quote-text::before {
-            font-size: 4rem;
-            left: -20px;
+        .timeline-vertical-line,
+        .timeline-vertical-line-bottom {
+            height: 80px;
         }
     }
 
@@ -387,75 +389,62 @@ return [
     html {
         scroll-behavior: smooth;
     }
-
-    /* Background Pattern */
-    .heritage-timeline-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 100%;
-        background:
-            linear-gradient(90deg, rgba(26, 77, 143, 0.02) 1px, transparent 1px),
-            linear-gradient(rgba(26, 77, 143, 0.02) 1px, transparent 1px);
-        background-size: 50px 50px;
-        pointer-events: none;
-        opacity: 0.5;
-    }
 </style>
 
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Scroll Spy for Timeline Dots
+        const navBullets = document.querySelectorAll('.nav-bullet');
         const sections = document.querySelectorAll('.timeline-section-item[data-section]');
-        const navDots = document.querySelectorAll('.timeline-dot');
 
-        // Smooth scroll for navigation dots
-        navDots.forEach(dot => {
-            dot.addEventListener('click', function(e) {
+        // Smooth scroll navigation - scroll to section with 10% offset from top
+        navBullets.forEach(bullet => {
+            bullet.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetSection = document.querySelector(targetId);
 
                 if (targetSection) {
-                    const offsetTop = targetSection.offsetTop - 80;
+                    // Calculate position so section appears 10% from top of viewport
+                    const sectionTop = targetSection.getBoundingClientRect().top + window.pageYOffset;
+                    const windowHeight = window.innerHeight;
+                    const offset = windowHeight * 0.2; // 10% from top
+
                     window.scrollTo({
-                        top: offsetTop,
+                        top: sectionTop - offset,
                         behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Update active dot on scroll
+        // Update active bullet on scroll
         const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '-100px 0px -50% 0px'
+            threshold: 0.5,
+            rootMargin: '-20% 0px -20% 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries) {
+        const sectionObserver = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const sectionId = entry.target.getAttribute('data-section');
 
-                    // Remove active class from all dots
-                    navDots.forEach(dot => {
-                        dot.classList.remove('active');
+                    // Remove active class from all bullets
+                    navBullets.forEach(bullet => {
+                        bullet.classList.remove('active');
                     });
 
-                    // Add active class to current dot
-                    const activeDot = document.querySelector(`.timeline-dot[data-section="${sectionId}"]`);
-                    if (activeDot) {
-                        activeDot.classList.add('active');
+                    // Add active class to current bullet
+                    const activeBullet = document.querySelector(`.nav-bullet[data-section="${sectionId}"]`);
+                    if (activeBullet) {
+                        activeBullet.classList.add('active');
                     }
                 }
             });
         }, observerOptions);
 
         sections.forEach(section => {
-            observer.observe(section);
+            sectionObserver.observe(section);
         });
 
         // Fade in animation for sections
@@ -468,7 +457,7 @@ return [
             });
         }, {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px 0px 0px'
         });
 
         const sectionContents = document.querySelectorAll('.section-content');

@@ -15,6 +15,7 @@ class Department extends Model
         'name',
         'description',
         'image',
+        'thumbnail_image',
         'banner_image',
         'is_active',
         'order'
@@ -59,5 +60,17 @@ class Department extends Model
             return asset($this->banner_image);
         }
         return asset('storage/' . $this->banner_image);
+    }
+
+    public function getThumbnailImageUrlAttribute()
+    {
+        if (!$this->thumbnail_image) {
+            return null;
+        }
+
+        if (str_starts_with($this->thumbnail_image, 'assets')) {
+            return asset($this->thumbnail_image);
+        }
+        return asset('storage/' . $this->thumbnail_image);
     }
 }

@@ -40,7 +40,7 @@
                                 <div class="row clearfix">
                                     <div class="col-lg-6 col-md-6 col-sm-12 single-column">
                                         <div class="single-item">
-                                            <h3>Key Highlights</h3>
+                                            <h3>{{ gt('key_highlights') }}</h3>
                                             <ul class="list-style-one clearfix">
                                                 @forelse($content->getKeyHighlightsList() as $highlight)
                                                 <li>{{ $highlight }}</li>
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 single-column">
                                         <div class="single-item">
-                                            <h3>Services Offered</h3>
+                                            <h3>{{ gt('services-offered') }}</h3>
                                             <ul class="list-style-one clearfix">
                                                 @forelse($content->getServicesOfferedList() as $service)
                                                 <li>{{ $service }}</li>

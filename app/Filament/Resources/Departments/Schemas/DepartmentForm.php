@@ -30,14 +30,15 @@ class DepartmentForm
                     ->disk('public')
                     ->imageEditor()
                     ->columnSpanFull(),
-                FileUpload::make('banner_image')
+                FileUpload::make('thumbnail_image')
                     ->image()
-                    ->label('Breadcrumb Banner Image')
-                    ->directory('departments/banners')
+                    ->label('Banner Image')
+                    ->directory('departments/thumbnails')
                     ->disk('public')
                     ->imageEditor()
                     ->helperText('This image will be displayed in the breadcrumb banner section')
                     ->columnSpanFull(),
+
                 Toggle::make('is_active')
                     ->label('Active')
                     ->default(true)

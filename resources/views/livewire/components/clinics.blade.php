@@ -19,7 +19,8 @@
                             @endif
                             <h3><a href="{{ route('clinic.details', $clinic->slug) }}">{{ $clinic->title }}</a></h3>
                             <p>{{ $clinic->short_description }}</p>
-                            <div class="link-text"><a href="{{ route('clinic.details', $clinic->slug) }}">Read More</a>
+                            <div class="link-text"><a href="{{ route('clinic.details', $clinic->slug) }}">{{
+                                    gt('read-more') }}</a>
                             </div>
                         </div>
                     </div>

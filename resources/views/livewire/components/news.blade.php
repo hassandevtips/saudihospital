@@ -37,7 +37,8 @@
                                     </ul>
                                     <p>{{ Str::limit($item->content, 100) }}</p>
                                     <div class="link"><a wire:navigate
-                                            href="{{ route('news-details', ['id' => $item->id]) }}">Read more</a></div>
+                                            href="{{ route('news-details', ['id' => $item->id]) }}">{{ gt('read-more')
+                                            }}</a></div>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +60,7 @@
                                         <li><i class="icon-35"></i><a href="#">admin</a></li>
                                     </ul>
                                     <p>We believe every patient has the right to be treated with dignity.</p>
-                                    <div class="link"><a href="#">Read more</a></div>
+                                    <div class="link"><a href="#">{{ gt('read-more') }}</a></div>
                                 </div>
                             </div>
                         </div>

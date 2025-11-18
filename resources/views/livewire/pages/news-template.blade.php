@@ -32,7 +32,8 @@ $news = \App\Models\News::active()->paginate(10);
                                     </ul>
                                     <p>{{ Str::limit($item->content, 100) }}</p>
                                     <div class="link"><a wire:navigate
-                                            href="{{ route('news-details', ['id' => $item->id]) }}">Read more</a></div>
+                                            href="{{ route('news-details', ['id' => $item->id]) }}">{{ gt('read-more')
+                                            }}</a></div>
                                 </div>
                             </div>
                         </div>

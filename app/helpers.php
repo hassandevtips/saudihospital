@@ -3,7 +3,7 @@
 if (!function_exists('gt')) {
     /**
      * Get a general translation by key.
-     * 
+     *
      * @param string $key The translation key
      * @param string|null $default The default value if translation not found
      * @param string|null $locale The locale to use (defaults to current locale)
@@ -18,7 +18,7 @@ if (!function_exists('gt')) {
 if (!function_exists('gt_group')) {
     /**
      * Get all general translations by group.
-     * 
+     *
      * @param string $group The group name
      * @param string|null $locale The locale to use (defaults to current locale)
      * @return array
@@ -28,4 +28,3 @@ if (!function_exists('gt_group')) {
         return \App\Models\GeneralTranslation::getByGroup($group, $locale);
     }
 }
-

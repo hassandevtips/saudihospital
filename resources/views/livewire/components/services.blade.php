@@ -10,8 +10,8 @@
         </div>
         <div class="auto-container">
             <div class="sec-title centred mb_50">
-                <span class="sub-title">Explore Medical Department</span>
-                <h2>Centers of Excellence</h2>
+                <span class="sub-title">{{ gt('explore-medical') }}</span>
+                <h2>{{ gt('centers_of') }}</h2>
             </div>
             <div class="row clearfix">
                 @forelse($services as $index => $service)
@@ -53,7 +53,7 @@
                                 <h3><a href="#">Cardiology and Heart Center</a></h3>
                                 <p class="p_relative d_block">We focus on accuracy safety and speed with care
                                     plans tailored to each patients.</p>
-                                <div class="link p_relative d_block"><a href="#">Read More</a></div>
+                                <div class="link p_relative d_block"><a href="#">{{ gt('read-more') }}</a></div>
                             </div>
                         </div>
                     </div>
