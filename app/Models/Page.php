@@ -23,7 +23,8 @@ class Page extends Model
         'banner_image',
         'is_active',
         'order',
-        'department_id'
+        'department_id',
+        'parent_id'
     ];
 
     protected $casts = [
@@ -48,6 +49,21 @@ class Page extends Model
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Page::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Page::class, 'parent_id')->orderBy('order');
+    }
+
+    public function activeChildren()
+    {
+        return $this->hasMany(Page::class, 'parent_id')->where('is_active', true)->orderBy('order');
     }
 
     public function getFeaturedImageUrlAttribute()

@@ -12,10 +12,10 @@ $dir = $isRTL ? 'rtl' : 'ltr';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <title>{{ $title ?? 'Saudi Hospital' }}</title>
+    <title>{{ $page->title ?? 'Saudi Hospital' }}</title>
 
     <!-- Fav Icon -->
-    <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
@@ -30,13 +30,12 @@ $dir = $isRTL ? 'rtl' : 'ltr';
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
-    @if($isRTL)
+
     <!-- Arabic Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap"
-        rel="stylesheet">
-    @endif
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+
 
     <!-- Stylesheets -->
     <link href="{{ asset('assets/css/font-awesome-all.css') }}" rel="stylesheet">
@@ -57,7 +56,7 @@ $dir = $isRTL ? 'rtl' : 'ltr';
     <style>
         /* Apply Arabic fonts for RTL layout */
         body.rtl {
-            font-family: 'Cairo', 'Tajawal', 'Rubik', sans-serif;
+            font-family: 'Almarai', sans-serif;
             direction: rtl;
             text-align: right;
         }
@@ -76,11 +75,39 @@ $dir = $isRTL ? 'rtl' : 'ltr';
         body.rtl h5,
         body.rtl h6,
         body.rtl p,
+        body.rtl a,
+        body.rtl span,
+        body.rtl strong,
+        body.rtl em,
+        body.rtl b,
+        body.rtl i,
+        body.rtl u,
+        body.rtl s,
+        body.rtl small,
+        body.rtl sub,
+        body.rtl sup,
+        body.rtl label,
+        body.rtl input,
+        body.rtl textarea,
+        body.rtl select,
+        body.rtl button,
+        body.rtl ul,
+        body.rtl ol,
+        body.rtl li,
+        body.rtl dl,
+        body.rtl dt,
+        body.rtl dd,
+        body.rtl table,
+        body.rtl thead,
+        body.rtl tbody,
+        body.rtl tfoot,
+        body.rtl form,
         body.rtl .text-center,
         body.rtl .card,
         body.rtl .card-body,
         body.rtl .container,
         body.rtl .row {
+            font-family: 'Almarai', sans-serif !important;
             direction: rtl;
             text-align: right;
         }
@@ -167,9 +194,9 @@ $dir = $isRTL ? 'rtl' : 'ltr';
     <div class="boxed_wrapper">
         <!-- preloader -->
         <div id="preloader" style="display: none;">
-            <div class="loader-content">
-                <img src="{{ asset('assets/images/footer-logo.png') }}" alt="Hospital Logo" class="loader-logo">
-                <h2 class="loader-text" style="color: #fff;">Loading <span class="dots"></span></h2>
+            <div class="loader-content loader-text">
+                <h1>الهوية الجديدة للرعاية الصحية</h1>
+                <h3>The New Definition of Healthcare</h3>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progress"></div>
                 </div>
@@ -191,7 +218,7 @@ $dir = $isRTL ? 'rtl' : 'ltr';
             </button>
 
             {{-- Floating Appointment Button --}}
-            <a href="#" class="floating-btn">Floating Book Appointment 24/7</a>
+            <a href="#" class="floating-btn">Book Appointment 24/7</a>
         </div>
     </div>
 

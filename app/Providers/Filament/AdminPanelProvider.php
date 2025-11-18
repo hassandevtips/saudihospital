@@ -21,6 +21,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 use App\Models\Language;
+use App\Filament\Resources\Pages\PageResource;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -42,6 +43,9 @@ class AdminPanelProvider extends PanelProvider
                 SpatieTranslatablePlugin::make()
                     ->defaultLocales($languages->pluck('code')->toArray())
             )
+            ->resources([
+                PageResource::class,
+            ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

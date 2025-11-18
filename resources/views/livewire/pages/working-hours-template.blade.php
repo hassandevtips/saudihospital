@@ -238,7 +238,7 @@
         // Load Google Maps API
         function loadGoogleMapsAPI() {
             const script = document.createElement('script');
-            script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCCx15fv0E_h9qqf43omAi6LXs9fhnzdLA&sensor=false&callback=initMap';
+            script.src = 'https://maps.googleapis.com/maps/api/js?key={{ $settings['google_maps_api_key'] }}&sensor=false&callback=initMap';
             script.async = true;
             script.defer = true;
             document.head.appendChild(script);

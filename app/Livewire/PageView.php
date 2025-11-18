@@ -23,6 +23,9 @@ class PageView extends Component
         $this->slug = $slug;
         $this->page = Page::where('slug', $slug)
             ->where('is_active', true)
+            ->with(['children' => function ($query) {
+                $query->where('is_active', true)->orderBy('order');
+            }])
             ->firstOrFail();
 
         // Load settings for the view
@@ -34,6 +37,7 @@ class PageView extends Component
             'facebook' => SiteSetting::get('facebook', '#'),
             'twitter' => SiteSetting::get('twitter', '#'),
             'linkedin' => SiteSetting::get('linkedin', '#'),
+            'google_maps_api_key' => SiteSetting::get('google_maps_api_key', 'AIzaSyCCx15fv0E_h9qqf43omAi6LXs9fhnzdLA'),
         ];
     }
 

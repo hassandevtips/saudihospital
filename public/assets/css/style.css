@@ -939,7 +939,7 @@
      position: relative;
      display: block;
      text-align: center;
-     font-size: 13px;
+     font-size: 15px;
      line-height: 30px;
      padding: 35px 0px;
      font-weight: 700;
@@ -1032,7 +1032,7 @@
      align-items: center;
      justify-content: center;
      background: linear-gradient(135deg, #009cab, #007da0);
-     z-index: 9999;
+     z-index: 99990;
      color: #fff;
      text-align: center;
  }
@@ -5719,7 +5719,7 @@
  }
 
  .service-page-section {
-     padding: 120px 0px 90px 0px;
+     padding: 80px 0px 90px 0px;
  }
 
  .service-page-section .service-block-one .inner-box {
@@ -5874,7 +5874,7 @@
  }
 
  .team-page-section {
-     padding: 120px 0px 90px 0px;
+     padding: 80px 0px 90px 0px;
  }
 
  .team-page-section .team-block-one .inner-box {
@@ -5882,7 +5882,7 @@
  }
 
  .team-style-two.team-page-2 {
-     padding: 120px 0px 90px 0px;
+     padding: 80px 0px 90px 0px;
  }
 
  .team-style-two.team-page-2 .team-block-two .inner-box {
@@ -6066,7 +6066,7 @@
  /** portfolio-page-section **/
 
  .portfolio-page-section {
-     padding: 120px 0px 90px 0px;
+     padding: 80px 0px 90px 0px;
  }
 
  .portfolio-page-section .project-block-one .inner-box {
@@ -7285,7 +7285,7 @@
 
  .testimonial-page-section {
      background: #fff;
-     padding: 120px 0px 90px 0px;
+     padding: 80px 0px 90px 0px;
  }
 
  .testimonial-page-section .testimonial-content .inner-box {
@@ -8489,4 +8489,28 @@
      table td {
          padding: 8px !important;
      }
+ }
+
+
+ .logo img {
+     max-width: 240px;
+ }
+
+ .loader-text h2,
+ .loader-text h3,
+ .loader-text h1 {
+     color: #fff !important;
+ }
+
+ .loader-text h1 {
+     font-size: 30px;
+     font-weight: 600;
+     margin-bottom: 10px;
+     font-family: 'Almarai', sans-serif !important;
+ }
+
+ .loader-text h3 {
+     font-size: 20px;
+     font-weight: 400;
+     margin-bottom: 10px;
  }

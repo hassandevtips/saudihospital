@@ -50,6 +50,21 @@ class PageForm
                     ->helperText('Link this page to a department (optional)')
                     ->columnSpanFull(),
 
+                Select::make('parent_id')
+                    ->label('Parent Page')
+                    ->options(function ($record) {
+                        // Get all pages except the current one (to prevent self-referencing)
+                        $query = Page::query();
+                        if ($record) {
+                            $query->where('id', '!=', $record->id);
+                        }
+                        return $query->pluck('title', 'id');
+                    })
+                    ->searchable()
+                    ->nullable()
+                    ->helperText('Select a parent page to make this a sub-page (optional)')
+                    ->columnSpanFull(),
+
                 RichEditor::make('content')
                     ->label('Page Content')
 

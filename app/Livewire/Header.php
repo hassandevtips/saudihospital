@@ -37,6 +37,7 @@ class Header extends Component
             'twitter' => SiteSetting::get('twitter', '#'),
             'linkedin' => SiteSetting::get('linkedin', '#'),
             'logo' => SiteSetting::get('logo', 'assets/images/logo.png'),
+            'google_maps_api_key' => SiteSetting::get('google_maps_api_key', 'AIzaSyCCx15fv0E_h9qqf43omAi6LXs9fhnzdLA'),
         ];
     }
 

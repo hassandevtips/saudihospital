@@ -24,6 +24,9 @@ class DepartmentsTable
                     ->searchable(),
                 ImageColumn::make('image')
                     ->label('Image'),
+                ImageColumn::make('banner_image')
+                    ->label('Banner')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('doctors_count')
                     ->counts('doctors')
                     ->label('Doctors')

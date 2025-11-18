@@ -15,6 +15,7 @@ class Department extends Model
         'name',
         'description',
         'image',
+        'banner_image',
         'is_active',
         'order'
     ];
@@ -46,5 +47,17 @@ class Department extends Model
             return asset($this->image);
         }
         return asset('storage/' . $this->image);
+    }
+
+    public function getBannerImageUrlAttribute()
+    {
+        if (!$this->banner_image) {
+            return null;
+        }
+
+        if (str_starts_with($this->banner_image, 'assets')) {
+            return asset($this->banner_image);
+        }
+        return asset('storage/' . $this->banner_image);
     }
 }

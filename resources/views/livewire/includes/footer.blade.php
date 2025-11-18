@@ -28,11 +28,27 @@
                             </div>
                             <div class="widget-content">
                                 <ul class="links-list clearfix">
-                                    <li><a href="#">History</a></li>
-                                    <li><a href="#">Mission Vision</a></li>
-                                    <li><a href="#">Core Values</a></li>
-                                    <li><a href="#">Medical Tourism</a></li>
-                                    <li><a href="#">Partners and Network</a></li>
+                                    @php
+                                    $topMenu = \App\Models\Menu::with('items.children')
+                                    ->where('key', 'footer-menu')
+                                    ->first();
+                                    $menuItems = $topMenu ? $topMenu->getItemsArray() : [];
+                                    @endphp
+                                    @foreach($menuItems as $item)
+                                    <li>
+                                        @php
+                                        $title = $item['title'] ?? '';
+                                        if (is_array($title)) {
+                                        $locale = app()->getLocale();
+                                        $title = $title[$locale] ?? $title['en'] ?? ($title[array_key_first($title)] ??
+                                        '');
+                                        }
+                                        @endphp
+                                        <a href="{{ $item['url'] }}" target="{{ $item['blank'] ? '_blank' : '_self' }}">
+                                            {{ $title }}
+                                        </a>
+                                    </li>
+                                    @endforeach
 
                                 </ul>
                             </div>

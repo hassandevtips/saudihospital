@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Doctors\Schemas;
 
 use App\Models\Department;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -40,12 +41,33 @@ class DoctorForm
                     ->label('Biography')
                     ->rows(4)
                     ->columnSpanFull(),
+                RichEditor::make('skills')
+                    ->label('Skills')
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'underline',
+                        'bulletList',
+                        'orderedList',
+                        'link',
+                        'undo',
+                        'redo',
+                    ])
+                    ->columnSpanFull(),
                 FileUpload::make('image')
                     ->image()
                     ->label('Profile Photo')
                     ->directory('doctors')
                     ->disk('public')
                     ->imageEditor()
+                    ->columnSpanFull(),
+                FileUpload::make('banner_image')
+                    ->image()
+                    ->label('Breadcrumb Banner Image')
+                    ->directory('doctors/banners')
+                    ->disk('public')
+                    ->imageEditor()
+                    ->helperText('Image displayed in the breadcrumb section at the top of the doctor detail page')
                     ->columnSpanFull(),
                 TextInput::make('email')
                     ->label('Email Address')

@@ -33,6 +33,12 @@ class PagesTable
                         'blank' => 'info',
                         default => 'gray',
                     }),
+                TextColumn::make('parent.title')
+                    ->label('Parent Page')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable()
+                    ->placeholder('—'),
                 TextColumn::make('department.name')
                     ->label('Department')
                     ->searchable()

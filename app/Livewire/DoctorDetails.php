@@ -31,6 +31,7 @@ class DoctorDetails extends Component
     {
         $this->page = (object) [
             'title' => $doctor->name . ' Details',
+            'banner_image_url' => $doctor->banner_image_url,
         ];
 
         $this->doctor = $doctor;

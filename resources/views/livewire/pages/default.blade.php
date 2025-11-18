@@ -15,7 +15,7 @@
                 @if($page->department()->exists())
 
                 <!-- Doctors List -->
-                <section class="team-page-section p_relative">
+                <section class="team-page-section p_relative" style="padding-top: 20px !important;">
                     <div class="auto-container">
                         <div class="row clearfix">
                             @forelse($page->department->doctors as $doctor)

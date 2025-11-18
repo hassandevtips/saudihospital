@@ -31,7 +31,7 @@
                         <div class="skills-box">
                             <div class="text">
                                 <h3>{{ __('My Skills') }}</h3>
-                                <p>{!! $doctor->department->description !!}</p>
+                                <p>{!! $doctor->skills !!}</p>
                             </div>
                         </div>
 

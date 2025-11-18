@@ -18,6 +18,7 @@ class DoctorsTemplate extends Component
         $this->currentDepartment = $department;
         $this->page = (object) [
             'title' => $department->name . ' Doctors',
+            'banner_image_url' => $department->banner_image_url,
         ];
 
         $this->doctors = $department->doctors()->active()->get();

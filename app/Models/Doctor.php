@@ -10,14 +10,16 @@ class Doctor extends Model
 {
     use HasTranslations;
 
-    public $translatable = ['name', 'specialization', 'bio'];
+    public $translatable = ['name', 'specialization', 'bio', 'skills'];
 
     protected $fillable = [
         'department_id',
         'name',
         'specialization',
         'bio',
+        'skills',
         'image',
+        'banner_image',
         'email',
         'phone',
         'is_active',
@@ -29,6 +31,7 @@ class Doctor extends Model
         'name' => 'array',
         'specialization' => 'array',
         'bio' => 'array',
+        'skills' => 'array',
     ];
 
     public function department()
@@ -57,6 +60,18 @@ class Doctor extends Model
             return asset($this->image);
         }
         return asset('storage/' . $this->image);
+    }
+
+    public function getBannerImageUrlAttribute()
+    {
+        if (!$this->banner_image) {
+            return null;
+        }
+        
+        if (str_starts_with($this->banner_image, 'assets')) {
+            return asset($this->banner_image);
+        }
+        return asset('storage/' . $this->banner_image);
     }
 
     /**
