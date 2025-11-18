@@ -5,7 +5,8 @@ namespace App\Filament\Resources\GeneralTranslations\Pages;
 use App\Filament\Resources\GeneralTranslations\GeneralTranslationResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
-use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
+use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
+use LaraZeus\SpatieTranslatable\Resources\Pages\ListRecords\Concerns\Translatable;
 
 class ListGeneralTranslations extends ListRecords
 {
@@ -16,8 +17,8 @@ class ListGeneralTranslations extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
+            LocaleSwitcher::make(),
             CreateAction::make(),
         ];
     }
 }
-

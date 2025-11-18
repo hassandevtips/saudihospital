@@ -26,18 +26,19 @@ class FormSubmissionComponent extends Component
         'message' => '',
     ];
 
-    public function mount($type = 'internship', $slug = null)
+    public function mount($type = 'internship')
     {
         $this->formType = $type;
 
         // Try to get the page for the sidebar menu
-        $formPage = $slug ? Page::where('slug', $slug)->first() : null;
+        $formPage = Page::where('slug', $type)->first();
 
         $this->page = (object) [
             'title' => $this->getFormTitle(),
             'slug' => $formPage?->slug ?? $type,
             'id' => $formPage?->id,
             'parent_id' => $formPage?->parent_id,
+            'banner_image_url' => $formPage?->banner_image_url,
         ];
     }
 

@@ -2,16 +2,13 @@
 
 namespace App\Filament\Resources\GeneralTranslations\Tables;
 
-use App\Filament\Resources\GeneralTranslations\Pages\EditGeneralTranslation;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkRecord;
-use Filament\Resources\Pages\EditRecord;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 
 class GeneralTranslationsTable
 {
@@ -28,15 +25,8 @@ class GeneralTranslationsTable
 
                 TextColumn::make('value')
                     ->label('Text Content')
-                    ->searchable()
-                    ->limit(50)
-                    ->tooltip(function (TextColumn $column): ?string {
-                        $state = $column->getState();
-                        if (is_array($state)) {
-                            $state = json_encode($state, JSON_UNESCAPED_UNICODE);
-                        }
-                        return strlen($state) > 50 ? $state : null;
-                    }),
+                    ->limit(60)
+                    ->searchable(),
 
                 TextColumn::make('group')
                     ->label('Group')
@@ -87,6 +77,14 @@ class GeneralTranslationsTable
                     })
                     ->searchable()
                     ->preload(),
+            ])
+            ->recordActions([
+                EditAction::make(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
             ])
             ->defaultSort('order', 'asc');
     }

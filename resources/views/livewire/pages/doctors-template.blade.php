@@ -26,8 +26,8 @@
                 </div> --}}
                 <div class="col-lg-12 col-md-12 col-sm-12 content-side">
                     <div class="service-details-content">
-                        <div class="content-one">
-                            <div class="text">
+                        <div class="content-one mb-0">
+                            <div class="text mb-0">
 
                                 <h2>{{ $currentDepartment->name }} Doctors</h2>
                                 {!! $currentDepartment->description !!}
@@ -35,7 +35,7 @@
                         </div>
 
                         <!-- Doctors List -->
-                        <section class="team-page-section p_relative">
+                        <section class="team-page-section p_relative" style="padding-top: 30px !important;">
                             <div class="auto-container">
                                 <div class="row clearfix">
                                     @forelse($doctors as $doctor)
