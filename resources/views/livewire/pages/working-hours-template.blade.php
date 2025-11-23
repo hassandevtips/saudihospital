@@ -74,14 +74,15 @@
                                     {{ $schedule['open_time'] ?? '08:00' }} - {{ $schedule['close_time'] ?? '17:00'
                                     }}
                                     @else
-                                    Closed
+                                    {{ gt('closed', 'Closed') }}
                                     @endif
                                 </span>
                             </div>
                             @endif
                             @endforeach
                             @else
-                            <p style="color: #888;">Working hours not available</p>
+                            <p style="color: #888;">{{ gt('working_hours_not_available', 'Working hours not available')
+                                }}</p>
                             @endif
                         </div>
                     </div>
@@ -102,8 +103,8 @@
             <div class="col-lg-12">
                 <div class="alert alert-info" style="text-align: center; padding: 30px;">
                     <i class="fas fa-info-circle" style="font-size: 48px; color: #0098ac; margin-bottom: 15px;"></i>
-                    <h4>No Locations Available</h4>
-                    <p>Location information will be displayed here once added.</p>
+                    <h4>{{ gt('no_locations_available', 'No Locations Available') }}</h4>
+                    <p>{{ gt('location_info_soon', 'Location information will be displayed here once added.') }}</p>
                 </div>
             </div>
             @endforelse
@@ -204,7 +205,7 @@
                         <a href="https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}"
                            target="_blank"
                            style="display: inline-block; margin-top: 10px; padding: 8px 15px; background: #0098ac; color: #fff; border-radius: 5px; text-decoration: none; font-size: 13px;">
-                            Get Directions
+                            {{ gt('get_directions', 'Get Directions') }}
                         </a>
                     </div>
                 `;

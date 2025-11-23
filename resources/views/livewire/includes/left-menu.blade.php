@@ -45,7 +45,7 @@ $menuItemsParentTitle = collect($menuItemsParentTitle)->flatten()->filter()->fir
             </a>
         </li>
         @empty
-        <li><a href="#" style="color: #666;">No Sub Links available</a></li>
+        <li><a href="#" style="color: #666;">{{ gt('no_sub_links', 'No Sub Links available') }}</a></li>
         @endforelse
     </ul>
 </div>
