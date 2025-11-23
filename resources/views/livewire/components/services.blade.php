@@ -11,7 +11,7 @@
         <div class="auto-container">
             <div class="sec-title centred mb_50">
                 <span class="sub-title">{{ gt('explore-medical') }}</span>
-                <h2>{{ gt('centers_of') }}</h2>
+                <h2 class="text-center">{{ gt('centers_of') }}</h2>
             </div>
             <div class="row clearfix">
                 @forelse($services as $index => $service)
@@ -32,7 +32,8 @@
                                 <h3><a href="{{ $service->link ?? '#' }}">{{ $service->title }}</a></h3>
                                 <p class="p_relative d_block">{{ $service->description }}</p>
                                 @if($service->link)
-                                <div class="link p_relative d_block"><a href="{{ $service->link }}">{{ gt('read-more', 'Read More') }}</a></div>
+                                <div class="link p_relative d_block"><a href="{{ $service->link }}">{{ gt('read-more',
+                                        'Read More') }}</a></div>
                                 @endif
                             </div>
                         </div>

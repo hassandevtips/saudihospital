@@ -10,8 +10,7 @@
                                             alt=""></a></figure>
                             </div>
                             <div class="widget-content" style="margin-top: 20px;">
-                                <p>Our journey began with a clear mission to provide world-class medical care with
-                                    compassion integrity and professionalism.</p>
+                                <p>{{ gt('footer_about') }}</p>
                                 <ul class="social-links clearfix">
                                     <li><a href="{{ $settings['facebook'] }}"><i class="fab fa-facebook-f"></i></a></li>
                                     <li><a href="{{ $settings['twitter'] }}"><i class="fab fa-twitter"></i></a></li>
@@ -99,7 +98,8 @@
         <div class="footer-bottom centred">
             <div class="auto-container">
                 <div class="copyright">
-                    <p>{{ gt('copyright', 'Copyright © 2025 Al Saudi Hospital All Rights Reserved') }} <br>{{ gt('designed-by', 'Designed By : GULF TECH') }}
+                    <p>{{ gt('copyright', 'Copyright © 2025 Al Saudi Hospital All Rights Reserved') }} <br>{{
+                        gt('designed-by', 'Designed By : GULF TECH') }}
                     </p>
                 </div>
             </div>

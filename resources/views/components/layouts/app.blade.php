@@ -105,6 +105,7 @@ $dir = $isRTL ? 'rtl' : 'ltr';
         body.rtl tbody,
         body.rtl tfoot,
         body.rtl form,
+        body.rtl .sub-title,
         body.rtl .text-center,
         body.rtl .card,
         body.rtl .card-body,

@@ -255,11 +255,12 @@
         <div class="auto-container">
             <div class="sec-title centred light mb_45">
                 <span class="sub-title">{{ gt('emergency-help', 'Emergency Help') }}</span>
-                <h2>{{ gt('need_a_doctor', 'Need a Doctor for Check-up? Call for an Emergency Service!') }}</h2>
+                <h2 class="text-center">{{ gt('need_a_doctor', 'Need a Doctor for Check-up? Call for an Emergency
+                    Service!') }}</h2>
             </div>
             <div class="support-box p_relative centred">
                 <div class="icon-box"><img src="assets/images/icons/icon-2.png" alt=""></div>
-                <h3 style="color: #fff;">Call: <a href="#" style=" color: #fff;">0096265564414</a></h3>
+                <h3 class="text-white text-center">Call: <a href="#" class="text-white">0096265564414</a></h3>
             </div>
             <div class="row clearfix">
                 <div class="col-lg-4 col-md-12 col-sm-12 form-column">

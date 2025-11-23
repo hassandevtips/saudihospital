@@ -1,5 +1,5 @@
 {{-- Default Page Template --}}
-@include('livewire.includes.page-hero');
+@include('livewire.includes.page-hero')
 
 <div class="container py-5">
     <div class="row">
@@ -20,7 +20,7 @@
                         <div class="row clearfix">
                             @forelse($page->department->doctors as $doctor)
 
-                            <div class="col-lg-4 col-md-4 col-sm-12 team-block">
+                            <div class="col-lg-3 col-md-3 col-sm-12 team-block">
                                 <a wire:navigate href="{{ route('doctor-details', ['doctor' => $doctor->id]) }}">
                                     <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="00ms"
                                         data-wow-duration="1500ms">

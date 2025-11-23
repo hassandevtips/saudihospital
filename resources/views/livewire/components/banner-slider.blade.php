@@ -12,9 +12,9 @@
                 </div>
                 <div class="auto-container">
                     <div class="content-box">
-                        <h2>{{ $banner->title }}</h2>
+                        <h2 class="text-center">{{ $banner->title }}</h2>
                         @if($banner->description)
-                        <p>{{ $banner->description }}</p>
+                        <p class="text-center">{{ $banner->description }}</p>
                         @endif
                         @if($banner->button_text && $banner->button_link)
                         <div class="btn-box">

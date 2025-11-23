@@ -547,7 +547,7 @@
     }
 
     .page-title {
-        padding: 80px 0px;
+        padding: 80px 0px !important;
     }
 
     .chooseus-style-two.about-page {
@@ -1592,9 +1592,6 @@
         margin-top: 50px;
     }
 
-    .page-title {
-        padding: 40px 0 !important;
-    }
 }
 
 /* Print Styles */
@@ -1670,4 +1667,6 @@ only screen and (min-resolution: 192dpi) {
     .nav-right {
         display: none !important;
     }
+
+
 }
