@@ -18,7 +18,8 @@
                             </figure>
                             <div class="text p_absolute r_0 b_0">
                                 <h2>{{ $content->about_years ?? 10 }}</h2>
-                                <h4>{{ $content->about_years_text ?? 'Years of Experience in This Field' }}</h4>
+                                <h4>{{ $content->about_years_text ?? gt('years_of_experience', 'Years of Experience in
+                                    This Field') }}</h4>
                             </div>
                         </div>
                     </div>
@@ -27,14 +28,15 @@
                     <div class="content_block_one">
                         <div class="content-box ml_30">
                             <div class="sec-title left p_relative d_block mb_25">
-                                <span class="sub-title">{{ $content->about_subtitle ?? 'Who We Are?' }}</span>
-                                <h2>{!! nl2br(e($content->about_title ?? 'Group Overview\nRedefining the Future of
-                                    Healthcare')) !!}</h2>
+                                <span class="sub-title">{{ $content->about_subtitle ?? gt('who_we_are', 'Who We Are?')
+                                    }}</span>
+                                <h2>{!! nl2br(e($content->about_title ?? gt('group_overview', 'Group
+                                    Overview\nRedefining the Future of Healthcare'))) !!}</h2>
                             </div>
                             <div class="text p_relative d_block">
-                                <p>{{ $content->about_description ?? 'Saudi Hospital is a leading private healthcare
-                                    institution committed to delivering high-quality, patient-centered medical care
-                                    across a wide range of specialties.' }}</p>
+                                <p>{{ $content->about_description ?? gt('about_description', 'Saudi Hospital is a
+                                    leading private healthcare institution committed to delivering high-quality,
+                                    patient-centered medical care across a wide range of specialties.') }}</p>
                             </div>
                             <div class="inner-box">
                                 <div class="row clearfix">
@@ -45,10 +47,11 @@
                                                 @forelse($content->getKeyHighlightsList() as $highlight)
                                                 <li>{{ $highlight }}</li>
                                                 @empty
-                                                <li>120+ Bed Capacity</li>
-                                                <li>20+ Specialty Clinics</li>
-                                                <li>8+ Centers of Excellence</li>
-                                                <li>State of The Art Technology</li>
+                                                <li>{{ gt('bed_capacity', '120+ Bed Capacity') }}</li>
+                                                <li>{{ gt('specialty_clinics', '20+ Specialty Clinics') }}</li>
+                                                <li>{{ gt('centers_of_excellence', '8+ Centers of Excellence') }}</li>
+                                                <li>{{ gt('state_of_art_technology', 'State of The Art Technology') }}
+                                                </li>
                                                 @endforelse
                                             </ul>
                                         </div>
@@ -60,10 +63,11 @@
                                                 @forelse($content->getServicesOfferedList() as $service)
                                                 <li>{{ $service }}</li>
                                                 @empty
-                                                <li>Internal Medicine</li>
-                                                <li>Pediatrics</li>
-                                                <li>Obstetrics & Gynecology</li>
-                                                <li>Dermatology & Aesthetic Medicine</li>
+                                                <li>{{ gt('internal_medicine', 'Internal Medicine') }}</li>
+                                                <li>{{ gt('pediatrics', 'Pediatrics') }}</li>
+                                                <li>{{ gt('obstetrics_gynecology', 'Obstetrics & Gynecology') }}</li>
+                                                <li>{{ gt('dermatology_aesthetic', 'Dermatology & Aesthetic Medicine')
+                                                    }}</li>
                                                 @endforelse
                                             </ul>
                                         </div>
@@ -234,8 +238,10 @@
                                     @empty
                                     <div class="col-lg-12 col-md-6 col-sm-12 single-column">
                                         <div class="single-item">
-                                            <h4><a href="#">Inpatient Pharmacy Services</a></h4>
-                                            <p>24/7 medication dispensing for hospitalized patients.</p>
+                                            <h4><a href="#">{{ gt('inpatient_pharmacy', 'Inpatient Pharmacy Services')
+                                                    }}</a></h4>
+                                            <p>{{ gt('inpatient_pharmacy_desc', '24/7 medication dispensing for
+                                                hospitalized patients.') }}</p>
                                         </div>
                                     </div>
                                     @endforelse
@@ -260,7 +266,8 @@
             </div>
             <div class="support-box p_relative centred">
                 <div class="icon-box"><img src="assets/images/icons/icon-2.png" alt=""></div>
-                <h3 class="text-white text-center">Call: <a href="#" class="text-white">0096265564414</a></h3>
+                <h3 class="text-white text-center">{{ gt('call', 'Call') }}: <a href="#"
+                        class="text-white">0096265564414</a></h3>
             </div>
             <div class="row clearfix">
                 <div class="col-lg-4 col-md-12 col-sm-12 form-column">
@@ -328,7 +335,8 @@
     <section class="project-section alternat-2 p_relative" style="margin-top: 60px; margin-bottom: 40px;">
         <div class="auto-container">
             <div class="sec-title centred mb_50">
-                <h2 style="font-size: clamp(1.5rem, 4vw, 2rem);">{{ $content->insurances_title ?? 'Insurances' }}</h2>
+                <h2 style="font-size: clamp(1.5rem, 4vw, 2rem);">{{ $content->insurances_title ?? gt('insurances',
+                    'Insurances') }}</h2>
             </div>
             <div class="project-carousel-2 owl-carousel owl-theme owl-dots-none owl-nav-none"
                 style="margin-top: -40px;">

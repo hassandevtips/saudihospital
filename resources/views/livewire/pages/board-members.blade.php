@@ -50,7 +50,7 @@
                 @empty
                 <div class="col-12">
                     <p class="text-center">
-                        {{ __('Board member information will be available soon.') }}
+                        {{ gt('board_member_info_soon', 'Board member information will be available soon.') }}
                     </p>
                 </div>
                 @endforelse

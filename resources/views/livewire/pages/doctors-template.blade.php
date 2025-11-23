@@ -29,7 +29,7 @@
                         <div class="content-one mb-0">
                             <div class="text mb-0">
 
-                                <h2>{{ $currentDepartment->name }} Doctors</h2>
+                                <h2>{{ $currentDepartment->name }} {{ gt('doctors', 'Doctors') }}</h2>
                                 {!! $currentDepartment->description !!}
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                                     @empty
                                     <div class="col-12">
                                         <div class="alert alert-info">
-                                            <h4>No doctors found</h4>
+                                            <h4>{{ gt('no_doctors_found', 'No doctors found') }}</h4>
                                         </div>
                                     </div>
                                     @endforelse

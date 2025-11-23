@@ -30,7 +30,7 @@ class DoctorDetails extends Component
     public function mount(Doctor $doctor): void
     {
         $this->page = (object) [
-            'title' => $doctor->name . ' Details',
+            'title' => $doctor->name . ' ' . gt('details', 'Details'),
             'banner_image_url' => $doctor->banner_image_url,
         ];
 

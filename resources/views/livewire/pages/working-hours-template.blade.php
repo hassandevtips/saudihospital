@@ -6,8 +6,8 @@
     <div class="auto-container">
         <div class="sec-title centred mb_50">
             <span class="sub-title">{{ gt('our_locations', 'Our Locations') }}</span>
-            <h2>{{ gt('find_us', 'Find Us on the Map') }}</h2>
-            <p>{{ gt('visit_us', 'Visit us at any of our convenient locations') }}</p>
+            <h2 class="text-center">{{ gt('find_us', 'Find Us on the Map') }}</h2>
+            <p class="text-center">{{ gt('visit_us', 'Visit us at any of our convenient locations') }}</p>
         </div>
 
         {{-- Google Map --}}
@@ -24,7 +24,7 @@
                 <div class="location-card"
                     style="background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); height: 100%;">
                     <div class="location-header mb_20">
-                        <h3 style="color: #0066b2; margin-bottom: 10px;">
+                        <h3 style="color: #0098ac; margin-bottom: 10px;">
                             <i class="fas fa-map-marker-alt" style="color: #e74c3c; margin-right: 10px;"></i>
                             {{ $location->name }}
                         </h3>
@@ -41,13 +41,13 @@
                     <div class="contact-info mb_20" style="border-top: 1px solid #eee; padding-top: 15px;">
                         @if($location->phone)
                         <p style="margin-bottom: 8px;">
-                            <i class="fas fa-phone" style="color: #0066b2; margin-right: 8px;"></i>
+                            <i class="fas fa-phone" style="color: #0098ac; margin-right: 8px;"></i>
                             <a href="tel:{{ $location->phone }}" style="color: #333;">{{ $location->phone }}</a>
                         </p>
                         @endif
                         @if($location->email)
                         <p style="margin-bottom: 8px;">
-                            <i class="fas fa-envelope" style="color: #0066b2; margin-right: 8px;"></i>
+                            <i class="fas fa-envelope" style="color: #0098ac; margin-right: 8px;"></i>
                             <a href="mailto:{{ $location->email }}" style="color: #333;">{{ $location->email }}</a>
                         </p>
                         @endif
@@ -55,7 +55,7 @@
 
                     {{-- Working Hours --}}
                     <div class="working-hours" style="border-top: 1px solid #eee; padding-top: 15px;">
-                        <h4 style="color: #0066b2; margin-bottom: 15px; font-size: 16px;">
+                        <h4 style="color: #0098ac; margin-bottom: 15px; font-size: 16px;">
                             <i class="fas fa-clock" style="margin-right: 8px;"></i>
                             {{ gt('working_hours', 'Working Hours') }}
                         </h4>
@@ -91,7 +91,7 @@
                         style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee;">
                         <a href="https://www.google.com/maps/dir/?api=1&destination={{ $location->latitude }},{{ $location->longitude }}"
                             target="_blank" class="theme-btn btn-one"
-                            style="display: inline-block; padding: 10px 30px; background: #0066b2; color: #fff; border-radius: 5px; text-decoration: none; transition: all 0.3s;">
+                            style="display: inline-block; padding: 10px 30px; background: #0098ac; color: #fff; border-radius: 5px; text-decoration: none; transition: all 0.3s;">
                             <i class="fas fa-directions" style="margin-right: 8px;"></i>
                             {{ gt('get_directions', 'Get Directions') }}
                         </a>
@@ -101,7 +101,7 @@
             @empty
             <div class="col-lg-12">
                 <div class="alert alert-info" style="text-align: center; padding: 30px;">
-                    <i class="fas fa-info-circle" style="font-size: 48px; color: #0066b2; margin-bottom: 15px;"></i>
+                    <i class="fas fa-info-circle" style="font-size: 48px; color: #0098ac; margin-bottom: 15px;"></i>
                     <h4>No Locations Available</h4>
                     <p>Location information will be displayed here once added.</p>
                 </div>
@@ -175,7 +175,7 @@
                 // Create info window content
                 let infoContent = `
                     <div style="padding: 10px; max-width: 300px;">
-                        <h3 style="color: #0066b2; margin-bottom: 10px; font-size: 16px;">${location.name}</h3>
+                        <h3 style="color: #0098ac; margin-bottom: 10px; font-size: 16px;">${location.name}</h3>
                         <p style="margin-bottom: 8px; color: #666; font-size: 14px;">
                             <i class="fas fa-location-dot" style="margin-right: 5px;"></i>
                             ${location.address}
@@ -185,7 +185,7 @@
                 if (location.phone) {
                     infoContent += `
                         <p style="margin-bottom: 8px; font-size: 14px;">
-                            <i class="fas fa-phone" style="margin-right: 5px; color: #0066b2;"></i>
+                            <i class="fas fa-phone" style="margin-right: 5px; color: #0098ac;"></i>
                             <a href="tel:${location.phone}" style="color: #333;">${location.phone}</a>
                         </p>
                     `;
@@ -194,7 +194,7 @@
                 if (location.email) {
                     infoContent += `
                         <p style="margin-bottom: 8px; font-size: 14px;">
-                            <i class="fas fa-envelope" style="margin-right: 5px; color: #0066b2;"></i>
+                            <i class="fas fa-envelope" style="margin-right: 5px; color: #0098ac;"></i>
                             <a href="mailto:${location.email}" style="color: #333;">${location.email}</a>
                         </p>
                     `;
@@ -203,7 +203,7 @@
                 infoContent += `
                         <a href="https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}"
                            target="_blank"
-                           style="display: inline-block; margin-top: 10px; padding: 8px 15px; background: #0066b2; color: #fff; border-radius: 5px; text-decoration: none; font-size: 13px;">
+                           style="display: inline-block; margin-top: 10px; padding: 8px 15px; background: #0098ac; color: #fff; border-radius: 5px; text-decoration: none; font-size: 13px;">
                             Get Directions
                         </a>
                     </div>

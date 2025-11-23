@@ -54,12 +54,12 @@
                             </figure>
                             <div class="lower-content">
                                 <div class="inner">
-                                    <h3><a href="#">Pulmonology Clinic</a></h3>
+                                    <h3><a href="#">{{ gt('pulmonology_clinic', 'Pulmonology Clinic') }}</a></h3>
                                     <ul class="post-info clearfix">
-                                        <li><i class="icon-34"></i>10 Oct, 2025</li>
-                                        <li><i class="icon-35"></i><a href="#">admin</a></li>
+                                        <li><i class="icon-34"></i>{{ gt('oct_10_2025', '10 Oct, 2025') }}</li>
+                                        <li><i class="icon-35"></i><a href="#">{{ gt('admin', 'admin') }}</a></li>
                                     </ul>
-                                    <p>We believe every patient has the right to be treated with dignity.</p>
+                                    <p>{{ gt('patient_dignity', 'We believe every patient has the right to be treated with dignity.') }}</p>
                                     <div class="link"><a href="#">{{ gt('read-more') }}</a></div>
                                 </div>
                             </div>

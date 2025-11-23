@@ -27,7 +27,7 @@
                 </div>
                 @empty
                 <div class="col-12 text-center">
-                    <p>No clinics available at the moment.</p>
+                    <p>{{ gt('no_clinics_available', 'No clinics available at the moment.') }}</p>
                 </div>
                 @endforelse
             </div>

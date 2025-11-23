@@ -6,8 +6,8 @@
     <div class="container py-5">
         <div class="row mb-4">
             <div class="col-12 text-center">
-                <h2 class="mb-3" style="color: #02799c; font-size: clamp(1.5rem, 4vw, 2rem);">Select Department</h2>
-                <p class="text-muted" style="font-size: clamp(0.875rem, 2vw, 1rem);">Choose a department to view our specialized doctors</p>
+                <h2 class="mb-3" style="color: #02799c; font-size: clamp(1.5rem, 4vw, 2rem);">{{ gt('select_department', 'Select Department') }}</h2>
+                <p class="text-muted" style="font-size: clamp(0.875rem, 2vw, 1rem);">{{ gt('choose_department_desc', 'Choose a department to view our specialized doctors') }}</p>
             </div>
         </div>
 
@@ -34,14 +34,14 @@
                         @endif
                         <small class="text-muted">
                             <i class="fas fa-user-md" style="color: #02799c;"></i>
-                            {{ $department->doctors()->where('is_active', true)->count() }} Doctors
+                            {{ $department->doctors()->where('is_active', true)->count() }} {{ gt('doctors', 'Doctors') }}
                         </small>
                     </div>
                 </div>
             </div>
             @empty
             <div class="col-12">
-                <p>No departments available.</p>
+                <p>{{ gt('no_departments_available', 'No departments available.') }}</p>
             </div>
             @endforelse
         </div>
@@ -49,8 +49,8 @@
         @if($selectedDepartment && $doctors->count() > 0)
         <div class="row mt-5">
             <div class="col-12 text-center">
-                <h2 class="mb-3" style="color: #02799c; font-size: clamp(1.5rem, 4vw, 2rem);">{{ $this->getSelectedDepartmentName() }} Doctors</h2>
-                <p class="text-muted" style="font-size: clamp(0.875rem, 2vw, 1rem);">Meet our specialized medical professionals</p>
+                <h2 class="mb-3" style="color: #02799c; font-size: clamp(1.5rem, 4vw, 2rem);">{{ $this->getSelectedDepartmentName() }} {{ gt('doctors', 'Doctors') }}</h2>
+                <p class="text-muted" style="font-size: clamp(0.875rem, 2vw, 1rem);">{{ gt('meet_medical_professionals', 'Meet our specialized medical professionals') }}</p>
             </div>
         </div>
 
@@ -93,8 +93,8 @@
         <div class="row mt-5">
             <div class="col-12">
                 <div class="alert alert-info">
-                    <h4>No Doctors Found</h4>
-                    <p>There are currently no doctors assigned to this department.</p>
+                    <h4>{{ gt('no_doctors_found', 'No Doctors Found') }}</h4>
+                    <p>{{ gt('no_doctors_in_department', 'There are currently no doctors assigned to this department.') }}</p>
                 </div>
             </div>
         </div>
@@ -104,8 +104,8 @@
         <div class="row mt-5">
             <div class="col-12">
                 <div class="alert alert-light">
-                    <h4>How to Find Our Doctors</h4>
-                    <p>Select a department above to view our specialized medical professionals.</p>
+                    <h4>{{ gt('how_to_find_doctors', 'How to Find Our Doctors') }}</h4>
+                    <p>{{ gt('select_department_above', 'Select a department above to view our specialized medical professionals.') }}</p>
                 </div>
             </div>
         </div>

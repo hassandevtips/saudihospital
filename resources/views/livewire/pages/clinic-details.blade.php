@@ -9,7 +9,7 @@
                 <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
                     <div class="service-sidebar mr_40">
                         <div class="text">
-                            <h3>Categories</h3>
+                            <h3>{{ gt('categories', 'Categories') }}</h3>
                         </div>
                         <ul class="category-list clearfix">
                             @forelse($clinics as $clinicItem)
@@ -19,7 +19,7 @@
                                     $clinicItem->title
                                     }}</a></li>
                             @empty
-                            <li><a href="#" style="color: #666;">No clinics available</a></li>
+                            <li><a href="#" style="color: #666;">{{ gt('no_clinics_available', 'No clinics available') }}</a></li>
                             @endforelse
                         </ul>
                     </div>

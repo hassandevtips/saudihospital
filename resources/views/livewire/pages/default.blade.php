@@ -50,7 +50,7 @@
                             @empty
                             <div class="col-12">
                                 <div class="alert alert-info">
-                                    <h4>No doctors found</h4>
+                                    <h4>{{ gt('no_doctors_found', 'No doctors found') }}</h4>
                                 </div>
                             </div>
                             @endforelse

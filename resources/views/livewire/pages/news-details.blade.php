@@ -25,17 +25,17 @@
 
                                         @if($news->video_url)
                                         <div class="video-section" style="margin-top: 30px;">
-                                            <h4 style="margin-bottom: 15px;">Video</h4>
+                                            <h4 style="margin-bottom: 15px;">{{ gt('video', 'Video') }}</h4>
                                             <video controls style="width: 100%; max-width: 100%; border-radius: 8px;">
                                                 <source src="{{ $news->video_url }}" type="video/mp4">
-                                                Your browser does not support the video tag.
+                                                {{ gt('browser_no_video_support', 'Your browser does not support the video tag.') }}
                                             </video>
                                         </div>
                                         @endif
 
                                         @if($news->gallery_urls && count($news->gallery_urls) > 0)
                                         <div class="gallery-section" style="margin-top: 30px;">
-                                            <h4 style="margin-bottom: 15px;">Gallery</h4>
+                                            <h4 style="margin-bottom: 15px;">{{ gt('gallery', 'Gallery') }}</h4>
                                             <div class="row clearfix">
                                                 @foreach($news->gallery_urls as $galleryImage)
                                                 <div class="col-lg-3 col-md-4 col-sm-12" style="margin-bottom: 20px;">

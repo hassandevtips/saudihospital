@@ -22,7 +22,7 @@
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-6 col-sm-12 single-column">
                                     <div class="single-item">
-                                        <h3>Requirements</h3>
+                                        <h3>{{ gt('requirements', 'Requirements') }}</h3>
                                         @php
                                         $requirements = [];
 
@@ -43,14 +43,14 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 single-column">
                                     <div class="single-item">
-                                        <h3>Time to Apply</h3>
+                                        <h3>{{ gt('time_to_apply', 'Time to Apply') }}</h3>
                                         <ul class="list-style-one clearfix">
                                             @if ($vacancy->closing_at)
-                                            <li>{{ __('Apply before') }} {{ $vacancy->closing_at->translatedFormat('M d,
+                                            <li>{{ gt('apply_before', 'Apply before') }} {{ $vacancy->closing_at->translatedFormat('M d,
                                                 Y') }}</li>
                                             @endif
                                             @if ($vacancy->posted_at)
-                                            <li>{{ __('Posted on') }} {{ $vacancy->posted_at->translatedFormat('M d, Y')
+                                            <li>{{ gt('posted_on', 'Posted on') }} {{ $vacancy->posted_at->translatedFormat('M d, Y')
                                                 }}</li>
                                             @endif
                                         </ul>
@@ -71,8 +71,8 @@
 <div class="application-form-section contact-style-two p_relative">
     <div class="application-form-wrapper form-inner">
         <div class="application-form-header">
-            <h3>{{ __('Apply for this Position') }}</h3>
-            <p>{{ __('Fill out the form below to submit your application') }}</p>
+            <h3>{{ gt('apply_for_position', 'Apply for this Position') }}</h3>
+            <p>{{ gt('fill_form_submit', 'Fill out the form below to submit your application') }}</p>
         </div>
 
         @if (session()->has('career_success'))
@@ -84,14 +84,14 @@
         <form wire:submit.prevent="submit" class="contact-form">
             <div class="row clearfix">
                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                    <input type="text" wire:model.defer="form.name" placeholder="{{ __('Your Name') }} *" required>
+                    <input type="text" wire:model.defer="form.name" placeholder="{{ gt('your_name', 'Your Name') }} *" required>
                     @error('form.name')
                     <span class="error text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                    <input type="email" wire:model.defer="form.email" placeholder="{{ __('Email Address') }} *"
+                    <input type="email" wire:model.defer="form.email" placeholder="{{ gt('email_address', 'Email Address') }} *"
                         required>
                     @error('form.email')
                     <span class="error text-danger">{{ $message }}</span>
@@ -99,7 +99,7 @@
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                    <input type="text" wire:model.defer="form.phone" placeholder="{{ __('Phone Number') }}">
+                    <input type="text" wire:model.defer="form.phone" placeholder="{{ gt('phone_number', 'Phone Number') }}">
                     @error('form.phone')
                     <span class="error text-danger">{{ $message }}</span>
                     @enderror
@@ -107,7 +107,7 @@
 
                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                     <input type="text" wire:model.defer="form.current_position"
-                        placeholder="{{ __('Current Position') }}">
+                        placeholder="{{ gt('current_position', 'Current Position') }}">
                     @error('form.current_position')
                     <span class="error text-danger">{{ $message }}</span>
                     @enderror
@@ -115,14 +115,14 @@
 
                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                     <input type="url" wire:model.defer="form.resume_url"
-                        placeholder="{{ __('Resume/CV URL (LinkedIn, Google Drive, etc.)') }}">
+                        placeholder="{{ gt('resume_url_placeholder', 'Resume/CV URL (LinkedIn, Google Drive, etc.)') }}">
                     @error('form.resume_url')
                     <span class="error text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                    <textarea wire:model.defer="form.cover_letter" placeholder="{{ __('Cover Letter or Message') }}"
+                    <textarea wire:model.defer="form.cover_letter" placeholder="{{ gt('cover_letter_message', 'Cover Letter or Message') }}"
                         rows="6"></textarea>
                     @error('form.cover_letter')
                     <span class="error text-danger">{{ $message }}</span>
@@ -131,8 +131,8 @@
 
                 <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn mr-0 centred">
                     <button class="theme-btn btn-one" type="submit">
-                        <span wire:loading.remove wire:target="submit">{{ __('Submit Application') }}</span>
-                        <span wire:loading wire:target="submit">{{ __('Submitting...') }}</span>
+                        <span wire:loading.remove wire:target="submit">{{ gt('submit_application', 'Submit Application') }}</span>
+                        <span wire:loading wire:target="submit">{{ gt('submitting', 'Submitting...') }}</span>
                     </button>
                 </div>
             </div>

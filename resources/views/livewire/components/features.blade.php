@@ -33,9 +33,8 @@
                         data-wow-duration="1500m">
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-12"></i></div>
-                            <h3><a href="#">Qualified Doctors</a></h3>
-                            <p>Saudi Hospital is a leading private healthcare institution committed to
-                                delivering high-quality.</p>
+                            <h3><a href="#">{{ gt('qualified_doctors', 'Qualified Doctors') }}</a></h3>
+                            <p>{{ gt('qualified_doctors_desc', 'Saudi Hospital is a leading private healthcare institution committed to delivering high-quality.') }}</p>
                         </div>
                     </div>
                 </div>

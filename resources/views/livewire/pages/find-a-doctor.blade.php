@@ -252,7 +252,7 @@
                                 <i class="fas fa-search" style="color: #02799c;"></i>
                             </span>
                             <input type="text" class="form-control"
-                                placeholder="Search by doctor name or specialization..."
+                                placeholder="{{ gt('search_doctor_placeholder', 'Search by doctor name or specialization...') }}"
                                 wire:model.live.debounce.500ms="search" style="border-left: none; font-size: 16px;">
                         </div>
                     </div>
@@ -318,17 +318,17 @@
             <div class="results-header">
                 <div>
                     <h4 style="color: #333; margin: 0;">
-                        Showing {{ $doctors->total() }} {{ Str::plural('Doctor', $doctors->total()) }}
+                        {{ gt('showing', 'Showing') }} {{ $doctors->total() }} {{ Str::plural(gt('doctor', 'Doctor'), $doctors->total()) }}
                     </h4>
                     @if($search)
-                    <p class="text-muted mb-0"><i class="fas fa-search"></i> Search: "{{ $search }}"</p>
+                    <p class="text-muted mb-0"><i class="fas fa-search"></i> {{ gt('search', 'Search') }}: "{{ $search }}"</p>
                     @endif
                     @if($selectedDepartment)
                     @php
                     $selectedDept = $departments->firstWhere('id', $selectedDepartment);
                     @endphp
                     @if($selectedDept)
-                    <p class="text-muted mb-0"><i class="fas fa-hospital"></i> Department: {{ $selectedDept->name }}</p>
+                    <p class="text-muted mb-0"><i class="fas fa-hospital"></i> {{ gt('department', 'Department') }}: {{ $selectedDept->name }}</p>
                     @endif
                     @endif
                     @if($selectedLocation)
@@ -336,16 +336,16 @@
                     $selectedLoc = $locations->firstWhere('id', $selectedLocation);
                     @endphp
                     @if($selectedLoc)
-                    <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> Location: {{ $selectedLoc->name }}
+                    <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> {{ gt('location', 'Location') }}: {{ $selectedLoc->name }}
                     </p>
                     @endif
                     @endif
                     @if($selectedLetter)
-                    <p class="text-muted mb-0"><i class="fas fa-font"></i> Starting with: {{ $selectedLetter }}</p>
+                    <p class="text-muted mb-0"><i class="fas fa-font"></i> {{ gt('starting_with', 'Starting with') }}: {{ $selectedLetter }}</p>
                     @endif
                 </div>
                 <button class="clear-filters-btn" wire:click="clearFilters">
-                    <i class="fas fa-times"></i> Clear Filters
+                    <i class="fas fa-times"></i> {{ gt('clear_filters', 'Clear Filters') }}
                 </button>
             </div>
             @else
@@ -396,10 +396,10 @@
             {{-- No Results --}}
             <div class="no-results">
                 <i class="fas fa-user-md"></i>
-                <h3 style="color: #333;">No Doctors Found</h3>
-                <p class="text-muted">We couldn't find any doctors matching your criteria.</p>
+                <h3 style="color: #333;">{{ gt('no_doctors_found', 'No Doctors Found') }}</h3>
+                <p class="text-muted">{{ gt('no_doctors_criteria', 'We couldn\'t find any doctors matching your criteria.') }}</p>
                 <button class="btn view-profile-btn mt-3" wire:click="clearFilters">
-                    <i class="fas fa-redo"></i> Clear Filters
+                    <i class="fas fa-redo"></i> {{ gt('clear_filters', 'Clear Filters') }}
                 </button>
             </div>
             @endif
@@ -410,7 +410,7 @@
     <div wire:loading class="position-fixed top-50 start-50 translate-middle" style="z-index: 9999;">
         <div class="spinner-border text-primary" role="status"
             style="width: 3rem; height: 3rem; color: #02799c !important;">
-            <span class="visually-hidden">Loading...</span>
+            <span class="visually-hidden">{{ gt('loading', 'Loading...') }}</span>
         </div>
     </div>
 

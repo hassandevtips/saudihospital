@@ -35,11 +35,10 @@
                 </div>
                 <div class="auto-container">
                     <div class="content-box">
-                        <h2>Trusted Healthcare Services</h2>
-                        <p>Over the years, thanks to the trust of our community and the commitment of our
-                            staff.!</p>
+                        <h2>{{ gt('trusted_healthcare', 'Trusted Healthcare Services') }}</h2>
+                        <p>{{ gt('trusted_healthcare_desc', 'Over the years, thanks to the trust of our community and the commitment of our staff.!') }}</p>
                         <div class="btn-box">
-                            <a href="#" class="theme-btn btn-one">Meet Our Doctors</a>
+                            <a href="#" class="theme-btn btn-one">{{ gt('meet_our_doctors', 'Meet Our Doctors') }}</a>
                         </div>
                     </div>
                 </div>

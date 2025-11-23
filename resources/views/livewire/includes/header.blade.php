@@ -131,7 +131,7 @@ $isHomePage = $currentRouteName === 'home';
                 <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
             </div>
             <div class="contact-info">
-                <h4>Contact Info</h4>
+                <h4>{{ gt('contact_info', 'Contact Info') }}</h4>
                 <ul>
                     <li>{{ $settings['address'] }}</li>
                     <li><a href="tel:{{ $settings['phone'] }}">{{ $settings['phone'] }}</a></li>

@@ -12,7 +12,7 @@
         @endphp
 
         <div class="title-text centred mb_50">
-            <h2 class="fs_30 lh_40 fw_bold">{{ $page->title ?? __('Frequently Asked Questions') }}</h2>
+            <h2 class="fs_30 lh_40 fw_bold">{{ $page->title ?? gt('frequently_asked_questions', 'Frequently Asked Questions') }}</h2>
 
         </div>
 
@@ -37,7 +37,7 @@
                             @if(filled($faq->answer))
                             {!! $faq->answer !!}
                             @else
-                            <p>{{ __('Details will be available soon.') }}</p>
+                            <p>{{ gt('details_available_soon', 'Details will be available soon.') }}</p>
                             @endif
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                 @endforeach
             </ul>
             @else
-            <p class="text-center fs_18">{{ __('FAQ entries will be available soon.') }}</p>
+            <p class="text-center fs_18">{{ gt('faq_available_soon', 'FAQ entries will be available soon.') }}</p>
             @endif
         </div>
     </div>

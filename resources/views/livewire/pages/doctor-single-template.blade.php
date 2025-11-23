@@ -22,20 +22,24 @@
                             <span class="designation">{{ $doctor->specialization }}</span>
                             <p>{!! $doctor->bio !!}</p>
                             <ul class="list clearfix">
-                                <li><span>Occupation:</span>{{ $doctor->department->name }}</li>
+                                <li><span>{{ gt('occupation', 'Occupation') }}:</span>{{ $doctor->department->name }}
+                                </li>
                                 @if($doctor->location)
-                                <li><span>Location:</span><a href="{{ url('working-hours') }}">{{
+                                <li><span>{{ gt('location', 'Location') }}:</span><a
+                                        href="{{ url('working-hours') }}">{{
                                         $doctor->location->name }}</a></li>
                                 @endif
-                                <li><span>Phone:</span><a href=" tel:{{ $doctor->phone }}">{{ $doctor->phone }}</a>
+                                <li><span>{{ gt('phone', 'Phone') }}:</span><a href=" tel:{{ $doctor->phone }}">{{
+                                        $doctor->phone }}</a>
                                 </li>
-                                <li><span>Email:</span><a href="mailto:{{ $doctor->email }}">{{ $doctor->email }}</a>
+                                <li><span>{{ gt('email', 'Email') }}:</span><a href="mailto:{{ $doctor->email }}">{{
+                                        $doctor->email }}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="skills-box">
                             <div class="text">
-                                <h3>{{ __('My Skills') }}</h3>
+                                <h3>{{ gt('my_skills', 'My Skills') }}</h3>
                                 <p>{!! $doctor->skills !!}</p>
                             </div>
                         </div>
@@ -43,13 +47,13 @@
                         {{-- Success/Error Messages --}}
                         @if (session()->has('appointment_success'))
                         <div class="alert alert-success mb-3">
-                            <strong>✓ Success!</strong> {{ session('appointment_success') }}
+                            <strong>✓ {{ gt('success', 'Success') }}!</strong> {{ session('appointment_success') }}
                         </div>
                         @endif
 
                         @if (session()->has('appointment_error'))
                         <div class="alert alert-danger mb-3">
-                            <strong>✗ Error!</strong> {{ session('appointment_error') }}
+                            <strong>✗ {{ gt('error', 'Error') }}!</strong> {{ session('appointment_error') }}
                         </div>
                         @endif
 
@@ -72,14 +76,14 @@
         <div class="appointment-modal-overlay" wire:click="closeModal"></div>
         <div class="appointment-modal-content">
             <div class="appointment-modal-header">
-                <h3>Book an Appointment with {{ $doctor->name }}</h3>
+                <h3>{{ gt('book_appointment_with', 'Book an Appointment with') }} {{ $doctor->name }}</h3>
                 <button type="button" class="modal-close-btn" wire:click="closeModal">&times;</button>
             </div>
 
             {{-- Error Messages (only show errors in modal) --}}
             @if (session()->has('appointment_error'))
             <div class="alert alert-danger appointment-alert">
-                <strong>✗ Error!</strong> {{ session('appointment_error') }}
+                <strong>✗ {{ gt('error', 'Error') }}!</strong> {{ session('appointment_error') }}
             </div>
             @endif
 
@@ -87,19 +91,19 @@
             <div class="appointment-steps">
                 <div class="step {{ $currentStep >= 1 ? 'active' : '' }} {{ $currentStep > 1 ? 'completed' : '' }}">
                     <div class="step-number">1</div>
-                    <div class="step-label">Select Date</div>
+                    <div class="step-label">{{ gt('select_date', 'Select Date') }}</div>
                 </div>
                 <div class="step {{ $currentStep >= 2 ? 'active' : '' }} {{ $currentStep > 2 ? 'completed' : '' }}">
                     <div class="step-number">2</div>
-                    <div class="step-label">Choose Time</div>
+                    <div class="step-label">{{ gt('choose_time', 'Choose Time') }}</div>
                 </div>
                 <div class="step {{ $currentStep >= 3 ? 'active' : '' }} {{ $currentStep > 3 ? 'completed' : '' }}">
                     <div class="step-number">3</div>
-                    <div class="step-label">Your Details</div>
+                    <div class="step-label">{{ gt('your_details', 'Your Details') }}</div>
                 </div>
                 <div class="step {{ $currentStep >= 4 ? 'active' : '' }}">
                     <div class="step-number">4</div>
-                    <div class="step-label">Confirm</div>
+                    <div class="step-label">{{ gt('confirm', 'Confirm') }}</div>
                 </div>
             </div>
 
@@ -109,11 +113,13 @@
                     {{-- Step 1: Select Date --}}
                     @if($currentStep === 1)
                     <div class="appointment-step-content">
-                        <h4>Select Appointment Date</h4>
-                        <p class="step-description">Choose a date for your appointment with Dr. {{ $doctor->name }}</p>
+                        <h4>{{ gt('select_appointment_date', 'Select Appointment Date') }}</h4>
+                        <p class="step-description">{{ gt('choose_date_for_appointment', 'Choose a date for your
+                            appointment with') }} {{ gt('dr', 'Dr.') }} {{ $doctor->name }}</p>
 
                         <div class="form-group">
-                            <label class="appointment-form-label">Appointment Date *</label>
+                            <label class="appointment-form-label">{{ gt('appointment_date', 'Appointment Date') }}
+                                *</label>
                             <input class="form-control appointment-date-input" type="date"
                                 wire:model.live="form.appointment_date" min="{{ date('Y-m-d') }}" required>
                             @error('form.appointment_date')
@@ -122,10 +128,11 @@
                         </div>
 
                         <div class="step-actions">
-                            <button type="button" class="btn-secondary" wire:click="closeModal">Cancel</button>
+                            <button type="button" class="btn-secondary" wire:click="closeModal">{{ gt('cancel',
+                                'Cancel') }}</button>
                             <button type="button" class="btn-primary" wire:click="nextStep"
                                 @disabled(!$this->canProceedToNextStep())>
-                                Next: Choose Time
+                                {{ gt('next_choose_time', 'Next: Choose Time') }}
                             </button>
                         </div>
                     </div>
@@ -134,27 +141,31 @@
                     {{-- Step 2: Select Time Slot --}}
                     @if($currentStep === 2)
                     <div class="appointment-step-content">
-                        <h4>Select Time Slot</h4>
-                        <p class="step-description">Choose your preferred appointment time</p>
+                        <h4>{{ gt('select_time_slot', 'Select Time Slot') }}</h4>
+                        <p class="step-description">{{ gt('choose_preferred_time', 'Choose your preferred appointment
+                            time') }}</p>
 
                         <div wire:loading wire:target="form.appointment_date" class="time-slots-loading">
-                            Loading available time slots
+                            {{ gt('loading_time_slots', 'Loading available time slots') }}
                         </div>
 
                         <div wire:loading.remove wire:target="form.appointment_date">
                             @if (!$isDoctorAvailable)
                             <div class="availability-alert warning">
-                                <strong>⚠️ Doctor Not Available</strong>
-                                <p>The doctor is not available on this day. Please go back and select another date.</p>
+                                <strong>⚠️ {{ gt('doctor_not_available', 'Doctor Not Available') }}</strong>
+                                <p>{{ gt('doctor_not_available_day', 'The doctor is not available on this day. Please go
+                                    back and select another date.') }}</p>
                             </div>
                             @elseif (empty($availableSlots))
                             <div class="availability-alert info">
-                                <strong>ℹ️ All Slots Booked</strong>
-                                <p>All appointment slots are fully booked for this date. Please select another date.</p>
+                                <strong>ℹ️ {{ gt('all_slots_booked', 'All Slots Booked') }}</strong>
+                                <p>{{ gt('all_slots_booked_desc', 'All appointment slots are fully booked for this date.
+                                    Please select another date.') }}</p>
                             </div>
                             @else
                             <div class="form-group">
-                                <label class="appointment-form-label">Available Time Slots *</label>
+                                <label class="appointment-form-label">{{ gt('available_time_slots', 'Available Time
+                                    Slots') }} *</label>
                                 <div class="time-slots-container">
                                     @foreach ($availableSlots as $slot)
                                     <label class="time-slot-option">
@@ -174,10 +185,11 @@
                         </div>
 
                         <div class="step-actions">
-                            <button type="button" class="btn-secondary" wire:click="prevStep">Back</button>
+                            <button type="button" class="btn-secondary" wire:click="prevStep">{{ gt('back', 'Back')
+                                }}</button>
                             <button type="button" class="btn-primary" wire:click="nextStep"
                                 @disabled(!$this->canProceedToNextStep())>
-                                Next: Your Details
+                                {{ gt('next_your_details', 'Next: Your Details') }}
                             </button>
                         </div>
                     </div>
@@ -186,15 +198,16 @@
                     {{-- Step 3: Patient Details --}}
                     @if($currentStep === 3)
                     <div class="appointment-step-content">
-                        <h4>Your Contact Information</h4>
-                        <p class="step-description">Please provide your contact details</p>
+                        <h4>{{ gt('your_contact_info', 'Your Contact Information') }}</h4>
+                        <p class="step-description">{{ gt('provide_contact_details', 'Please provide your contact
+                            details') }}</p>
 
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <label class="appointment-form-label">Full Name *</label>
+                                    <label class="appointment-form-label">{{ gt('full_name', 'Full Name') }} *</label>
                                     <input type="text" class="form-control" wire:model.live="form.patient_name"
-                                        placeholder="Enter your full name" required>
+                                        placeholder="{{ gt('enter_full_name', 'Enter your full name') }}" required>
                                     @error('form.patient_name')
                                     <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -202,9 +215,10 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <div class="form-group">
-                                    <label class="appointment-form-label">Email Address *</label>
+                                    <label class="appointment-form-label">{{ gt('email_address', 'Email Address') }}
+                                        *</label>
                                     <input type="email" class="form-control" wire:model.live="form.patient_email"
-                                        placeholder="your.email@example.com" required>
+                                        placeholder="{{ gt('email_placeholder', 'your.email@example.com') }}" required>
                                     @error('form.patient_email')
                                     <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -212,9 +226,10 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <div class="form-group">
-                                    <label class="appointment-form-label">Phone Number *</label>
+                                    <label class="appointment-form-label">{{ gt('phone_number', 'Phone Number') }}
+                                        *</label>
                                     <input type="tel" class="form-control" wire:model.live="form.patient_phone"
-                                        placeholder="+966 XXX XXX XXX" required>
+                                        placeholder="{{ gt('phone_placeholder', '+966 XXX XXX XXX') }}" required>
                                     @error('form.patient_phone')
                                     <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -222,9 +237,10 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <label class="appointment-form-label">Message (Optional)</label>
+                                    <label class="appointment-form-label">{{ gt('message_optional', 'Message
+                                        (Optional)') }}</label>
                                     <textarea class="form-control" wire:model.live="form.message" rows="4"
-                                        placeholder="Any additional information or special requests..."></textarea>
+                                        placeholder="{{ gt('additional_info_placeholder', 'Any additional information or special requests...') }}"></textarea>
                                     @error('form.message')
                                     <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -233,10 +249,11 @@
                         </div>
 
                         <div class="step-actions">
-                            <button type="button" class="btn-secondary" wire:click="prevStep">Back</button>
+                            <button type="button" class="btn-secondary" wire:click="prevStep">{{ gt('back', 'Back')
+                                }}</button>
                             <button type="button" class="btn-primary" wire:click="nextStep"
                                 @disabled(!$this->canProceedToNextStep())>
-                                Next: Review & Confirm
+                                {{ gt('next_review_confirm', 'Next: Review & Confirm') }}
                             </button>
                         </div>
                     </div>
@@ -245,62 +262,69 @@
                     {{-- Step 4: Confirmation --}}
                     @if($currentStep === 4)
                     <div class="appointment-step-content">
-                        <h4>Review Your Appointment</h4>
-                        <p class="step-description">Please review your appointment details before confirming</p>
+                        <h4>{{ gt('review_appointment', 'Review Your Appointment') }}</h4>
+                        <p class="step-description">{{ gt('review_before_confirm', 'Please review your appointment
+                            details before confirming') }}</p>
 
                         <div class="appointment-summary">
                             <div class="summary-section">
-                                <h5><i class="icon-user"></i> Doctor Information</h5>
+                                <h5><i class="icon-user"></i> {{ gt('doctor_information', 'Doctor Information') }}</h5>
                                 <div class="summary-item">
-                                    <strong>Doctor:</strong> {{ $doctor->name }}
+                                    <strong>{{ gt('doctor', 'Doctor') }}:</strong> {{ $doctor->name }}
                                 </div>
                                 <div class="summary-item">
-                                    <strong>Specialization:</strong> {{ $doctor->specialization }}
+                                    <strong>{{ gt('specialization', 'Specialization') }}:</strong> {{
+                                    $doctor->specialization }}
                                 </div>
                                 <div class="summary-item">
-                                    <strong>Department:</strong> {{ $doctor->department->name }}
+                                    <strong>{{ gt('department', 'Department') }}:</strong> {{ $doctor->department->name
+                                    }}
                                 </div>
                                 @if($doctor->location)
                                 <div class="summary-item">
-                                    <strong>Location:</strong> {{ $doctor->location->name }}
+                                    <strong>{{ gt('location', 'Location') }}:</strong> {{ $doctor->location->name }}
                                 </div>
                                 @endif
                             </div>
 
                             <div class="summary-section">
-                                <h5><i class="icon-calendar"></i> Appointment Details</h5>
+                                <h5><i class="icon-calendar"></i> {{ gt('appointment_details', 'Appointment Details') }}
+                                </h5>
                                 <div class="summary-item">
-                                    <strong>Date:</strong>
+                                    <strong>{{ gt('date', 'Date') }}:</strong>
                                     <span>
                                         {{ !empty($form['appointment_date']) ?
-                                        \Carbon\Carbon::parse($form['appointment_date'])->format('l, F j, Y') : 'Not
-                                        selected' }}
+                                        \Carbon\Carbon::parse($form['appointment_date'])->format('l, F j, Y') :
+                                        gt('not_selected', 'Not selected') }}
                                     </span>
                                 </div>
                                 <div class="summary-item">
-                                    <strong>Time:</strong>
+                                    <strong>{{ gt('time', 'Time') }}:</strong>
                                     <span>
                                         {{ !empty($form['appointment_time']) ?
-                                        \Carbon\Carbon::parse($form['appointment_time'])->format('h:i A') : 'Not
-                                        selected' }}
+                                        \Carbon\Carbon::parse($form['appointment_time'])->format('h:i A') :
+                                        gt('not_selected', 'Not selected') }}
                                     </span>
                                 </div>
                             </div>
 
                             <div class="summary-section">
-                                <h5><i class="icon-phone"></i> Your Information</h5>
+                                <h5><i class="icon-phone"></i> {{ gt('your_information', 'Your Information') }}</h5>
                                 <div class="summary-item">
-                                    <strong>Name:</strong> <span>{{ $form['patient_name'] ?? 'Not provided' }}</span>
+                                    <strong>{{ gt('name', 'Name') }}:</strong> <span>{{ $form['patient_name'] ??
+                                        gt('not_provided', 'Not provided') }}</span>
                                 </div>
                                 <div class="summary-item">
-                                    <strong>Email:</strong> <span>{{ $form['patient_email'] ?? 'Not provided' }}</span>
+                                    <strong>{{ gt('email', 'Email') }}:</strong> <span>{{ $form['patient_email'] ??
+                                        gt('not_provided', 'Not provided') }}</span>
                                 </div>
                                 <div class="summary-item">
-                                    <strong>Phone:</strong> <span>{{ $form['patient_phone'] ?? 'Not provided' }}</span>
+                                    <strong>{{ gt('phone', 'Phone') }}:</strong> <span>{{ $form['patient_phone'] ??
+                                        gt('not_provided', 'Not provided') }}</span>
                                 </div>
                                 @if(!empty($form['message']))
                                 <div class="summary-item">
-                                    <strong>Message:</strong>
+                                    <strong>{{ gt('message', 'Message') }}:</strong>
                                     <p class="message-preview">{{ $form['message'] }}</p>
                                 </div>
                                 @endif
@@ -308,10 +332,12 @@
                         </div>
 
                         <div class="step-actions">
-                            <button type="button" class="btn-secondary" wire:click="prevStep">Back</button>
+                            <button type="button" class="btn-secondary" wire:click="prevStep">{{ gt('back', 'Back')
+                                }}</button>
                             <button type="submit" class="btn-success" wire:loading.attr="disabled">
-                                <span wire:loading.remove><i class="icon-check"></i> Confirm Appointment</span>
-                                <span wire:loading>Booking...</span>
+                                <span wire:loading.remove><i class="icon-check"></i> {{ gt('confirm_appointment',
+                                    'Confirm Appointment') }}</span>
+                                <span wire:loading>{{ gt('booking', 'Booking...') }}</span>
                             </button>
                         </div>
                     </div>

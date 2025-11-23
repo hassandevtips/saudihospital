@@ -1,7 +1,7 @@
 <div class="career-list">
     <div class="career-list__header">
-        <h3>{{ __('Open Vacancies') }}</h3>
-        <p>{{ __('Explore our current job openings and join our team') }}</p>
+        <h3>{{ gt('open_vacancies', 'Open Vacancies') }}</h3>
+        <p>{{ gt('explore_job_openings', 'Explore our current job openings and join our team') }}</p>
     </div>
 
     <div class="vacancy-grid">
@@ -31,7 +31,7 @@
                     @if ($vacancy->closing_at)
                     <li>
                         <i class="icon-8"></i>
-                        <span>{{ __('Apply before') }} {{ $vacancy->closing_at->translatedFormat('M d, Y') }}</span>
+                        <span>{{ gt('apply_before', 'Apply before') }} {{ $vacancy->closing_at->translatedFormat('M d, Y') }}</span>
                     </li>
                     @endif
                 </ul>
@@ -44,13 +44,13 @@
 
                 <a href="{{ url('/careers/' . $vacancy->slug) }}" wire:navigate
                     class="theme-btn btn-two vacancy-card__link">
-                    {{ __('View Details & Apply') }}
+                    {{ gt('view_details_apply', 'View Details & Apply') }}
                 </a>
             </div>
         </article>
         @empty
         <div class="empty-state centred">
-            <p>{{ __('No vacancies are available right now. Please check back soon.') }}</p>
+            <p>{{ gt('no_vacancies_available', 'No vacancies are available right now. Please check back soon.') }}</p>
         </div>
         @endforelse
     </div>

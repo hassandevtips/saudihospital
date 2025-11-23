@@ -44,7 +44,7 @@ $news = \App\Models\News::active()->paginate(10);
                     <div class="news-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                         <div class="inner-box">
                             <div class="text">
-                                <h2>No news found</h2>
+                                <h2>{{ gt('no_news_found', 'No news found') }}</h2>
                             </div>
                         </div>
                     </div>

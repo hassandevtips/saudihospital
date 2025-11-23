@@ -67,7 +67,7 @@
                                         </a>
                                     </li>
                                     @empty
-                                    <li><a href="#" style="color: #666;">No departments available</a></li>
+                                    <li><a href="#" style="color: #666;">{{ gt('no_departments_available', 'No departments available') }}</a></li>
                                     @endforelse
                                 </ul>
                             </div>

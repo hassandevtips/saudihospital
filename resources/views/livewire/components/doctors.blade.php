@@ -32,11 +32,9 @@
                             <figure class="image-box p_relative d_block"><img src="assets/images/team/team-1.jpg"
                                     alt=""></figure>
                             <div class="lower-content p_absolute r_0 b_45 b_shadow_6 z_1 tran_5">
-                                <h3 class="d_block lh_30 mb_3 tran_5"><a href="#" class="d_iblock color_black">Dr. Nada
-                                        Nabil Bader</a></h3>
+                                <h3 class="d_block lh_30 mb_3 tran_5"><a href="#" class="d_iblock color_black">{{ gt('dr_nada_bader', 'Dr. Nada Nabil Bader') }}</a></h3>
                                 <span
-                                    class="designation p_relative d_block fs_16 lh_20 font_family_poppins tran_5">Nephrology
-                                    and Internal Diseases</span>
+                                    class="designation p_relative d_block fs_16 lh_20 font_family_poppins tran_5">{{ gt('nephrology_internal', 'Nephrology and Internal Diseases') }}</span>
                             </div>
                         </div>
                     </div>

@@ -9,35 +9,36 @@
             <div class="col-lg-8 col-md-12 col-sm-12 content-side">
 
                 <div class="bmi-calculator-wrapper">
-                    <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">BMI Calculator</h2>
+                    <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">{{ gt('bmi_calculator', 'BMI
+                        Calculator') }}</h2>
 
                     <!-- Unit Selection Tabs -->
                     <div class="unit-tabs" style="margin-bottom: 30px; text-align: center;">
                         <button type="button" class="unit-tab active" data-unit="metric"
-                            style="padding: 10px 30px; margin: 0 5px; border: 2px solid #3498db; background: #3498db; color: white; border-radius: 5px; cursor: pointer; font-size: 16px;">Metric
-                            Units</button>
+                            style="padding: 10px 30px; margin: 0 5px; border: 2px solid #3498db; background: #3498db; color: white; border-radius: 5px; cursor: pointer; font-size: 16px;">{{
+                            gt('metric_units', 'Metric Units') }}</button>
                         <button type="button" class="unit-tab" data-unit="us"
-                            style="padding: 10px 30px; margin: 0 5px; border: 2px solid #3498db; background: white; color: #3498db; border-radius: 5px; cursor: pointer; font-size: 16px;">US
-                            Units</button>
+                            style="padding: 10px 30px; margin: 0 5px; border: 2px solid #3498db; background: white; color: #3498db; border-radius: 5px; cursor: pointer; font-size: 16px;">{{
+                            gt('us_units', 'US Units') }}</button>
                     </div>
 
                     <!-- BMI Form -->
                     <form id="bmi-form">
                         <div class="form-row" style="margin-bottom: 20px;">
                             <div class="col-md-6" style="padding: 0 10px;">
-                                <label
-                                    style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">Age</label>
-                                <input type="number" id="age" class="form-control" placeholder="Age (2-120)" min="2"
-                                    max="120"
+                                <label style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">{{
+                                    gt('age', 'Age') }}</label>
+                                <input type="number" id="age" class="form-control"
+                                    placeholder="{{ gt('age_placeholder', 'Age (2-120)') }}" min="2" max="120"
                                     style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
                             </div>
                             <div class="col-md-6" style="padding: 0 10px;">
-                                <label
-                                    style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">Gender</label>
+                                <label style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">{{
+                                    gt('gender', 'Gender') }}</label>
                                 <select id="gender" class="form-control"
                                     style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="male">{{ gt('male', 'Male') }}</option>
+                                    <option value="female">{{ gt('female', 'Female') }}</option>
                                 </select>
                             </div>
                         </div>
@@ -47,18 +48,18 @@
                             <div class="form-row" style="margin-bottom: 20px;">
                                 <div class="col-md-6" style="padding: 0 10px;">
                                     <label
-                                        style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">Height
-                                        (cm)</label>
-                                    <input type="number" id="height-cm" class="form-control" placeholder="Height in cm"
-                                        step="0.1"
+                                        style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">{{
+                                        gt('height_cm', 'Height (cm)') }}</label>
+                                    <input type="number" id="height-cm" class="form-control"
+                                        placeholder="{{ gt('height_cm_placeholder', 'Height in cm') }}" step="0.1"
                                         style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
                                 </div>
                                 <div class="col-md-6" style="padding: 0 10px;">
                                     <label
-                                        style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">Weight
-                                        (kg)</label>
-                                    <input type="number" id="weight-kg" class="form-control" placeholder="Weight in kg"
-                                        step="0.1"
+                                        style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">{{
+                                        gt('weight_kg', 'Weight (kg)') }}</label>
+                                    <input type="number" id="weight-kg" class="form-control"
+                                        placeholder="{{ gt('weight_kg_placeholder', 'Weight in kg') }}" step="0.1"
                                         style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
                                 </div>
                             </div>
@@ -69,22 +70,23 @@
                             <div class="form-row" style="margin-bottom: 20px;">
                                 <div class="col-md-6" style="padding: 0 10px;">
                                     <label
-                                        style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">Height</label>
+                                        style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">{{
+                                        gt('height', 'Height') }}</label>
                                     <div style="display: flex; gap: 10px;">
-                                        <input type="number" id="height-ft" class="form-control" placeholder="Feet"
-                                            min="0"
+                                        <input type="number" id="height-ft" class="form-control"
+                                            placeholder="{{ gt('feet', 'Feet') }}" min="0"
                                             style="width: 48%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
-                                        <input type="number" id="height-in" class="form-control" placeholder="Inches"
-                                            min="0" max="11" step="0.1"
+                                        <input type="number" id="height-in" class="form-control"
+                                            placeholder="{{ gt('inches', 'Inches') }}" min="0" max="11" step="0.1"
                                             style="width: 48%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
                                     </div>
                                 </div>
                                 <div class="col-md-6" style="padding: 0 10px;">
                                     <label
-                                        style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">Weight
-                                        (lbs)</label>
+                                        style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">{{
+                                        gt('weight_lbs', 'Weight (lbs)') }}</label>
                                     <input type="number" id="weight-lbs" class="form-control"
-                                        placeholder="Weight in pounds" step="0.1"
+                                        placeholder="{{ gt('weight_lbs_placeholder', 'Weight in pounds') }}" step="0.1"
                                         style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
                                 </div>
                             </div>
@@ -92,15 +94,15 @@
 
                         <div style="text-align: center; margin-top: 30px;">
                             <button type="submit"
-                                style="padding: 15px 60px; background: #27ae60; color: white; border: none; border-radius: 5px; font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.3s;">Calculate
-                                BMI</button>
+                                style="padding: 15px 60px; background: #27ae60; color: white; border: none; border-radius: 5px; font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.3s;">{{
+                                gt('calculate_bmi', 'Calculate BMI') }}</button>
                         </div>
                     </form>
 
                     <!-- Results Section -->
                     <div id="bmi-result" style="margin-top: 40px; display: none;">
                         <div style="background: #ecf0f1; padding: 30px; border-radius: 10px; text-align: center;">
-                            <h3 style="color: #2c3e50; margin-bottom: 20px;">Result</h3>
+                            <h3 style="color: #2c3e50; margin-bottom: 20px;">{{ gt('result', 'Result') }}</h3>
                             <div id="bmi-value"
                                 style="font-size: 36px; font-weight: bold; color: #3498db; margin-bottom: 10px;">
                             </div>
@@ -117,16 +119,19 @@
 
                             <div style="text-align: left; margin-top: 30px;">
                                 <div style="margin-bottom: 10px; font-size: 16px; color: #34495e;">
-                                    <strong>BMI Prime:</strong> <span id="bmi-prime"></span>
+                                    <strong>{{ gt('bmi_prime', 'BMI Prime') }}:</strong> <span id="bmi-prime"></span>
                                 </div>
                                 <div style="margin-bottom: 10px; font-size: 16px; color: #34495e;">
-                                    <strong>Ponderal Index:</strong> <span id="ponderal-index"></span>
+                                    <strong>{{ gt('ponderal_index', 'Ponderal Index') }}:</strong> <span
+                                        id="ponderal-index"></span>
                                 </div>
                                 <div style="margin-bottom: 10px; font-size: 16px; color: #34495e;">
-                                    <strong>Healthy BMI range:</strong> 18.5 kg/m² - 25 kg/m²
+                                    <strong>{{ gt('healthy_bmi_range', 'Healthy BMI range') }}:</strong> 18.5 kg/m² - 25
+                                    kg/m²
                                 </div>
                                 <div style="font-size: 16px; color: #34495e;">
-                                    <strong>Healthy weight range:</strong> <span id="healthy-weight"></span>
+                                    <strong>{{ gt('healthy_weight_range', 'Healthy weight range') }}:</strong> <span
+                                        id="healthy-weight"></span>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +139,7 @@
 
                     <!-- BMI Information -->
                     <div style="margin-top: 50px;">
-                        <h3 style="color: #2c3e50; margin-bottom: 20px;">About BMI</h3>
+                        <h3 style="color: #2c3e50; margin-bottom: 20px;">{{ gt('about_bmi', 'About BMI') }}</h3>
                         <p style="color: #7f8c8d; line-height: 1.8; margin-bottom: 15px;">
                             The Body Mass Index (BMI) Calculator can be used to calculate BMI value and
                             corresponding weight
