@@ -280,6 +280,7 @@ $isHomePage = $currentRouteName === 'home';
         /* RTL Header Adjustments */
         body.rtl .header-lower .outer-box {
             flex-direction: row-reverse;
+            direction: ltr;
         }
 
         body.rtl .header-top .left-column {
