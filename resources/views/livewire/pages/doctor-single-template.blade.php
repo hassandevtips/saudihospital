@@ -23,7 +23,12 @@
                             <p>{!! $doctor->bio !!}</p>
                             <ul class="list clearfix">
                                 <li><span>Occupation:</span>{{ $doctor->department->name }}</li>
-                                <li><span>Phone:</span><a href="tel:{{ $doctor->phone }}">{{ $doctor->phone }}</a></li>
+                                @if($doctor->location)
+                                <li><span>Location:</span><a href="{{ url('working-hours') }}">{{
+                                        $doctor->location->name }}</a></li>
+                                @endif
+                                <li><span>Phone:</span><a href=" tel:{{ $doctor->phone }}">{{ $doctor->phone }}</a>
+                                </li>
                                 <li><span>Email:</span><a href="mailto:{{ $doctor->email }}">{{ $doctor->email }}</a>
                                 </li>
                             </ul>
@@ -51,7 +56,7 @@
                         {{-- Book Appointment Button --}}
                         <div class="appointment-cta-section">
                             <button type="button" class="theme-btn btn-one" wire:click="openModal">
-                                <i class="icon-calendar"></i> Book an Appointment
+                                <i class="icon-calendar"></i> {{ gt('book_appointment_24_7', 'Book Appointment') }}
                             </button>
                         </div>
                     </div>
@@ -255,6 +260,11 @@
                                 <div class="summary-item">
                                     <strong>Department:</strong> {{ $doctor->department->name }}
                                 </div>
+                                @if($doctor->location)
+                                <div class="summary-item">
+                                    <strong>Location:</strong> {{ $doctor->location->name }}
+                                </div>
+                                @endif
                             </div>
 
                             <div class="summary-section">

@@ -24,6 +24,11 @@ class DoctorsTable
                     ->searchable()
                     ->sortable()
                     ->default('—'),
+                TextColumn::make('location.name')
+                    ->label('Location')
+                    ->searchable()
+                    ->sortable()
+                    ->default('—'),
                 TextColumn::make('specialization')
                     ->searchable(),
                 ImageColumn::make('image'),

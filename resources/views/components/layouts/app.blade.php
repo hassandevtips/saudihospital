@@ -485,7 +485,7 @@ $dir = $isRTL ? 'rtl' : 'ltr';
             </button>
 
             {{-- Floating Appointment Button --}}
-            <a href="#" class="floating-btn">Book Appointment 24/7</a>
+            <a href="#" class="floating-btn">{{ gt('book_appointment_24_7', 'Book Appointment') }}</a>
         </div>
     </div>
 

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Doctors\Schemas;
 
 use App\Models\Department;
+use App\Models\Location;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
@@ -33,6 +34,17 @@ class DoctorForm
                     ->preload()
                     ->nullable()
                     ->helperText('Assign doctor to a department'),
+                Select::make('location_id')
+                    ->label('Location')
+                    ->options(function () {
+                        return Location::query()->active()->get()->mapWithKeys(function ($location) {
+                            return [$location->id => $location->name];
+                        });
+                    })
+                    ->searchable()
+                    ->preload()
+                    ->nullable()
+                    ->helperText('Assign doctor to a location'),
                 TextInput::make('specialization')
                     ->required()
                     ->maxLength(255)

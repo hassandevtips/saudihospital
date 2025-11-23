@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Department;
 use App\Models\Doctor;
+use App\Models\Location;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,12 +15,14 @@ class FindADoctor extends Component
     public $page;
     public $search = '';
     public $selectedDepartment = '';
+    public $selectedLocation = '';
     public $selectedLetter = '';
     public $perPage = 9;
 
     protected $queryString = [
         'search' => ['except' => ''],
         'selectedDepartment' => ['except' => ''],
+        'selectedLocation' => ['except' => ''],
         'selectedLetter' => ['except' => ''],
     ];
 
@@ -41,6 +44,11 @@ class FindADoctor extends Component
         $this->resetPage();
     }
 
+    public function updatingSelectedLocation()
+    {
+        $this->resetPage();
+    }
+
     public function updatingSelectedLetter()
     {
         $this->resetPage();
@@ -49,6 +57,12 @@ class FindADoctor extends Component
     public function selectDepartment($departmentId)
     {
         $this->selectedDepartment = $this->selectedDepartment == $departmentId ? '' : $departmentId;
+        $this->resetPage();
+    }
+
+    public function selectLocation($locationId)
+    {
+        $this->selectedLocation = $this->selectedLocation == $locationId ? '' : $locationId;
         $this->resetPage();
     }
 
@@ -62,6 +76,7 @@ class FindADoctor extends Component
     {
         $this->search = '';
         $this->selectedDepartment = '';
+        $this->selectedLocation = '';
         $this->selectedLetter = '';
         $this->resetPage();
     }
@@ -69,7 +84,7 @@ class FindADoctor extends Component
     public function getDoctorsProperty()
     {
         $query = Doctor::query()
-            ->with('department')
+            ->with(['department', 'location'])
             ->where('is_active', true);
 
         // Search filter (case-insensitive)
@@ -91,6 +106,11 @@ class FindADoctor extends Component
         // Department filter
         if (!empty($this->selectedDepartment)) {
             $query->where('department_id', $this->selectedDepartment);
+        }
+
+        // Location filter
+        if (!empty($this->selectedLocation)) {
+            $query->where('location_id', $this->selectedLocation);
         }
 
         // Letter filter - handle "Dr." prefix (case-insensitive)
@@ -121,6 +141,14 @@ class FindADoctor extends Component
             ->get();
     }
 
+    public function getLocationsProperty()
+    {
+        return Location::query()
+            ->where('is_active', true)
+            ->orderBy('order')
+            ->get();
+    }
+
     public function getAlphabetProperty()
     {
         return range('A', 'Z');
@@ -131,6 +159,7 @@ class FindADoctor extends Component
         return view('livewire.pages.find-a-doctor', [
             'doctors' => $this->doctors,
             'departments' => $this->departments,
+            'locations' => $this->locations,
             'alphabet' => $this->alphabet,
         ]);
     }

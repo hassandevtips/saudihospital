@@ -34,7 +34,7 @@ class DoctorDetails extends Component
             'banner_image_url' => $doctor->banner_image_url,
         ];
 
-        $this->doctor = $doctor;
+        $this->doctor = $doctor->load(['department', 'location']);
     }
 
     public function openModal(): void

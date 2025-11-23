@@ -237,14 +237,16 @@
             <div class="search-box">
                 <div class="row">
                     <div class="col-12 text-center mb-4">
-                        <h2 style="color: #02799c; font-weight: 700;">{{ gt('find_your_doctor', 'Find Your Doctor') }}</h2>
-                        <p class="text-muted">{{ gt('search_by_name', 'Search by name, specialization, or browse by department') }}</p>
+                        <h2 style="color: #02799c; font-weight: 700;">{{ gt('find_your_doctor', 'Find Your Doctor') }}
+                        </h2>
+                        <p class="text-muted">{{ gt('search_by_name', 'Search by name, specialization, or browse by
+                            department') }}</p>
                     </div>
                 </div>
 
                 <div class="row g-3 align-items-center">
                     {{-- Search Bar --}}
-                    <div class="col-lg-7 col-md-6">
+                    <div class="col-lg-4 col-md-4">
                         <div class="input-group input-group-lg">
                             <span class="input-group-text" style="background: #f8f9fa; border-right: none;">
                                 <i class="fas fa-search" style="color: #02799c;"></i>
@@ -256,11 +258,11 @@
                     </div>
 
                     {{-- Department Select --}}
-                    <div class="col-lg-5 col-md-6">
+                    <div class="col-lg-4 col-md-4">
                         <div class="position-relative" wire:ignore>
                             <select wire:model="selectedDepartment" class="form-select department-dropdown"
                                 style="height: 48px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;">
-                                <option value="">All Departments</option>
+                                <option value="">{{ gt('all_departments', 'All Departments') }}</option>
                                 @foreach($departments as $department)
                                 <option value="{{ $department->id }}">
                                     {{ $department->name }}
@@ -272,13 +274,29 @@
                             </select>
                         </div>
                     </div>
+
+                    {{-- Location Select --}}
+                    <div class="col-lg-4 col-md-4">
+                        <div class="position-relative" wire:ignore>
+                            <select wire:model="selectedLocation" class="form-select location-dropdown"
+                                style="height: 48px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;">
+                                <option value="">{{ gt('all_locations', 'All Locations') }}</option>
+                                @foreach($locations as $location)
+                                <option value="{{ $location->id }}">
+                                    {{ $location->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             {{-- Alphabet Filter --}}
             <div class="row mt-4">
                 <div class="col-12">
-                    <h5 class="text-center mb-3" style="color: #333; font-weight: 600;">{{ gt('browse_by_name', 'Browse by Name') }}</h5>
+                    <h5 class="text-center mb-3" style="color: #333; font-weight: 600;">{{ gt('browse_by_name', 'Browse
+                        by Name') }}</h5>
                     <div class="alphabet-filter">
                         @foreach($alphabet as $letter)
                         <div class="letter-badge {{ $selectedLetter == $letter ? 'active' : '' }}"
@@ -296,7 +314,7 @@
     <section class="py-5">
         <div class="container">
             {{-- Results Header --}}
-            @if($search || $selectedDepartment || $selectedLetter)
+            @if($search || $selectedDepartment || $selectedLocation || $selectedLetter)
             <div class="results-header">
                 <div>
                     <h4 style="color: #333; margin: 0;">
@@ -313,6 +331,15 @@
                     <p class="text-muted mb-0"><i class="fas fa-hospital"></i> Department: {{ $selectedDept->name }}</p>
                     @endif
                     @endif
+                    @if($selectedLocation)
+                    @php
+                    $selectedLoc = $locations->firstWhere('id', $selectedLocation);
+                    @endphp
+                    @if($selectedLoc)
+                    <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> Location: {{ $selectedLoc->name }}
+                    </p>
+                    @endif
+                    @endif
                     @if($selectedLetter)
                     <p class="text-muted mb-0"><i class="fas fa-font"></i> Starting with: {{ $selectedLetter }}</p>
                     @endif
@@ -324,7 +351,8 @@
             @else
             <div class="text-center mb-4">
                 <h3 style="color: #02799c; font-weight: 700;">{{ gt('all_doctors', 'All Doctors') }}</h3>
-                <p class="text-muted">{{ gt('browse_our_complete', 'Browse our complete team of medical professionals') }}</p>
+                <p class="text-muted">{{ gt('browse_our_complete', 'Browse our complete team of medical professionals')
+                    }}</p>
             </div>
             @endif
 
@@ -404,14 +432,26 @@
                 if (jQuery('.department-dropdown').next('.nice-select').length) {
                     jQuery('.department-dropdown').niceSelect('destroy');
                 }
+                if (jQuery('.location-dropdown').next('.nice-select').length) {
+                    jQuery('.location-dropdown').niceSelect('destroy');
+                }
 
-                // Initialize nice-select
+                // Initialize nice-select for department
                 jQuery('.department-dropdown').niceSelect();
 
-                // Sync nice-select changes with Livewire
+                // Sync nice-select changes with Livewire for department
                 jQuery('.department-dropdown').off('change').on('change', function() {
                     var value = jQuery(this).val();
                     @this.set('selectedDepartment', value);
+                });
+
+                // Initialize nice-select for location
+                jQuery('.location-dropdown').niceSelect();
+
+                // Sync nice-select changes with Livewire for location
+                jQuery('.location-dropdown').off('change').on('change', function() {
+                    var value = jQuery(this).val();
+                    @this.set('selectedLocation', value);
                 });
             }
         }
@@ -421,6 +461,7 @@
             Livewire.on('filtersCleared', function() {
                 if (typeof jQuery !== 'undefined' && jQuery.fn.niceSelect) {
                     jQuery('.department-dropdown').val('').niceSelect('update');
+                    jQuery('.location-dropdown').val('').niceSelect('update');
                 }
             });
         }

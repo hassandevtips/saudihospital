@@ -14,6 +14,7 @@ class Doctor extends Model
 
     protected $fillable = [
         'department_id',
+        'location_id',
         'name',
         'specialization',
         'bio',
@@ -37,6 +38,11 @@ class Doctor extends Model
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
     }
 
     public function scopeActive($query)
@@ -67,7 +73,7 @@ class Doctor extends Model
         if (!$this->banner_image) {
             return null;
         }
-        
+
         if (str_starts_with($this->banner_image, 'assets')) {
             return asset($this->banner_image);
         }
