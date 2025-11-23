@@ -76,7 +76,17 @@ class GeneralTranslation extends Model
             ->first();
 
         if (!$translation) {
-            return $default;
+            // Auto-create the key if not found
+            $translation = static::create([
+                'key' => $key,
+                'value' => [$locale => $default ?? $key],
+                'group' => 'auto_generated',
+                'description' => 'Auto-generated translation key',
+                'is_active' => true,
+                'order' => 0,
+            ]);
+
+            return $default ?? $key;
         }
 
         return $translation->getTranslation('value', $locale, false) ?? $default;

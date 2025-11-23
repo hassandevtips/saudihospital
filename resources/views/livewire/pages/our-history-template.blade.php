@@ -31,9 +31,10 @@ return [
         <section id="main-story" class="timeline-section-item main-story">
             <div class="section-content text-center">
                 <div class="timeline-vertical-line"></div>
-                <h1 class="section-main-title">{{ $page->title }}</h1>
+                <h1 class="section-main-title text-center">{{ $page->title }}</h1>
                 @if($page->content)
-                <p class="section-main-subtitle">{!! strip_tags(html_entity_decode($page->getTranslation('content',
+                <p class="section-main-subtitle text-center">{!!
+                    strip_tags(html_entity_decode($page->getTranslation('content',
                     app()->getLocale()))) !!}</p>
                 @endif
                 <div class="timeline-vertical-line-bottom"></div>
@@ -55,8 +56,8 @@ return [
                     </div>
                     <div class="col-lg-5 {{ $index % 2 == 0 ? 'order-lg-2' : 'order-lg-1' }}">
                         <div class="timeline-text-content {{ $index % 2 == 0 ? 'text-lg-start' : 'text-lg-end' }}">
-                            <h2 class="section-title">{{ $item['title'] }}</h2>
-                            <div class="section-text">
+                            <h2 class="section-title text-center">{{ $item['title'] }}</h2>
+                            <div class="section-text text-center">
                                 {!! $item['content'] !!}
                             </div>
                         </div>
@@ -65,8 +66,8 @@ return [
                     {{-- Text Only Layout --}}
                     <div class="col-lg-8">
                         <div class="timeline-text-content text-center">
-                            <h2 class="section-title">{{ $item['title'] }}</h2>
-                            <div class="section-text">
+                            <h2 class="section-title text-center">{{ $item['title'] }}</h2>
+                            <div class="section-text text-center">
                                 {!! $item['content'] !!}
                             </div>
                         </div>
@@ -82,14 +83,19 @@ return [
         </section>
         @empty
         <div class="alert alert-info text-center my-5">
-            <h4>{{ __('No timeline items available') }}</h4>
-            <p>{{ __('Please add child pages to display the timeline.') }}</p>
+            <h4 class="text-center">{{ gt('no_timeline_items_available', 'No timeline items available') }}</h4>
+            <p class="text-center">{{ gt('please_add_child_pages_to_display_the_timeline', 'Please add child pages to
+                display the timeline.') }}</p>
         </div>
         @endforelse
     </div>
 </section>
 
 <style>
+    .text-center p {
+        text-align: center !important;
+    }
+
     /* Heritage Timeline Section */
     .heritage-timeline-section {
         padding: 0;
