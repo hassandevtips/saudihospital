@@ -231,3 +231,23 @@
   margin-left: 0px;
   margin-right: 100px;
 }
+
+/* RTL Pagination Fixes */
+.rtl .pagination {
+  direction: rtl;
+}
+
+.rtl .pagination li {
+  float: right;
+  margin-right: 0px;
+  margin-left: 10px;
+}
+
+.rtl .pagination li:first-child {
+  margin-left: 0px;
+}
+
+.rtl .pagination li:last-child {
+  margin-left: 10px;
+  margin-right: 0px;
+}

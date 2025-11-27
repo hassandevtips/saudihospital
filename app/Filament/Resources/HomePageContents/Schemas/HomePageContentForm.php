@@ -8,10 +8,26 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\View;
 use Filament\Schemas\Schema;
 
 class HomePageContentForm
 {
+    protected static function getIconOptions(): array
+    {
+        $icons = [];
+        for ($i = 1; $i <= 59; $i++) {
+            $iconClass = "icon-{$i}";
+            // Create a visual preview with the icon
+            $icons[$iconClass] = "<div style='display: flex; align-items: center; gap: 10px;'>" .
+                "<i class='{$iconClass}' style='font-size: 24px; min-width: 30px;'></i>" .
+                "<span style='font-weight: 500;'>{$iconClass}</span>" .
+                "</div>";
+        }
+        return $icons;
+    }
+
     public static function configure(Schema $schema): Schema
     {
         return $schema
@@ -111,11 +127,15 @@ class HomePageContentForm
                             ->label('Tab Title')
                             ->required()
                             ->placeholder('e.g., Patient Relations'),
-                        TextInput::make('icon')
-                            ->label('Icon Class')
+                        Select::make('icon')
+                            ->label('Icon')
                             ->required()
-                            ->placeholder('e.g., icon-17')
-                            ->helperText('Icon class from your theme (e.g., icon-17, icon-18, etc.)'),
+                            ->options(self::getIconOptions())
+                            ->searchable()
+                            ->allowHtml()
+                            ->native(false)
+                            ->placeholder('Select an icon')
+                            ->helperText('Search by icon number (e.g., "icon-17") or scroll to browse all 59 available icons'),
                         TextInput::make('heading')
                             ->label('Content Heading')
                             ->required()

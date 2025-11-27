@@ -7,39 +7,39 @@
 
     <div class="row clearfix">
         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-            <input type="text" wire:model.defer="form.name" placeholder="{{ __('Your Name') }}" required>
+            <input type="text" wire:model.defer="form.name" placeholder="{{ gt('your_name', 'Your Name') }}" required>
             @error('form.name')
             <span class="error text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-            <input type="email" wire:model.defer="form.email" placeholder="{{ __('Your Email') }}" required>
+            <input type="email" wire:model.defer="form.email" placeholder="{{ gt('email', 'Your Email') }}" required>
             @error('form.email')
             <span class="error text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-            <input type="text" wire:model.defer="form.phone" placeholder="{{ __('Phone') }}">
+            <input type="text" wire:model.defer="form.phone" placeholder="{{ gt('phone', 'Phone') }}">
             @error('form.phone')
             <span class="error text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-            <input type="text" wire:model.defer="form.subject" placeholder="{{ __('Subject') }}">
+            <input type="text" wire:model.defer="form.subject" placeholder="{{ gt('subject', 'Subject') }}">
             @error('form.subject')
             <span class="error text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-            <textarea wire:model.defer="form.message" placeholder="{{ __('Message') }}"></textarea>
+            <textarea wire:model.defer="form.message" placeholder="{{ gt('message', 'Message') }}"></textarea>
             @error('form.message')
             <span class="error text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn mr-0 centred">
             <button class="theme-btn btn-one" type="submit">
-                <span wire:loading.remove wire:target="submit">{{ __('Submit Now') }}</span>
-                <span wire:loading wire:target="submit">{{ __('Sending...') }}</span>
+                <span wire:loading.remove wire:target="submit">{{ gt('submit_now', 'Submit Now') }}</span>
+                <span wire:loading wire:target="submit">{{ gt('sending', 'Sending...') }}</span>
             </button>
         </div>
     </div>

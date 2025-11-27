@@ -141,62 +141,67 @@
                     <div style="margin-top: 50px;">
                         <h3 style="color: #2c3e50; margin-bottom: 20px;">{{ gt('about_bmi', 'About BMI') }}</h3>
                         <p style="color: #7f8c8d; line-height: 1.8; margin-bottom: 15px;">
-                            The Body Mass Index (BMI) Calculator can be used to calculate BMI value and
-                            corresponding weight
-                            status while taking age into consideration. BMI is a measurement of a person's
-                            leanness or
-                            corpulence based on their height and weight, and is intended to quantify tissue
-                            mass.
+                            {{ gt('about_bmi_description', 'The Body Mass Index (BMI) Calculator can be used to
+                            calculate BMI value and corresponding weight status while taking age into consideration. BMI
+                            is a measurement of a person\'s leanness or corpulence based on their height and weight, and
+                            is intended to quantify tissue mass.') }}
                         </p>
 
-                        <h4 style="color: #2c3e50; margin-top: 30px; margin-bottom: 15px;">BMI Categories
-                            (Adults)</h4>
+                        <h4 style="color: #2c3e50; margin-top: 30px; margin-bottom: 15px;">
+                            {{ gt('bmi_categories', 'BMI Categories') }} ({{ gt('adults', 'Adults') }})</h4>
                         <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
                             <thead>
                                 <tr style="background: #34495e; color: white;">
                                     <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">
-                                        Classification</th>
-                                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">BMI
-                                        Range (kg/m²)
+                                        {{ gt('classification', 'Classification') }}</th>
+                                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">{{
+                                        gt('bmi_range', 'BMI Range (kg/m²)') }}
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr style="background: #ecf0f1;">
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Severe Thinness</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gt('severe_thinness', 'Severe
+                                        Thinness') }}</td>
                                     <td style="padding: 10px; border: 1px solid #ddd;">
                                         < 16</td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Moderate Thinness
+                                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gt('moderate_thinness',
+                                        'Moderate Thinness') }}
                                     </td>
                                     <td style="padding: 10px; border: 1px solid #ddd;">16 - 17</td>
                                 </tr>
                                 <tr style="background: #ecf0f1;">
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Mild Thinness</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gt('mild_thinness', 'Mild
+                                        Thinness') }}</td>
                                     <td style="padding: 10px; border: 1px solid #ddd;">17 - 18.5</td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 10px; border: 1px solid #ddd;">
-                                        <strong>Normal</strong>
+                                        <strong>{{ gt('normal', 'Normal') }}</strong>
                                     </td>
                                     <td style="padding: 10px; border: 1px solid #ddd;"><strong>18.5 -
                                             25</strong></td>
                                 </tr>
                                 <tr style="background: #ecf0f1;">
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Overweight</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gt('overweight', 'Overweight')
+                                        }}</td>
                                     <td style="padding: 10px; border: 1px solid #ddd;">25 - 30</td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Obese Class I</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gt('obese_class_i', 'Obese
+                                        Class I') }}</td>
                                     <td style="padding: 10px; border: 1px solid #ddd;">30 - 35</td>
                                 </tr>
                                 <tr style="background: #ecf0f1;">
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Obese Class II</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gt('obese_class_ii', 'Obese
+                                        Class II') }}</td>
                                     <td style="padding: 10px; border: 1px solid #ddd;">35 - 40</td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 10px; border: 1px solid #ddd;">Obese Class III</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gt('obese_class_iii', 'Obese
+                                        Class III') }}</td>
                                     <td style="padding: 10px; border: 1px solid #ddd;">> 40</td>
                                 </tr>
                             </tbody>
@@ -204,15 +209,13 @@
 
                         <div
                             style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 20px; margin-top: 30px; border-radius: 5px;">
-                            <h4 style="color: #856404; margin-bottom: 10px;">Important Note</h4>
+                            <h4 style="color: #856404; margin-bottom: 10px;">{{ gt('important_note', 'Important Note')
+                                }}</h4>
                             <p style="color: #856404; margin: 0; line-height: 1.6;">
-                                BMI is a useful indicator of health at the population level. However, the
-                                distribution of
-                                muscle and bone mass can vary greatly from person to person. BMI should be
-                                considered along
-                                with other measurements and factors rather than being used as the sole
-                                method for
-                                determining a person's healthy body weight.
+                                {{ gt('bmi_disclaimer', 'BMI is a useful indicator of health at the population level.
+                                However, the distribution of muscle and bone mass can vary greatly from person to
+                                person. BMI should be considered along with other measurements and factors rather than
+                                being used as the sole method for determining a person\'s healthy body weight.') }}
                             </p>
                         </div>
                     </div>
@@ -233,6 +236,19 @@
     const bmiForm = document.getElementById('bmi-form');
     const bmiResult = document.getElementById('bmi-result');
     let currentUnit = 'metric';
+
+    // Translation strings
+    const translations = {
+        invalidValues: '{{ gt("invalid_height_weight", "Please enter valid height and weight values.") }}',
+        severeThinness: '{{ gt("severe_thinness", "Severe Thinness") }}',
+        moderateThinness: '{{ gt("moderate_thinness", "Moderate Thinness") }}',
+        mildThinness: '{{ gt("mild_thinness", "Mild Thinness") }}',
+        normal: '{{ gt("normal", "Normal") }}',
+        overweight: '{{ gt("overweight", "Overweight") }}',
+        obeseClassI: '{{ gt("obese_class_i", "Obese Class I") }}',
+        obeseClassII: '{{ gt("obese_class_ii", "Obese Class II") }}',
+        obeseClassIII: '{{ gt("obese_class_iii", "Obese Class III") }}'
+    };
 
     // Unit tab switching
     unitTabs.forEach(tab => {
@@ -267,7 +283,7 @@
             weightInKg = parseFloat(document.getElementById('weight-kg').value);
 
             if (!heightCm || !weightInKg || heightCm <= 0 || weightInKg <= 0) {
-                alert('Please enter valid height and weight values.');
+                alert(translations.invalidValues);
                 return;
             }
 
@@ -278,7 +294,7 @@
             const weightLbs = parseFloat(document.getElementById('weight-lbs').value);
 
             if ((heightFt === 0 && heightIn === 0) || !weightLbs || weightLbs <= 0) {
-                alert('Please enter valid height and weight values.');
+                alert(translations.invalidValues);
                 return;
             }
 
@@ -296,28 +312,28 @@
         // Determine category and color
         let category, categoryColor;
         if (bmi < 16) {
-            category = 'Severe Thinness';
+            category = translations.severeThinness;
             categoryColor = '#3498db';
         } else if (bmi < 17) {
-            category = 'Moderate Thinness';
+            category = translations.moderateThinness;
             categoryColor = '#3498db';
         } else if (bmi < 18.5) {
-            category = 'Mild Thinness';
+            category = translations.mildThinness;
             categoryColor = '#3498db';
         } else if (bmi < 25) {
-            category = 'Normal';
+            category = translations.normal;
             categoryColor = '#2ecc71';
         } else if (bmi < 30) {
-            category = 'Overweight';
+            category = translations.overweight;
             categoryColor = '#f39c12';
         } else if (bmi < 35) {
-            category = 'Obese Class I';
+            category = translations.obeseClassI;
             categoryColor = '#e74c3c';
         } else if (bmi < 40) {
-            category = 'Obese Class II';
+            category = translations.obeseClassII;
             categoryColor = '#e74c3c';
         } else {
-            category = 'Obese Class III';
+            category = translations.obeseClassIII;
             categoryColor = '#c0392b';
         }
 

@@ -29,7 +29,8 @@
                                         href="{{ url('working-hours') }}">{{
                                         $doctor->location->name }}</a></li>
                                 @endif
-                                <li><span>{{ gt('phone', 'Phone') }}:</span><a href=" tel:{{ $doctor->phone }}">{{
+                                <li><span>{{ gt('phone', 'Phone') }}:</span><a class="dltr"
+                                        href=" tel:{{ $doctor->phone }}">{{
                                         $doctor->phone }}</a>
                                 </li>
                                 <li><span>{{ gt('email', 'Email') }}:</span><a href="mailto:{{ $doctor->email }}">{{

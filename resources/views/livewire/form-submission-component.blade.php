@@ -144,8 +144,9 @@
                                             <div class="content-box ml_30">
                                                 <div class="sec-title left p_relative d_block mb_25">
 
-                                                    <h2>{{ __('Application Form') }}</h2>
-                                                    <p>{{ __('Please fill out the form below to submit your application.
+                                                    <h2>{{ gt('application_form', 'Application Form') }}</h2>
+                                                    <p>{{ gt('application_form_description', 'Please fill out the form
+                                                        below to submit your application.
                                                         All fields marked with * are required.') }}</p>
                                                 </div>
                                             </div>
@@ -162,7 +163,7 @@
                                 @if (session()->has('form_success'))
                                 <div class="alert alert-success"
                                     style="padding: 15px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; margin-bottom: 20px; color: #155724;">
-                                    <strong>{{ __('Success!') }}</strong> {{ session('form_success') }}
+                                    <strong>{{ gt('success', 'Success!') }}</strong> {{ session('form_success') }}
                                 </div>
                                 @endif
 
@@ -171,13 +172,14 @@
 
                                         <!-- Personal Information Section -->
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <h4 style="margin-bottom: 20px; color: #00a3e0;">{{ __('Personal
+                                            <h4 style="margin-bottom: 20px; color: #00a3e0;">{{
+                                                gt('personal_information', 'Personal
                                                 Information') }}</h4>
                                         </div>
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <input type="text" wire:model.defer="form.name"
-                                                placeholder="{{ __('Full Name') }} *" required>
+                                                placeholder="{{ gt('full_name', 'Full Name') }} *" required>
                                             @error('form.name')
                                             <span class="error text-danger">{{ $message }}</span>
                                             @enderror
@@ -185,7 +187,7 @@
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <input type="email" wire:model.defer="form.email"
-                                                placeholder="{{ __('Email Address') }} *" required>
+                                                placeholder="{{ gt('email_address', 'Email Address') }} *" required>
                                             @error('form.email')
                                             <span class="error text-danger">{{ $message }}</span>
                                             @enderror
@@ -193,7 +195,7 @@
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <input type="text" wire:model.defer="form.phone"
-                                                placeholder="{{ __('Phone Number') }}">
+                                                placeholder="{{ gt('phone_number', 'Phone Number') }}">
                                             @error('form.phone')
                                             <span class="error text-danger">{{ $message }}</span>
                                             @enderror
@@ -201,7 +203,7 @@
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <input type="text" wire:model.defer="form.national_id"
-                                                placeholder="{{ __('National ID / Passport') }}">
+                                                placeholder="{{ gt('national_id_passport', 'National ID / Passport') }}">
                                             @error('form.national_id')
                                             <span class="error text-danger">{{ $message }}</span>
                                             @enderror
@@ -209,7 +211,7 @@
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <input type="date" wire:model.defer="form.date_of_birth"
-                                                placeholder="{{ __('Date of Birth') }}">
+                                                placeholder="{{ gt('date_of_birth', 'Date of Birth') }}">
                                             @error('form.date_of_birth')
                                             <span class="error text-danger">{{ $message }}</span>
                                             @enderror
@@ -217,7 +219,7 @@
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <input type="text" wire:model.defer="form.current_position"
-                                                placeholder="{{ __('Current Position / Occupation') }}">
+                                                placeholder="{{ gt('current_position_occupation', 'Current Position / Occupation') }}">
                                             @error('form.current_position')
                                             <span class="error text-danger">{{ $message }}</span>
                                             @enderror
@@ -225,15 +227,17 @@
 
                                         <!-- Educational Background Section -->
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <h4 style="margin: 30px 0 20px; color: #00a3e0;">{{ __('Educational
+                                            <h4 style="margin: 30px 0 20px; color: #00a3e0;">{{
+                                                gt('educational_background', 'Educational
                                                 Background') }}</h4>
                                         </div>
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <select wire:model.defer="form.education_level" class="form-control">
-                                                <option value="">{{ __('Select Education Level') }}</option>
+                                                <option value="">{{ gt('select_education_level', 'Select Education
+                                                    Level') }}</option>
                                                 @foreach($educationLevels as $key => $label)
-                                                <option value="{{ $key }}">{{ __($label) }}</option>
+                                                <option value="{{ $key }}">{{ gt($label, $label) }}</option>
                                                 @endforeach
                                             </select>
                                             @error('form.education_level')
@@ -243,7 +247,7 @@
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <input type="text" wire:model.defer="form.university"
-                                                placeholder="{{ __('University / Institution') }}">
+                                                placeholder="{{ gt('university_institution', 'University / Institution') }}">
                                             @error('form.university')
                                             <span class="error text-danger">{{ $message }}</span>
                                             @enderror
@@ -251,7 +255,7 @@
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <input type="text" wire:model.defer="form.major"
-                                                placeholder="{{ __('Major / Field of Study') }}">
+                                                placeholder="{{ gt('major_field_of_study', 'Major / Field of Study') }}">
                                             @error('form.major')
                                             <span class="error text-danger">{{ $message }}</span>
                                             @enderror
@@ -259,15 +263,16 @@
 
                                         <!-- Application Materials Section -->
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <h4 style="margin: 30px 0 20px; color: #00a3e0;">{{ __('Application
-                                                Materials') }}</h4>
+                                            <h4 style="margin: 30px 0 20px; color: #00a3e0;">{{ gt('Application
+                                                materials', 'Application Materials') }}</h4>
                                         </div>
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <input type="url" wire:model.defer="form.resume_url"
-                                                placeholder="{{ __('Resume/CV URL (LinkedIn, Google Drive, Dropbox, etc.)') }}">
-                                            <small class="form-text text-muted">{{ __('Please provide a link to your
-                                                resume or CV') }}</small>
+                                                placeholder="{{ gt('resume_cv_url', 'Resume/CV URL (LinkedIn, Google Drive, Dropbox, etc.)') }}">
+                                            <small class="form-text text-muted">{{ gt('Please provide a link to your
+                                                resume_cv_url_description', 'Resume or CV URL (LinkedIn, Google Drive,
+                                                Dropbox, etc.)') }}</small>
                                             @error('form.resume_url')
                                             <span class="error text-danger">{{ $message }}</span>
                                             @enderror
@@ -275,9 +280,11 @@
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <textarea wire:model.defer="form.cover_letter"
-                                                placeholder="{{ __('Cover Letter') }}" rows="6"></textarea>
-                                            <small class="form-text text-muted">{{ __('Tell us why you are interested in
-                                                this opportunity') }}</small>
+                                                placeholder="{{ gt('cover_letter', 'Cover Letter') }}"
+                                                rows="6"></textarea>
+                                            <small class="form-text text-muted">{{ gt('Tell us why you are interested in
+                                                this_opportunity', 'Tell us why you are interested in this opportunity')
+                                                }}</small>
                                             @error('form.cover_letter')
                                             <span class="error text-danger">{{ $message }}</span>
                                             @enderror
@@ -285,7 +292,7 @@
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <textarea wire:model.defer="form.message"
-                                                placeholder="{{ __('Additional Message (Optional)') }}"
+                                                placeholder="{{ gt('additional_message_optional', 'Additional Message (Optional)') }}"
                                                 rows="4"></textarea>
                                             @error('form.message')
                                             <span class="error text-danger">{{ $message }}</span>
@@ -295,9 +302,11 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn mr-0 centred">
                                             <button class="theme-btn btn-one" type="submit"
                                                 wire:loading.attr="disabled">
-                                                <span wire:loading.remove wire:target="submit">{{ __('Submit
+                                                <span wire:loading.remove wire:target="submit">{{
+                                                    gt('submit_application', 'Submit
                                                     Application') }}</span>
-                                                <span wire:loading wire:target="submit">{{ __('Submitting...') }}</span>
+                                                <span wire:loading wire:target="submit">{{ gt('submitting',
+                                                    'Submitting...') }}</span>
                                             </button>
                                         </div>
                                     </div>

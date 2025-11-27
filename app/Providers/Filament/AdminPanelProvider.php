@@ -69,6 +69,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->renderHook(
+                'panels::head.end',
+                fn() => '<link rel="stylesheet" href="' . asset('css/filament-icons.css') . '">'
+            );
     }
 }

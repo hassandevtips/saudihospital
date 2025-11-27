@@ -1,14 +1,18 @@
+@php
+$isRTL = app()->getLocale() === 'ar';
+@endphp
+
 @if ($paginator->hasPages())
 <ul class="pagination clearfix">
     {{-- Previous Page Link --}}
     @if ($paginator->onFirstPage())
     <li class="disabled">
-        <span><i class="fas fa-angle-left"></i></span>
+        <span><i class="fas fa-angle-{{ $isRTL ? 'right' : 'left' }}"></i></span>
     </li>
     @else
     <li>
         <a wire:navigate href="{{ $paginator->previousPageUrl() }}" rel="prev">
-            <i class="fas fa-angle-left"></i>
+            <i class="fas fa-angle-{{ $isRTL ? 'right' : 'left' }}"></i>
         </a>
     </li>
     @endif
@@ -26,8 +30,8 @@
     @if (is_array($element))
     @foreach ($element as $page => $url)
     @if ($page == $paginator->currentPage())
-    <li>
-        <span class="current" aria-current="page">{{ $page }}</span>
+    <li class="current">
+        <span aria-current="page">{{ $page }}</span>
     </li>
     @else
     <li>
@@ -42,12 +46,12 @@
     @if ($paginator->hasMorePages())
     <li>
         <a wire:navigate href="{{ $paginator->nextPageUrl() }}" rel="next">
-            <i class="fas fa-angle-right"></i>
+            <i class="fas fa-angle-{{ $isRTL ? 'left' : 'right' }}"></i>
         </a>
     </li>
     @else
     <li class="disabled">
-        <span><i class="fas fa-angle-right"></i></span>
+        <span><i class="fas fa-angle-{{ $isRTL ? 'left' : 'right' }}"></i></span>
     </li>
     @endif
 </ul>

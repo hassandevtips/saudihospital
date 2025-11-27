@@ -84,7 +84,7 @@ $isHomePage = $currentRouteName === 'home';
                     </div>
                     <div class="nav-right">
                         <div class="btn-box">
-                            <a wire:navigate href="{{ url('departments') }}" class="theme-btn btn-one">{{
+                            <a wire:navigate href="{{ route('find-a-doctor') }}" class="theme-btn btn-one">{{
                                 gt('appointment', 'Appointment') }}</a>
                         </div>
                     </div>

@@ -462,7 +462,7 @@ $dir = $isRTL ? 'rtl' : 'ltr';
         <!-- preloader -->
         <div id="preloader" style="display: none;">
             <div class="loader-content loader-text">
-                <h1>الهوية الجديدة للرعاية الصحية</h1>
+                {{-- <h1>الهوية الجديدة للرعاية الصحية</h1> --}}
                 <h3>{{ gt('home_heading', 'The New Definition of Healthcare') }}</h3>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progress"></div>
@@ -485,7 +485,8 @@ $dir = $isRTL ? 'rtl' : 'ltr';
             </button>
 
             {{-- Floating Appointment Button --}}
-            <a href="#" class="floating-btn">{{ gt('book_appointment_24_7', 'Book Appointment') }}</a>
+            <a href="{{ route('find-a-doctor') }}" class="floating-btn">{{ gt('book_appointment_24_7', 'Book
+                Appointment') }}</a>
         </div>
     </div>
 

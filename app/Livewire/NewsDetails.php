@@ -14,7 +14,7 @@ class NewsDetails extends Component
     {
         $news = $id;
         $this->page = (object) [
-            'title' => $news->title . gt('details', 'Details'),
+            'title' => $news->title,
             'banner_image_url' => $news->banner_image_url,
         ];
 

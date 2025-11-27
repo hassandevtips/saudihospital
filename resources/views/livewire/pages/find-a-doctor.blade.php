@@ -203,9 +203,11 @@
         }
 
         .pagination-wrapper {
-            display: flex;
-            justify-content: center;
             margin-top: 40px;
+        }
+
+        .pagination-wrapper.centred {
+            text-align: center;
         }
 
         @media (max-width: 768px) {
@@ -318,17 +320,20 @@
             <div class="results-header">
                 <div>
                     <h4 style="color: #333; margin: 0;">
-                        {{ gt('showing', 'Showing') }} {{ $doctors->total() }} {{ Str::plural(gt('doctor', 'Doctor'), $doctors->total()) }}
+                        {{ gt('showing', 'Showing') }} {{ $doctors->total() }} {{ Str::plural(gt('doctor', 'Doctor'),
+                        $doctors->total()) }}
                     </h4>
                     @if($search)
-                    <p class="text-muted mb-0"><i class="fas fa-search"></i> {{ gt('search', 'Search') }}: "{{ $search }}"</p>
+                    <p class="text-muted mb-0"><i class="fas fa-search"></i> {{ gt('search', 'Search') }}: "{{ $search
+                        }}"</p>
                     @endif
                     @if($selectedDepartment)
                     @php
                     $selectedDept = $departments->firstWhere('id', $selectedDepartment);
                     @endphp
                     @if($selectedDept)
-                    <p class="text-muted mb-0"><i class="fas fa-hospital"></i> {{ gt('department', 'Department') }}: {{ $selectedDept->name }}</p>
+                    <p class="text-muted mb-0"><i class="fas fa-hospital"></i> {{ gt('department', 'Department') }}: {{
+                        $selectedDept->name }}</p>
                     @endif
                     @endif
                     @if($selectedLocation)
@@ -336,12 +341,14 @@
                     $selectedLoc = $locations->firstWhere('id', $selectedLocation);
                     @endphp
                     @if($selectedLoc)
-                    <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> {{ gt('location', 'Location') }}: {{ $selectedLoc->name }}
+                    <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> {{ gt('location', 'Location') }}:
+                        {{ $selectedLoc->name }}
                     </p>
                     @endif
                     @endif
                     @if($selectedLetter)
-                    <p class="text-muted mb-0"><i class="fas fa-font"></i> {{ gt('starting_with', 'Starting with') }}: {{ $selectedLetter }}</p>
+                    <p class="text-muted mb-0"><i class="fas fa-font"></i> {{ gt('starting_with', 'Starting with') }}:
+                        {{ $selectedLetter }}</p>
                     @endif
                 </div>
                 <button class="clear-filters-btn" wire:click="clearFilters">
@@ -389,15 +396,17 @@
             </div>
 
             {{-- Pagination --}}
-            <div class="pagination-wrapper">
-                {{ $doctors->links() }}
+            <div class="pagination-wrapper centred">
+                {{ $doctors->onEachSide(1)->links('vendor.pagination.news') }}
             </div>
             @else
             {{-- No Results --}}
             <div class="no-results">
                 <i class="fas fa-user-md"></i>
                 <h3 style="color: #333;">{{ gt('no_doctors_found', 'No Doctors Found') }}</h3>
-                <p class="text-muted">{{ gt('no_doctors_criteria', 'We couldn\'t find any doctors matching your criteria.') }}</p>
+                <p class="text-muted">{{ gt('no_doctors_criteria', 'We couldn\'t find any doctors matching your
+                    criteria.')
+                    }}</p>
                 <button class="btn view-profile-btn mt-3" wire:click="clearFilters">
                     <i class="fas fa-redo"></i> {{ gt('clear_filters', 'Clear Filters') }}
                 </button>

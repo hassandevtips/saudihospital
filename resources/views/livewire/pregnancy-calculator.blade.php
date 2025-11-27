@@ -1,28 +1,23 @@
 <div class="pregnancy-calculator-wrapper">
-    <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">Pregnancy Calculator</h2>
+    <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">{{ gt('pregnancy_calculator', 'Pregnancy Calculator') }}</h2>
 
     <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px; line-height: 1.6;">
-        The Pregnancy Calculator can estimate a pregnancy schedule based on the provided due date, last period date,
-        ultrasound date, conception date, or IVF transfer date.
+        {{ gt('pregnancy_calculator_description', 'The Pregnancy Calculator can estimate a pregnancy schedule based on the provided due date, last period date, ultrasound date, conception date, or IVF transfer date.') }}
     </p>
 
     <!-- Calculation Method Tabs -->
     <div class="calculation-tabs"
         style="margin-bottom: 30px; text-align: center; flex-wrap: wrap; display: flex; justify-content: center; gap: 10px;">
         <button type="button" class="calc-tab active" data-method="last-period"
-            style="padding: 10px 20px; border: 2px solid #e91e63; background: #e91e63; color: white; border-radius: 5px; cursor: pointer; font-size: 14px; transition: all 0.3s;">Last
-            Period</button>
+            style="padding: 10px 20px; border: 2px solid #e91e63; background: #e91e63; color: white; border-radius: 5px; cursor: pointer; font-size: 14px; transition: all 0.3s;">{{ gt('last_period', 'Last Period') }}</button>
         <button type="button" class="calc-tab" data-method="due-date"
-            style="padding: 10px 20px; border: 2px solid #e91e63; background: white; color: #e91e63; border-radius: 5px; cursor: pointer; font-size: 14px; transition: all 0.3s;">Due
-            Date</button>
+            style="padding: 10px 20px; border: 2px solid #e91e63; background: white; color: #e91e63; border-radius: 5px; cursor: pointer; font-size: 14px; transition: all 0.3s;">{{ gt('due_date', 'Due Date') }}</button>
         <button type="button" class="calc-tab" data-method="ultrasound"
-            style="padding: 10px 20px; border: 2px solid #e91e63; background: white; color: #e91e63; border-radius: 5px; cursor: pointer; font-size: 14px; transition: all 0.3s;">Ultrasound</button>
+            style="padding: 10px 20px; border: 2px solid #e91e63; background: white; color: #e91e63; border-radius: 5px; cursor: pointer; font-size: 14px; transition: all 0.3s;">{{ gt('ultrasound', 'Ultrasound') }}</button>
         <button type="button" class="calc-tab" data-method="conception"
-            style="padding: 10px 20px; border: 2px solid #e91e63; background: white; color: #e91e63; border-radius: 5px; cursor: pointer; font-size: 14px; transition: all 0.3s;">Conception
-            Date</button>
+            style="padding: 10px 20px; border: 2px solid #e91e63; background: white; color: #e91e63; border-radius: 5px; cursor: pointer; font-size: 14px; transition: all 0.3s;">{{ gt('conception_date', 'Conception Date') }}</button>
         <button type="button" class="calc-tab" data-method="ivf"
-            style="padding: 10px 20px; border: 2px solid #e91e63; background: white; color: #e91e63; border-radius: 5px; cursor: pointer; font-size: 14px; transition: all 0.3s;">IVF
-            Transfer</button>
+            style="padding: 10px 20px; border: 2px solid #e91e63; background: white; color: #e91e63; border-radius: 5px; cursor: pointer; font-size: 14px; transition: all 0.3s;">{{ gt('ivf_transfer', 'IVF Transfer') }}</button>
     </div>
 
     <!-- Pregnancy Form -->

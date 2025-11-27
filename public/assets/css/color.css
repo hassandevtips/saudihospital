@@ -391,8 +391,8 @@
     color: #0098ac;
 }
 
-.pagination li a:hover,
-.pagination li a.current {
+.pagination li:hover,
+.pagination li.current {
     background: #0098ac;
 }
 

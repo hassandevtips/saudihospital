@@ -30,7 +30,7 @@ class DoctorDetails extends Component
     public function mount(Doctor $doctor): void
     {
         $this->page = (object) [
-            'title' => $doctor->name . ' ' . gt('details', 'Details'),
+            'title' => $doctor->name,
             'banner_image_url' => $doctor->banner_image_url,
         ];
 
@@ -145,7 +145,7 @@ class DoctorDetails extends Component
         // Double check if slot is still available
         $availableSlots = $this->doctor->getAvailableSlots($validated['appointment_date']);
         if (!in_array($validated['appointment_time'], $availableSlots)) {
-            session()->flash('appointment_error', __('Sorry, this time slot is no longer available. Please select another slot.'));
+            session()->flash('appointment_error', gt('appointment_error', 'Sorry, this time slot is no longer available. Please select another slot.'));
             $this->updatedFormAppointmentDate($validated['appointment_date']);
             return;
         }
@@ -178,11 +178,11 @@ class DoctorDetails extends Component
             $this->currentStep = 1;
             $this->showModal = false;
 
-            session()->flash('appointment_success', __('Your appointment has been booked successfully. We will contact you shortly to confirm.'));
+            session()->flash('appointment_success', gt('appointment_success', 'Your appointment has been booked successfully. We will contact you shortly to confirm.'));
 
             $this->dispatch('appointment-created');
         } catch (\Exception $e) {
-            session()->flash('appointment_error', __('An error occurred while booking your appointment. Please try again.'));
+            session()->flash('appointment_error', gt('appointment_error', 'An error occurred while booking your appointment. Please try again.'));
             Log::error('Appointment booking error: ' . $e->getMessage());
         }
     }

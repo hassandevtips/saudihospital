@@ -9,16 +9,14 @@
             <div class="col-lg-8 col-md-12 col-sm-12 content-side">
 
                 <div class="ideal-weight-calculator-wrapper">
-                    <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">Ideal Weight Calculator</h2>
+                    <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">{{ gt('ideal_weight_calculator', 'Ideal Weight Calculator') }}</h2>
 
                     <!-- Unit Selection Tabs -->
                     <div class="unit-tabs" style="margin-bottom: 30px; text-align: center;">
                         <button type="button" class="unit-tab active" data-unit="metric"
-                            style="padding: 10px 30px; margin: 0 5px; border: 2px solid #3498db; background: #3498db; color: white; border-radius: 5px; cursor: pointer; font-size: 16px;">Metric
-                            Units</button>
+                            style="padding: 10px 30px; margin: 0 5px; border: 2px solid #3498db; background: #3498db; color: white; border-radius: 5px; cursor: pointer; font-size: 16px;">{{ gt('metric_units', 'Metric Units') }}</button>
                         <button type="button" class="unit-tab" data-unit="us"
-                            style="padding: 10px 30px; margin: 0 5px; border: 2px solid #3498db; background: white; color: #3498db; border-radius: 5px; cursor: pointer; font-size: 16px;">US
-                            Units</button>
+                            style="padding: 10px 30px; margin: 0 5px; border: 2px solid #3498db; background: white; color: #3498db; border-radius: 5px; cursor: pointer; font-size: 16px;">{{ gt('us_units', 'US Units') }}</button>
                     </div>
 
                     <!-- Ideal Weight Form -->
@@ -26,18 +24,18 @@
                         <div class="form-row" style="margin-bottom: 20px;">
                             <div class="col-md-6" style="padding: 0 10px;">
                                 <label
-                                    style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">Age</label>
-                                <input type="number" id="age" class="form-control" placeholder="Age (2-80)" min="2"
+                                    style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">{{ gt('age', 'Age') }}</label>
+                                <input type="number" id="age" class="form-control" placeholder="{{ gt('age_2_80', 'Age (2-80)') }}" min="2"
                                     max="80"
                                     style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
                             </div>
                             <div class="col-md-6" style="padding: 0 10px;">
                                 <label
-                                    style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">Gender</label>
+                                    style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">{{ gt('gender', 'Gender') }}</label>
                                 <select id="gender" class="form-control"
                                     style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="male">{{ gt('male', 'Male') }}</option>
+                                    <option value="female">{{ gt('female', 'Female') }}</option>
                                 </select>
                             </div>
                         </div>
@@ -47,9 +45,8 @@
                             <div class="form-row" style="margin-bottom: 20px;">
                                 <div class="col-md-12" style="padding: 0 10px;">
                                     <label
-                                        style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">Height
-                                        (cm)</label>
-                                    <input type="number" id="height-cm" class="form-control" placeholder="Height in cm"
+                                        style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">{{ gt('height_cm', 'Height (cm)') }}</label>
+                                    <input type="number" id="height-cm" class="form-control" placeholder="{{ gt('height_cm_placeholder', 'Height in cm') }}"
                                         step="0.1"
                                         style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
                                 </div>
@@ -61,12 +58,12 @@
                             <div class="form-row" style="margin-bottom: 20px;">
                                 <div class="col-md-12" style="padding: 0 10px;">
                                     <label
-                                        style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">Height</label>
+                                        style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: block;">{{ gt('height', 'Height') }}</label>
                                     <div style="display: flex; gap: 10px;">
-                                        <input type="number" id="height-ft" class="form-control" placeholder="Feet"
+                                        <input type="number" id="height-ft" class="form-control" placeholder="{{ gt('feet', 'Feet') }}"
                                             min="0"
                                             style="width: 48%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
-                                        <input type="number" id="height-in" class="form-control" placeholder="Inches"
+                                        <input type="number" id="height-in" class="form-control" placeholder="{{ gt('inches', 'Inches') }}"
                                             min="0" max="11" step="0.1"
                                             style="width: 48%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
                                     </div>
@@ -76,25 +73,22 @@
 
                         <div style="text-align: center; margin-top: 30px;">
                             <button type="submit"
-                                style="padding: 15px 60px; background: #27ae60; color: white; border: none; border-radius: 5px; font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.3s;">Calculate</button>
+                                style="padding: 15px 60px; background: #27ae60; color: white; border: none; border-radius: 5px; font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.3s;">{{ gt('calculate', 'Calculate') }}</button>
                         </div>
                     </form>
 
                     <!-- Results Section -->
                     <div id="ideal-weight-result" style="margin-top: 40px; display: none;">
                         <div style="background: #ecf0f1; padding: 30px; border-radius: 10px;">
-                            <h3 style="color: #2c3e50; margin-bottom: 20px; text-align: center;">Result</h3>
-                            <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px;">The ideal weight based
-                                on
-                                popular formulas:</p>
+                            <h3 style="color: #2c3e50; margin-bottom: 20px; text-align: center;">{{ gt('result', 'Result') }}</h3>
+                            <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px;">{{ gt('ideal_weight_based_on_formulas', 'The ideal weight based on popular formulas:') }}</p>
 
                             <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
                                 <thead>
                                     <tr style="background: #34495e; color: white;">
-                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Formula
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">{{ gt('formula', 'Formula') }}
                                         </th>
-                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Ideal
-                                            Weight</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">{{ gt('ideal_weight', 'Ideal Weight') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody id="results-table-body">
@@ -106,40 +100,22 @@
 
                     <!-- Information Section -->
                     <div style="margin-top: 50px;">
-                        <h3 style="color: #2c3e50; margin-bottom: 20px;">How Much Should I Weigh?</h3>
+                        <h3 style="color: #2c3e50; margin-bottom: 20px;">{{ gt('how_much_should_i_weigh', 'How Much Should I Weigh?') }}</h3>
                         <p style="color: #7f8c8d; line-height: 1.8; margin-bottom: 15px;">
-                            Most everyone has at some point tried to lose weight, or at least known somebody who has.
-                            This is largely due to the perception of an "ideal" body weight, which is often based on
-                            what
-                            we see promoted through various media such as social media, TV, movies, magazines, etc.
-                            Although ideal body weight (IBW) today is sometimes based on perceived visual appeal, IBW
-                            was
-                            actually introduced to estimate dosages for medical use, and the formulas that calculate it
-                            are not at all related to how a person looks at a given weight.
+                            {{ gt('ideal_weight_description', 'Most everyone has at some point tried to lose weight, or at least known somebody who has. This is largely due to the perception of an "ideal" body weight, which is often based on what we see promoted through various media such as social media, TV, movies, magazines, etc. Although ideal body weight (IBW) today is sometimes based on perceived visual appeal, IBW was actually introduced to estimate dosages for medical use, and the formulas that calculate it are not at all related to how a person looks at a given weight.') }}
                         </p>
 
                         <div
                             style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 20px; margin-top: 30px; border-radius: 5px;">
-                            <h4 style="color: #856404; margin-bottom: 10px;">Important Note</h4>
+                            <h4 style="color: #856404; margin-bottom: 10px;">{{ gt('important_note', 'Important Note') }}</h4>
                             <p style="color: #856404; margin: 0; line-height: 1.6;">
-                                IBW is not a perfect measurement. It does not consider the percentages of body fat and
-                                muscle in a person's body. This means that it is possible for highly fit, healthy
-                                athletes
-                                to be considered overweight based on their IBW. This is why IBW should be considered
-                                with
-                                the perspective that it is an imperfect measure and not necessarily indicative of
-                                health.
+                                {{ gt('ideal_weight_disclaimer', 'IBW is not a perfect measurement. It does not consider the percentages of body fat and muscle in a person\'s body. This means that it is possible for highly fit, healthy athletes to be considered overweight based on their IBW. This is why IBW should be considered with the perspective that it is an imperfect measure and not necessarily indicative of health.') }}
                             </p>
                         </div>
 
-                        <h3 style="color: #2c3e50; margin-top: 40px; margin-bottom: 20px;">Formulas for Finding the
-                            Ideal
-                            Weight</h3>
+                        <h3 style="color: #2c3e50; margin-top: 40px; margin-bottom: 20px;">{{ gt('formulas_finding_ideal_weight', 'Formulas for Finding the Ideal Weight') }}</h3>
                         <p style="color: #7f8c8d; line-height: 1.8; margin-bottom: 15px;">
-                            IBW formulas were developed mainly to facilitate drug dosage calculations. All of the
-                            formulas
-                            have the same format of a base weight given a height of 5 feet with a set weight increment
-                            added per inch over the height of 5 feet.
+                            {{ gt('ibw_formulas_description', 'IBW formulas were developed mainly to facilitate drug dosage calculations. All of the formulas have the same format of a base weight given a height of 5 feet with a set weight increment added per inch over the height of 5 feet.') }}
                         </p>
 
                         <h4 style="color: #2c3e50; margin-top: 30px; margin-bottom: 15px;">G. J. Hamwi Formula (1964)
@@ -224,12 +200,9 @@
                             Modification
                             of the Devine Formula.</p>
 
-                        <h4 style="color: #2c3e50; margin-top: 30px; margin-bottom: 15px;">Healthy BMI Range</h4>
+                        <h4 style="color: #2c3e50; margin-top: 30px; margin-bottom: 15px;">{{ gt('healthy_bmi_range', 'Healthy BMI Range') }}</h4>
                         <p style="color: #7f8c8d; line-height: 1.8; margin-bottom: 15px;">
-                            The World Health Organization's (WHO) recommended healthy BMI range is 18.5 - 25 for both
-                            males and females. Based on the BMI range, it is possible to find out a healthy weight for
-                            any
-                            given height.
+                            {{ gt('healthy_bmi_range_description', 'The World Health Organization\'s (WHO) recommended healthy BMI range is 18.5 - 25 for both males and females. Based on the BMI range, it is possible to find out a healthy weight for any given height.') }}
                         </p>
                     </div>
                 </div>
@@ -282,7 +255,7 @@
                 heightInCm = parseFloat(document.getElementById('height-cm').value);
 
                 if (!heightInCm || heightInCm <= 0) {
-                    alert('Please enter a valid height value.');
+                    alert('{{ gt("invalid_height_value", "Please enter a valid height value.") }}');
                     return;
                 }
 
@@ -293,7 +266,7 @@
                 const heightIn = parseFloat(document.getElementById('height-in').value) || 0;
 
                 if (heightFt === 0 && heightIn === 0) {
-                    alert('Please enter a valid height value.');
+                    alert('{{ gt("invalid_height_value", "Please enter a valid height value.") }}');
                     return;
                 }
 

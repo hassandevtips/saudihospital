@@ -7,9 +7,25 @@ use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\Select;
 
 class HomePageContentInfolist
 {
+
+    protected static function getIconOptions(): array
+    {
+        $icons = [];
+        for ($i = 1; $i <= 59; $i++) {
+            $iconClass = "icon-{$i}";
+            // Create a visual preview with the icon
+            $icons[$iconClass] = "<div style='display: flex; align-items: center; gap: 10px;'>" .
+                "<i class='{$iconClass}' style='font-size: 24px; min-width: 30px;'></i>" .
+                "<span style='font-weight: 500;'>{$iconClass}</span>" .
+                "</div>";
+        }
+        return $icons;
+    }
+
     public static function configure(Schema $schema): Schema
     {
         return $schema
@@ -88,8 +104,15 @@ class HomePageContentInfolist
                             ->schema([
                                 TextEntry::make('title')
                                     ->label('Tab Title'),
-                                TextEntry::make('icon')
-                                    ->label('Icon Class'),
+                                Select::make('icon')
+                                    ->label('Icon')
+                                    ->required()
+                                    ->options(self::getIconOptions())
+                                    ->searchable()
+                                    ->allowHtml()
+                                    ->native(false)
+                                    ->placeholder('Select an icon')
+                                    ->helperText('Search by icon number (e.g., "icon-17") or scroll to browse all 59 available icons'),
                                 TextEntry::make('heading')
                                     ->label('Content Heading'),
                                 TextEntry::make('description')

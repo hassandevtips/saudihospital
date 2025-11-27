@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Location;
+use App\Models\Page;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -28,10 +29,7 @@ class FindADoctor extends Component
 
     public function mount(): void
     {
-        $this->page = (object) [
-            'title' => 'Find a Doctor',
-            'banner_image_url' => asset('assets/images/banner/banner-1.jpg'),
-        ];
+        $this->page = Page::where('id', 53)->first();
     }
 
     public function updatingSearch()
@@ -117,13 +115,24 @@ class FindADoctor extends Component
         if (!empty($this->selectedLetter)) {
             $letter = $this->selectedLetter;
             $lowerLetter = strtolower($letter);
-            $query->where(function ($q) use ($letter, $lowerLetter) {
-                // Remove quotes from JSON and match names starting with the letter or "Dr. Letter"
-                $q->whereRaw("LOWER(REPLACE(JSON_EXTRACT(name, '$.en'), '\"', '')) LIKE ?", ["{$lowerLetter}%"])
-                    ->orWhereRaw("LOWER(REPLACE(JSON_EXTRACT(name, '$.ar'), '\"', '')) LIKE ?", ["{$lowerLetter}%"])
-                    ->orWhereRaw("LOWER(REPLACE(JSON_EXTRACT(name, '$.en'), '\"', '')) LIKE ?", ["dr. {$lowerLetter}%"])
-                    ->orWhereRaw("LOWER(REPLACE(JSON_EXTRACT(name, '$.en'), '\"', '')) LIKE ?", ["dr {$lowerLetter}%"])
-                    ->orWhereRaw("LOWER(REPLACE(JSON_EXTRACT(name, '$.ar'), '\"', '')) LIKE ?", ["د. {$lowerLetter}%"]);
+
+            // Check if it's an Arabic letter
+            $isArabic = preg_match('/[\x{0600}-\x{06FF}]/u', $letter);
+
+            $query->where(function ($q) use ($letter, $lowerLetter, $isArabic) {
+                if ($isArabic) {
+                    // For Arabic letters, search in Arabic names
+                    $q->whereRaw("REPLACE(JSON_EXTRACT(name, '$.ar'), '\"', '') LIKE ?", ["{$letter}%"])
+                        ->orWhereRaw("REPLACE(JSON_EXTRACT(name, '$.ar'), '\"', '') LIKE ?", ["د. {$letter}%"])
+                        ->orWhereRaw("REPLACE(JSON_EXTRACT(name, '$.ar'), '\"', '') LIKE ?", ["د.{$letter}%"])
+                        ->orWhereRaw("REPLACE(JSON_EXTRACT(name, '$.ar'), '\"', '') LIKE ?", ["الدكتور {$letter}%"])
+                        ->orWhereRaw("REPLACE(JSON_EXTRACT(name, '$.ar'), '\"', '') LIKE ?", ["الدكتورة {$letter}%"]);
+                } else {
+                    // For English letters, search in English names
+                    $q->whereRaw("LOWER(REPLACE(JSON_EXTRACT(name, '$.en'), '\"', '')) LIKE ?", ["{$lowerLetter}%"])
+                        ->orWhereRaw("LOWER(REPLACE(JSON_EXTRACT(name, '$.en'), '\"', '')) LIKE ?", ["dr. {$lowerLetter}%"])
+                        ->orWhereRaw("LOWER(REPLACE(JSON_EXTRACT(name, '$.en'), '\"', '')) LIKE ?", ["dr {$lowerLetter}%"]);
+                }
             });
         }
 
@@ -151,6 +160,42 @@ class FindADoctor extends Component
 
     public function getAlphabetProperty()
     {
+        // Check current locale
+        if (app()->getLocale() === 'ar') {
+            // Arabic alphabet
+            return [
+                'ا',
+                'ب',
+                'ت',
+                'ث',
+                'ج',
+                'ح',
+                'خ',
+                'د',
+                'ذ',
+                'ر',
+                'ز',
+                'س',
+                'ش',
+                'ص',
+                'ض',
+                'ط',
+                'ظ',
+                'ع',
+                'غ',
+                'ف',
+                'ق',
+                'ك',
+                'ل',
+                'م',
+                'ن',
+                'ه',
+                'و',
+                'ي'
+            ];
+        }
+
+        // English alphabet (default)
         return range('A', 'Z');
     }
 
