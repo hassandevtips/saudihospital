@@ -31,7 +31,8 @@
                     @if ($vacancy->closing_at)
                     <li>
                         <i class="icon-8"></i>
-                        <span>{{ gt('apply_before', 'Apply before') }} {{ $vacancy->closing_at->translatedFormat('M d, Y') }}</span>
+                        <span>{{ gt('apply_before', 'Apply before') }} {{ $vacancy->closing_at->translatedFormat('M d,
+                            Y') }}</span>
                     </li>
                     @endif
                 </ul>

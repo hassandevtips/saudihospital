@@ -33,7 +33,8 @@
                             @if ($vacancy->closing_at)
                             <li>
                                 <i class="icon-8"></i>
-                                <span>{{ gt('apply_before', 'Apply before') }} {{ $vacancy->closing_at->translatedFormat('M d, Y')
+                                <span>{{ gt('apply_before', 'Apply before') }} {{
+                                    $vacancy->closing_at->translatedFormat('M d, Y')
                                     }}</span>
                             </li>
                             @endif
@@ -52,7 +53,8 @@
                 </article>
                 @empty
                 <div class="empty-state centred">
-                    <p>{{ gt('no_vacancies_available', 'No vacancies are available right now. Please check back soon.') }}</p>
+                    <p>{{ gt('no_vacancies_available', 'No vacancies are available right now. Please check back soon.')
+                        }}</p>
                 </div>
                 @endforelse
             </div>
@@ -91,23 +93,24 @@
 
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                            <input type="text" wire:model.defer="form.name" placeholder="{{ gt('your_name', 'Your Name') }}"
-                                required>
+                            <input type="text" wire:model.defer="form.name"
+                                placeholder="{{ gt('your_name', 'Your Name') }}" required>
                             @error('form.name')
                             <span class="error text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                            <input type="email" wire:model.defer="form.email" placeholder="{{ gt('email_address', 'Email Address') }}"
-                                required>
+                            <input type="email" wire:model.defer="form.email"
+                                placeholder="{{ gt('email_address', 'Email Address') }}" required>
                             @error('form.email')
                             <span class="error text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                            <input type="text" wire:model.defer="form.phone" placeholder="{{ gt('phone_number', 'Phone Number') }}">
+                            <input type="text" wire:model.defer="form.phone"
+                                placeholder="{{ gt('phone_number', 'Phone Number') }}">
                             @error('form.phone')
                             <span class="error text-danger">{{ $message }}</span>
                             @enderror
@@ -139,7 +142,8 @@
 
                         <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn mr-0 centred">
                             <button class="theme-btn btn-one" type="submit">
-                                <span wire:loading.remove wire:target="submit">{{ gt('submit_application', 'Submit Application') }}</span>
+                                <span wire:loading.remove wire:target="submit">{{ gt('submit_application', 'Submit
+                                    Application') }}</span>
                                 <span wire:loading wire:target="submit">{{ gt('submitting', 'Submitting...') }}</span>
                             </button>
                         </div>

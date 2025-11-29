@@ -34,7 +34,7 @@ class FormSubmissionComponent extends Component
         $formPage = Page::where('slug', $type)->first();
 
         $this->page = (object) [
-            'title' => $this->getFormTitle(),
+            'title' => $formPage?->title,
             'slug' => $formPage?->slug ?? $type,
             'id' => $formPage?->id,
             'parent_id' => $formPage?->parent_id,
@@ -59,12 +59,12 @@ class FormSubmissionComponent extends Component
     protected function getEducationLevels(): array
     {
         return [
-            'high_school' => 'High School',
-            'diploma' => 'Diploma',
-            'bachelor' => 'Bachelor\'s Degree',
-            'master' => 'Master\'s Degree',
-            'phd' => 'PhD',
-            'other' => 'Other',
+            'high_school' => gt('high_school', 'High School'),
+            'diploma' => gt('diploma', 'Diploma'),
+            'bachelor' => gt('bachelor', 'Bachelor\'s Degree'),
+            'master' => gt('master', 'Master\'s Degree'),
+            'phd' => gt('phd', 'PhD'),
+            'other' => gt('other', 'Other'),
         ];
     }
 

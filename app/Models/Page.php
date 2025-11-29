@@ -133,6 +133,7 @@ class Page extends Model
             'calorie' => 'Calorie Calculator',
             'find-a-doctor' => 'Find a Doctor',
             'our-history-template' => 'Our History Timeline',
+            'partners-template' => 'Partners Template',
         ];
     }
 }

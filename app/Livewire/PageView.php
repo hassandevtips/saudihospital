@@ -9,6 +9,7 @@ use App\Models\Page;
 use App\Models\SiteSetting;
 use Livewire\Component;
 use Livewire\Attributes\Locked;
+use App\Models\Partner;
 
 class PageView extends Component
 {
@@ -64,6 +65,7 @@ class PageView extends Component
             'working-hours-template' => 'livewire.pages.working-hours-template',
             'find-a-doctor' => 'livewire.pages.find-a-doctor',
             'our-history-template' => 'livewire.pages.our-history-template',
+            'partners-template' => 'livewire.pages.partners-template',
             default => 'livewire.pages.default',
         };
 
@@ -77,6 +79,10 @@ class PageView extends Component
 
         $locations = $templateView === 'livewire.pages.working-hours-template'
             ? Location::query()->active()->get()
+            : collect();
+
+        $partners = $templateView === 'livewire.pages.partners-template'
+            ? Partner::query()->active()->get()
             : collect();
 
         // Map locations for Google Maps JavaScript
@@ -101,6 +107,7 @@ class PageView extends Component
             'faqs' => $faqs,
             'locations' => $locations,
             'locationsForMap' => $locationsForMap,
+            'partners' => $partners,
         ]);
     }
 }

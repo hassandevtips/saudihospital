@@ -237,7 +237,7 @@
                                                 <option value="">{{ gt('select_education_level', 'Select Education
                                                     Level') }}</option>
                                                 @foreach($educationLevels as $key => $label)
-                                                <option value="{{ $key }}">{{ gt($label, $label) }}</option>
+                                                <option value="{{ $key }}">{{ $label }}</option>
                                                 @endforeach
                                             </select>
                                             @error('form.education_level')
@@ -263,15 +263,15 @@
 
                                         <!-- Application Materials Section -->
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <h4 style="margin: 30px 0 20px; color: #00a3e0;">{{ gt('Application
-                                                materials', 'Application Materials') }}</h4>
+                                            <h4 style="margin: 30px 0 20px; color: #00a3e0;">{{
+                                                gt('application_materials', 'Application Materials') }}</h4>
                                         </div>
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <input type="url" wire:model.defer="form.resume_url"
                                                 placeholder="{{ gt('resume_cv_url', 'Resume/CV URL (LinkedIn, Google Drive, Dropbox, etc.)') }}">
-                                            <small class="form-text text-muted">{{ gt('Please provide a link to your
-                                                resume_cv_url_description', 'Resume or CV URL (LinkedIn, Google Drive,
+                                            <small class="form-text text-muted">{{ gt('resume_cv_url_description',
+                                                'Please provide a link to your resume or CV (LinkedIn, Google Drive,
                                                 Dropbox, etc.)') }}</small>
                                             @error('form.resume_url')
                                             <span class="error text-danger">{{ $message }}</span>
@@ -282,8 +282,8 @@
                                             <textarea wire:model.defer="form.cover_letter"
                                                 placeholder="{{ gt('cover_letter', 'Cover Letter') }}"
                                                 rows="6"></textarea>
-                                            <small class="form-text text-muted">{{ gt('Tell us why you are interested in
-                                                this_opportunity', 'Tell us why you are interested in this opportunity')
+                                            <small class="form-text text-muted">{{ gt('this_opportunity', 'Tell us why
+                                                you are interested in this opportunity')
                                                 }}</small>
                                             @error('form.cover_letter')
                                             <span class="error text-danger">{{ $message }}</span>
