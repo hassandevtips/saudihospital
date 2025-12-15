@@ -46,10 +46,11 @@ class CareerApplicationsTable
 
                 TextColumn::make('resume_url')
                     ->label('Resume')
-                    ->url(fn($record) => $record->resume_url)
+                    ->formatStateUsing(fn($state) => $state ? 'Download' : 'N/A')
+                    ->url(fn($record) => $record->resume_url ? asset('storage/' . $record->resume_url) : null)
                     ->openUrlInNewTab()
-                    ->icon('heroicon-o-document-text')
-                    ->limit(30)
+                    ->icon(fn($state) => $state ? 'heroicon-o-document-arrow-down' : null)
+                    ->color(fn($state) => $state ? 'primary' : 'gray')
                     ->toggleable(),
 
                 TextColumn::make('submitted_at')

@@ -46,11 +46,13 @@
                                         <h3>{{ gt('time_to_apply', 'Time to Apply') }}</h3>
                                         <ul class="list-style-one clearfix">
                                             @if ($vacancy->closing_at)
-                                            <li>{{ gt('apply_before', 'Apply before') }} {{ $vacancy->closing_at->translatedFormat('M d,
+                                            <li>{{ gt('apply_before', 'Apply before') }} {{
+                                                $vacancy->closing_at->translatedFormat('M d,
                                                 Y') }}</li>
                                             @endif
                                             @if ($vacancy->posted_at)
-                                            <li>{{ gt('posted_on', 'Posted on') }} {{ $vacancy->posted_at->translatedFormat('M d, Y')
+                                            <li>{{ gt('posted_on', 'Posted on') }} {{
+                                                $vacancy->posted_at->translatedFormat('M d, Y')
                                                 }}</li>
                                             @endif
                                         </ul>
@@ -84,22 +86,24 @@
         <form wire:submit.prevent="submit" class="contact-form">
             <div class="row clearfix">
                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                    <input type="text" wire:model.defer="form.name" placeholder="{{ gt('your_name', 'Your Name') }} *" required>
+                    <input type="text" wire:model.defer="form.name" placeholder="{{ gt('your_name', 'Your Name') }} *"
+                        required>
                     @error('form.name')
                     <span class="error text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                    <input type="email" wire:model.defer="form.email" placeholder="{{ gt('email_address', 'Email Address') }} *"
-                        required>
+                    <input type="email" wire:model.defer="form.email"
+                        placeholder="{{ gt('email_address', 'Email Address') }} *" required>
                     @error('form.email')
                     <span class="error text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                    <input type="text" wire:model.defer="form.phone" placeholder="{{ gt('phone_number', 'Phone Number') }}">
+                    <input type="text" wire:model.defer="form.phone"
+                        placeholder="{{ gt('phone_number', 'Phone Number') }}">
                     @error('form.phone')
                     <span class="error text-danger">{{ $message }}</span>
                     @enderror
@@ -114,16 +118,25 @@
                 </div>
 
                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                    <input type="url" wire:model.defer="form.resume_url"
-                        placeholder="{{ gt('resume_url_placeholder', 'Resume/CV URL (LinkedIn, Google Drive, etc.)') }}">
-                    @error('form.resume_url')
+                    <label>{{ gt('resume_upload_label', 'Upload Resume/CV (PDF, DOC, DOCX, or Image)') }}</label>
+                    <input type="file" wire:model="form.resume_file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif">
+                    <div wire:loading wire:target="form.resume_file" class="mt-2">
+                        <small class="text-info">{{ gt('uploading', 'Uploading...') }}</small>
+                    </div>
+                    @error('form.resume_file')
                     <span class="error text-danger">{{ $message }}</span>
                     @enderror
+                    @if(!empty($form['resume_file']))
+                    <div class="mt-2">
+                        <small class="text-success">{{ gt('file_selected', 'File selected') }}: {{
+                            $form['resume_file']->getClientOriginalName() }}</small>
+                    </div>
+                    @endif
                 </div>
 
                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                    <textarea wire:model.defer="form.cover_letter" placeholder="{{ gt('cover_letter_message', 'Cover Letter or Message') }}"
-                        rows="6"></textarea>
+                    <textarea wire:model.defer="form.cover_letter"
+                        placeholder="{{ gt('cover_letter_message', 'Cover Letter or Message') }}" rows="6"></textarea>
                     @error('form.cover_letter')
                     <span class="error text-danger">{{ $message }}</span>
                     @enderror
@@ -131,7 +144,8 @@
 
                 <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn mr-0 centred">
                     <button class="theme-btn btn-one" type="submit">
-                        <span wire:loading.remove wire:target="submit">{{ gt('submit_application', 'Submit Application') }}</span>
+                        <span wire:loading.remove wire:target="submit">{{ gt('submit_application', 'Submit Application')
+                            }}</span>
                         <span wire:loading wire:target="submit">{{ gt('submitting', 'Submitting...') }}</span>
                     </button>
                 </div>

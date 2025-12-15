@@ -6,6 +6,7 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\FileUpload;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
@@ -54,11 +55,15 @@ class CareerApplicationForm
                             ->label('Current Position')
                             ->maxLength(255),
 
-                        TextInput::make('resume_url')
-                            ->label('Resume/CV URL')
-                            ->url()
-                            ->maxLength(255)
-                            ->helperText('Link to online resume or portfolio')
+                        FileUpload::make('resume_url')
+                            ->label('Resume/CV File')
+                            ->disk('public')
+                            ->directory('resumes')
+                            ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/png', 'image/gif'])
+                            ->maxSize(10240)
+                            ->downloadable()
+                            ->openable()
+                            ->helperText('Uploaded resume file (PDF, DOC, DOCX, or Image)')
                             ->columnSpanFull(),
 
                         Textarea::make('cover_letter')

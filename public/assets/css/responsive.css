@@ -21,9 +21,8 @@
         padding: 10px;
     }
 
-    .megamenu ul li:first-child {
-        display: none;
-    }
+    /* Removed: .megamenu ul li:first-child { display: none; }
+       This was hiding the first link in megamenus on mobile */
 
     .header-top .top-inner {
         display: block;
@@ -943,7 +942,7 @@
     }
 
     .logo-box figure img {
-        max-width: 300px;
+        max-width: 200px;
         height: auto;
     }
 
@@ -1255,8 +1254,7 @@
 
     /* Floating Button */
     .floating-btn {
-        font-size: 12px;
-        padding: 12px 20px;
+
         bottom: 20px;
         right: 20px;
     }
@@ -1335,11 +1333,15 @@
 
     /* Section Spacing */
     section {
-        padding: 50px 0 !important;
+        padding: 0 0 50px 0 !important;
     }
 
     section.p_relative {
         padding: 50px 0 !important;
+    }
+
+    section.banner-style-two {
+        padding: 0 !important;
     }
 
     /* Form Elements */
@@ -1484,8 +1486,8 @@
 @media only screen and (max-width: 1199px) {
     body.rtl .mobile-nav-toggler {
         float: left;
-        margin-right: 0;
-        margin-left: 15px;
+        margin-right: -80px !important;
+        /* margin-left: 15px; */
     }
 
     body.rtl .logo-box {

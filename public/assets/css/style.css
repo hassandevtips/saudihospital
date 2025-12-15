@@ -987,7 +987,7 @@
      visibility: hidden;
      padding: 10px 0px;
      border-radius: 0px;
-     background-color: #141417;
+     background-color: #076176;
      transition: all 500ms ease;
      -moz-transition: all 500ms ease;
      -webkit-transition: all 500ms ease;
@@ -1012,7 +1012,7 @@
      padding: 10px 30px;
      line-height: 24px;
      font-weight: 600;
-     font-size: 18px;
+     font-size: 13px;
      text-transform: capitalize;
      font-family: 'Jost', sans-serif;
      color: #fff;
@@ -1359,7 +1359,6 @@
      position: relative;
      padding: 50px 25px;
      text-align: left;
-     padding-bottom: 100px;
  }
 
  .mobile-menu-visible {
@@ -1398,7 +1397,7 @@
      height: 100%;
      max-height: 100%;
      overflow-y: auto;
-     background: #00799c;
+     background: #076176;
      padding: 0px 0px;
      z-index: 5;
      opacity: 0;
@@ -1416,13 +1415,14 @@
      right: 20px;
      background: #0098ac;
      color: #fff;
-     padding: 12px 20px;
+     padding: 18px 30px;
      border-radius: 50px;
      font-weight: bold;
      z-index: 9999;
      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
      text-decoration: none;
      transition: all 0.3s ease;
+     font-size: 20px;
  }
 
  .floating-btn:hover {
@@ -1562,7 +1562,11 @@
  }
 
  .mobile-menu .navigation li>ul,
- .mobile-menu .navigation li>ul>li>ul,
+ .mobile-menu .navigation li>ul>li>ul {
+     display: none;
+ }
+
+ /* Megamenus should be visible in mobile menu when parent is expanded */
  .mobile-menu .navigation>li.dropdown>.megamenu {
      display: none;
  }
@@ -1598,7 +1602,7 @@
 
  .mobile-menu .contact-info {
      position: relative;
-     padding: 120px 30px 20px 30px;
+     padding: 40px 30px 20px 30px;
  }
 
  .mobile-menu .contact-info h4 {
@@ -1625,6 +1629,66 @@
 
  .mobile-menu .contact-info ul li:last-child {
      margin-bottom: 0px;
+ }
+
+ /* Mobile Menu Megamenu Styles */
+ .mobile-menu .navigation>li.dropdown>.megamenu {
+     position: relative;
+     width: 100%;
+     padding: 0;
+     background: transparent;
+     left: 0;
+     top: 0;
+ }
+
+ .mobile-menu .navigation>li.dropdown>.megamenu .row {
+     display: block;
+ }
+
+ .mobile-menu .navigation>li.dropdown>.megamenu .column {
+     width: 100%;
+     padding: 0;
+ }
+
+ .mobile-menu .navigation>li.dropdown>.megamenu ul {
+     position: relative;
+     display: block;
+     width: 100%;
+     padding: 0;
+     margin: 0;
+ }
+
+ .mobile-menu .navigation>li.dropdown>.megamenu ul li {
+     position: relative;
+     display: block;
+     width: 100%;
+     border-top: 1px solid rgba(255, 255, 255, 0.10);
+ }
+
+ .mobile-menu .navigation>li.dropdown>.megamenu ul li a {
+     position: relative;
+     display: block;
+     padding: 10px 25px 10px 40px;
+     line-height: 24px;
+     font-size: 15px;
+     font-weight: 500;
+     color: #ffffff;
+     text-transform: capitalize;
+     transition: all 500ms ease;
+ }
+
+ .mobile-menu .navigation>li.dropdown>.megamenu ul li a:before {
+     content: '';
+     position: absolute;
+     left: 25px;
+     top: 0;
+     height: 0;
+     border-left: 5px solid #fff;
+     transition: all 500ms ease;
+ }
+
+ .mobile-menu .navigation>li.dropdown>.megamenu ul li:hover>a:before {
+     height: 100%;
  }
 
  .main-header .outer-box {
@@ -3328,7 +3392,7 @@
  /** main-footer **/
 
  .main-footer {
-     background: #0098ac;
+     background: #076176;
  }
 
  .footer-top {
@@ -8443,7 +8507,7 @@
  @media (max-width: 768px) {
 
      .contact-section .bg-layer {
-         height: 430px !important;
+         height: 400px !important;
      }
 
      .period-calculator-wrapper {
@@ -8508,6 +8572,41 @@
 
  /* Mobile responsive styles for stats section */
  @media (max-width: 768px) {
+
+     section.about-section .image_block_one .image-box .text {
+         width: auto !important;
+         justify-content: center;
+         display: flex;
+         align-items: center;
+         flex-direction: column;
+         border-radius: 10px;
+         padding: 10px 50px;
+     }
+
+     .about-section .image-box {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+     }
+
+     .funfact-style-two .inner-box {
+         text-align: center !important;
+     }
+
+     footer {
+         padding: 10px 30px;
+     }
+
+     .header-top {
+         display: none !important;
+     }
+
+     body.rtl ul,
+     body.rtl ol {
+         padding-right: 0 !important;
+     }
+
      .funfact-style-two .inner-container {
          flex-direction: column !important;
          padding: 30px 20px !important;

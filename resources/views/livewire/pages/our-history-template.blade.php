@@ -250,7 +250,7 @@ return [
     .section-main-title {
         font-size: 4rem;
         font-weight: 700;
-        color: #f5a623;
+        color: #0098ac;
         margin-bottom: 1rem;
         line-height: 1.2;
         letter-spacing: -1px;

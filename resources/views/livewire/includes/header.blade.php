@@ -127,9 +127,49 @@ $isHomePage = $currentRouteName === 'home';
         <nav class="menu-box">
             <div class="nav-logo"><a href="/" wire:navigate><img src="{{ asset($settings['logo']) }}"
                         alt="{{ $settings['site_name'] }}" title="{{ $settings['site_name'] }}"></a></div>
+
+            <!-- Language Switcher in Mobile Menu -->
+            @if($toggleLanguage)
+            <div class="mobile-language-switcher">
+                <button wire:click="switchToToggleLanguage" class="language-toggle-btn">
+                    <i class="fas fa-globe"></i>
+                    <span>{{ $toggleLanguage->native_name }}</span>
+                </button>
+            </div>
+            @endif
+
             <div class="menu-outer">
                 <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
             </div>
+
+            <!-- Top Menu Items in Mobile Menu (Same Design as Main Menu) -->
+            @php
+            $topMenuMobile = \App\Models\Menu::with('items.children')
+            ->where('key', 'top-menu')
+            ->first();
+            $menuItemsMobile = $topMenuMobile ? $topMenuMobile->getItemsArray() : [];
+            @endphp
+            @if(count($menuItemsMobile) > 0)
+            <div class="mobile-top-menu">
+                <ul class="navigation">
+                    @foreach($menuItemsMobile as $item)
+                    <li>
+                        @php
+                        $title = $item['title'] ?? '';
+                        if (is_array($title)) {
+                        $locale = app()->getLocale();
+                        $title = $title[$locale] ?? $title['en'] ?? ($title[array_key_first($title)] ?? '');
+                        }
+                        @endphp
+                        <a href="{{ $item['url'] }}" target="{{ $item['blank'] ? '_blank' : '_self' }}">
+                            {{ $title }}
+                        </a>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
             <div class="contact-info">
                 <h4>{{ gt('contact_info', 'Contact Info') }}</h4>
                 <ul>
@@ -140,11 +180,9 @@ $isHomePage = $currentRouteName === 'home';
             </div>
             <div class="social-links">
                 <ul class="clearfix">
-                    <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                    <li><a href="#"><span class="fab fa-facebook-square"></span></a></li>
-                    <li><a href="#"><span class="fab fa-pinterest-p"></span></a></li>
-                    <li><a href="#"><span class="fab fa-instagram"></span></a></li>
-                    <li><a href="#"><span class="fab fa-youtube"></span></a></li>
+                    <li><a href="{{ $settings['facebook'] }}"><span class="fab fa-facebook-square"></span></a></li>
+                    <li><a href="{{ $settings['twitter'] }}"><span class="fab fa-twitter"></span></a></li>
+                    <li><a href="{{ $settings['linkedin'] }}"><span class="fab fa-linkedin-in"></span></a></li>
                 </ul>
             </div>
         </nav>
@@ -213,9 +251,9 @@ $isHomePage = $currentRouteName === 'home';
                 border-radius: 2px;
             }
 
-            .mobile-nav-toggler:hover .icon-bar {
+            /* .mobile-nav-toggler:hover .icon-bar {
                 background: #015f7a;
-            }
+            } */
 
             /* Ensure mobile menu is properly positioned */
             .mobile-menu {
@@ -310,7 +348,7 @@ $isHomePage = $currentRouteName === 'home';
 
             body.rtl .mobile-menu .menu-box {
                 text-align: right;
-                padding: 30px;
+                padding: 30px 10px;
             }
 
             body.rtl .mobile-menu .navigation li {
@@ -360,30 +398,29 @@ $isHomePage = $currentRouteName === 'home';
 
             .header-lower .outer-box {
                 gap: 10px;
-            }
-
-            .mobile-nav-toggler {
-                order: 3;
+                justify-content: center;
+                position: relative;
             }
 
             .header-lower .logo-box {
                 order: 2;
+                margin: 0 auto;
+            }
+
+            .header-lower .menu-area {
+                position: absolute;
+                right: 0;
+                order: 3;
+                flex: 0;
             }
 
             .header-lower .nav-right {
-                order: 1;
+                display: none;
             }
 
-            body.rtl .mobile-nav-toggler {
-                order: 1;
-            }
-
-            body.rtl .header-lower .logo-box {
-                order: 2;
-            }
-
-            body.rtl .header-lower .nav-right {
-                order: 3;
+            body.rtl .header-lower .menu-area {
+                right: auto;
+                left: 0;
             }
         }
 
@@ -395,6 +432,98 @@ $isHomePage = $currentRouteName === 'home';
             .mobile-nav-toggler .icon-bar {
                 width: 25px;
             }
+        }
+
+        /* Mobile Language Switcher */
+        .mobile-language-switcher {
+            padding: 15px 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        .language-toggle-btn {
+            width: 100%;
+            padding: 12px 20px;
+
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .language-toggle-btn:hover {
+            background: #015f7a;
+        }
+
+        .language-toggle-btn i {
+            font-size: 18px;
+        }
+
+        /* Mobile Top Menu - Same Design as Main Menu */
+        .mobile-top-menu {
+            position: relative;
+            display: block;
+            width: 100%;
+        }
+
+        .mobile-top-menu .navigation {
+            position: relative;
+            display: block;
+            width: 100%;
+            float: none;
+        }
+
+        .mobile-top-menu .navigation li {
+            position: relative;
+            display: block;
+            border-top: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        .mobile-top-menu .navigation li:last-child {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        .mobile-top-menu .navigation li>a {
+            position: relative;
+            display: block;
+            line-height: 24px;
+            padding: 10px 25px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #ffffff;
+            text-transform: uppercase;
+            transition: all 500ms ease;
+        }
+
+        .mobile-top-menu .navigation li>a:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 0;
+            border-left: 5px solid #fff;
+            transition: all 500ms ease;
+        }
+
+        .mobile-top-menu .navigation li:hover>a:before,
+        .mobile-top-menu .navigation li.current>a:before {
+            height: 100%;
+        }
+
+        /* RTL Adjustments */
+        body.rtl .mobile-language-switcher {
+            padding: 15px 30px;
+        }
+
+        body.rtl .mobile-top-menu .navigation li>a:before {
+            left: inherit;
+            right: 0px;
         }
     </style>
 </div>

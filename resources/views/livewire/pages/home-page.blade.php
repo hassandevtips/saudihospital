@@ -17,8 +17,9 @@
                             <figure class="image"><img src="{{ $content->about_image_url }}" alt="">
                             </figure>
                             <div class="text p_absolute r_0 b_0">
-                                <h2>{{ $content->about_years ?? 10 }}</h2>
-                                <h4>{{ $content->about_years_text ?? gt('years_of_experience', 'Years of Experience in
+                                <h2 class="text-center">{{ $content->about_years ?? 10 }}</h2>
+                                <h4 class="text-center">{{ $content->about_years_text ?? gt('years_of_experience',
+                                    'Years of Experience in
                                     This Field') }}</h4>
                             </div>
                         </div>

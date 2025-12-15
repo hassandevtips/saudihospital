@@ -17,7 +17,7 @@
                                 <figure class="image-box p_relative d_block"><img src="{{ $doctor->image_url }}"
                                         alt="{{ $doctor->name }}"></figure>
                                 <div class="lower-content p_absolute r_0 b_45 b_shadow_6 z_1 tran_5">
-                                    <h3 class="d_block lh_30 mb_3 tran_5"><a href="#" class="d_iblock color_black">{{
+                                    <h3 class="d_block lh_30 mb_3 tran_5"><a href="{{ route('doctor-details', ['doctor' => $doctor->id]) }}" class="d_iblock color_black">{{
                                             $doctor->name }}</a></h3>
                                     <span
                                         class="designation p_relative d_block fs_16 lh_20 font_family_poppins tran_5">{{

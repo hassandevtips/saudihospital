@@ -8,7 +8,7 @@
             <h1 class="text-white">{{ $page->title }}</h1>
             <ul class="bread-crumb clearfix">
                 <li><a href="{{ route('home') }}" wire:navigate>{{ gt('home', 'Home') }}</a></li>
-                <li>{{ $page->title }}</li>
+                <li>{{ $page->title ?? gt('application_form', 'Application Form') }}</li>
             </ul>
         </div>
     </div>

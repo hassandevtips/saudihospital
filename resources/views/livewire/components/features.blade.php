@@ -8,7 +8,7 @@
         </div>
         <div class="auto-container">
             <div class="sec-title centred mb_50">
-                <span class="sub-title">{{ gt('we_act') }}</span>
+                <span class="sub-title text-center">{{ gt('we_act') }}</span>
                 <h2 class="text-center">{{ gt('home_heading') }}</h2>
             </div>
             <div class="row clearfix">
@@ -34,7 +34,8 @@
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-12"></i></div>
                             <h3><a href="#">{{ gt('qualified_doctors', 'Qualified Doctors') }}</a></h3>
-                            <p>{{ gt('qualified_doctors_desc', 'Saudi Hospital is a leading private healthcare institution committed to delivering high-quality.') }}</p>
+                            <p>{{ gt('qualified_doctors_desc', 'Saudi Hospital is a leading private healthcare
+                                institution committed to delivering high-quality.') }}</p>
                         </div>
                     </div>
                 </div>
