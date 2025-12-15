@@ -31,7 +31,7 @@ class IconReference extends Page
     public function getIcons(): array
     {
         $icons = [];
-        for ($i = 1; $i <= 59; $i++) {
+        for ($i = 1; $i <= 80; $i++) {
             $icons[] = "icon-{$i}";
         }
         return $icons;

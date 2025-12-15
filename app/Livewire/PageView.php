@@ -66,6 +66,7 @@ class PageView extends Component
             'find-a-doctor' => 'livewire.pages.find-a-doctor',
             'our-history-template' => 'livewire.pages.our-history-template',
             'partners-template' => 'livewire.pages.partners-template',
+            'research-template' => 'livewire.pages.research-template',
             default => 'livewire.pages.default',
         };
 

@@ -5,9 +5,12 @@ namespace App\Livewire\Career;
 use App\Models\CareerApplication;
 use App\Models\CareerVacancy;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CareerModule extends Component
 {
+    use WithFileUploads;
+
     public ?int $selectedVacancyId = null;
 
     public array $form = [
@@ -15,6 +18,7 @@ class CareerModule extends Component
         'email' => '',
         'phone' => '',
         'current_position' => '',
+        'resume_file' => null,
         'resume_url' => '',
         'cover_letter' => '',
     ];
@@ -64,6 +68,7 @@ class CareerModule extends Component
             'form.email' => ['required', 'email', 'max:255'],
             'form.phone' => ['nullable', 'string', 'max:50'],
             'form.current_position' => ['nullable', 'string', 'max:255'],
+            'form.resume_file' => ['nullable', 'file', 'mimes:pdf,doc,docx,jpg,jpeg,png,gif', 'max:10240'],
             'form.resume_url' => ['nullable', 'url', 'max:255'],
             'form.cover_letter' => ['nullable', 'string'],
         ];
@@ -79,13 +84,19 @@ class CareerModule extends Component
             ->where('is_active', true)
             ->findOrFail($this->selectedVacancyId);
 
+        // Handle file upload
+        $resumePath = null;
+        if (!empty($validated['form']['resume_file'])) {
+            $resumePath = $validated['form']['resume_file']->store('resumes', 'public');
+        }
+
         CareerApplication::create([
             'career_vacancy_id' => $vacancy->getKey(),
             'name' => $validated['form']['name'],
             'email' => $validated['form']['email'],
             'phone' => $validated['form']['phone'] ?? null,
             'current_position' => $validated['form']['current_position'] ?? null,
-            'resume_url' => $validated['form']['resume_url'] ?? null,
+            'resume_url' => $resumePath ?? $validated['form']['resume_url'] ?? null,
             'cover_letter' => $validated['form']['cover_letter'] ?? null,
             'ip_address' => request()->ip(),
             'submitted_at' => now(),
@@ -96,6 +107,7 @@ class CareerModule extends Component
             'email' => '',
             'phone' => '',
             'current_position' => '',
+            'resume_file' => null,
             'resume_url' => '',
             'cover_letter' => '',
         ];

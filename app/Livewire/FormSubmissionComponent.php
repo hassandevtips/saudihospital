@@ -5,9 +5,12 @@ namespace App\Livewire;
 use App\Models\FormSubmission;
 use App\Models\Page;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class FormSubmissionComponent extends Component
 {
+    use WithFileUploads;
+
     public $page;
     public string $formType = 'internship'; // Default type
 
@@ -21,6 +24,7 @@ class FormSubmissionComponent extends Component
         'university' => '',
         'major' => '',
         'current_position' => '',
+        'resume_file' => null,
         'resume_url' => '',
         'cover_letter' => '',
         'message' => '',
@@ -80,6 +84,7 @@ class FormSubmissionComponent extends Component
             'form.university' => ['nullable', 'string', 'max:255'],
             'form.major' => ['nullable', 'string', 'max:255'],
             'form.current_position' => ['nullable', 'string', 'max:255'],
+            'form.resume_file' => ['nullable', 'file', 'mimes:pdf,doc,docx,jpg,jpeg,png,gif', 'max:10240'],
             'form.resume_url' => ['nullable', 'url', 'max:255'],
             'form.cover_letter' => ['nullable', 'string'],
             'form.message' => ['nullable', 'string'],
@@ -101,6 +106,12 @@ class FormSubmissionComponent extends Component
     {
         $validated = $this->validate();
 
+        // Handle file upload
+        $resumePath = null;
+        if (!empty($validated['form']['resume_file'])) {
+            $resumePath = $validated['form']['resume_file']->store('resumes', 'public');
+        }
+
         FormSubmission::create([
             'type' => $this->formType,
             'name' => $validated['form']['name'],
@@ -112,7 +123,7 @@ class FormSubmissionComponent extends Component
             'university' => $validated['form']['university'] ?? null,
             'major' => $validated['form']['major'] ?? null,
             'current_position' => $validated['form']['current_position'] ?? null,
-            'resume_url' => $validated['form']['resume_url'] ?? null,
+            'resume_url' => $resumePath ?? $validated['form']['resume_url'] ?? null,
             'cover_letter' => $validated['form']['cover_letter'] ?? null,
             'message' => $validated['form']['message'] ?? null,
             'status' => 'pending',
@@ -130,6 +141,7 @@ class FormSubmissionComponent extends Component
             'university' => '',
             'major' => '',
             'current_position' => '',
+            'resume_file' => null,
             'resume_url' => '',
             'cover_letter' => '',
             'message' => '',

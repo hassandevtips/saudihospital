@@ -17,7 +17,7 @@ class HomePageContentForm
     protected static function getIconOptions(): array
     {
         $icons = [];
-        for ($i = 1; $i <= 59; $i++) {
+        for ($i = 1; $i <= 80; $i++) {
             $iconClass = "icon-{$i}";
             // Create a visual preview with the icon
             $icons[$iconClass] = "<div style='display: flex; align-items: center; gap: 10px;'>" .
@@ -98,21 +98,66 @@ class HomePageContentForm
                     ->numeric()
                     ->default(100)
                     ->required(),
+                Select::make('stats_doctors_icon')
+                    ->label('Doctors Icon')
+                    ->required()
+                    ->options(self::getIconOptions())
+                    ->searchable()
+                    ->allowHtml()
+                    ->native(false)
+                    ->default('icon-25'),
                 TextInput::make('stats_beds')
                     ->label('Beds Count')
                     ->numeric()
                     ->default(120)
                     ->required(),
+                Select::make('stats_beds_icon')
+                    ->label('Beds Icon')
+                    ->required()
+                    ->options(self::getIconOptions())
+                    ->searchable()
+                    ->allowHtml()
+                    ->native(false)
+                    ->default('icon-26'),
                 TextInput::make('stats_clinics')
                     ->label('Clinics Count')
                     ->numeric()
                     ->default(20)
                     ->required(),
+                Select::make('stats_clinics_icon')
+                    ->label('Clinics Icon')
+                    ->required()
+                    ->options(self::getIconOptions())
+                    ->searchable()
+                    ->allowHtml()
+                    ->native(false)
+                    ->default('icon-27'),
                 TextInput::make('stats_centers')
                     ->label('Centers Count')
                     ->numeric()
                     ->default(5)
                     ->required(),
+                Select::make('stats_centers_icon')
+                    ->label('Centers Icon')
+                    ->required()
+                    ->options(self::getIconOptions())
+                    ->searchable()
+                    ->allowHtml()
+                    ->native(false)
+                    ->default('icon-28'),
+
+                // Video Section
+                Placeholder::make('video_section_label')
+                    ->label('Homepage Video Section')
+                    ->content('')
+                    ->columnSpanFull(),
+
+                TextInput::make('video_url')
+                    ->label('Video URL')
+                    ->url()
+                    ->placeholder('https://www.youtube.com/watch?v=...')
+                    ->helperText('Enter YouTube or Vimeo video URL for the homepage video section')
+                    ->columnSpanFull(),
 
                 // Tabs Section
                 Placeholder::make('tabs_section_label')
@@ -135,7 +180,7 @@ class HomePageContentForm
                             ->allowHtml()
                             ->native(false)
                             ->placeholder('Select an icon')
-                            ->helperText('Search by icon number (e.g., "icon-17") or scroll to browse all 59 available icons'),
+                            ->helperText('Search by icon number (e.g., "icon-17") or scroll to browse all 80 available icons'),
                         TextInput::make('heading')
                             ->label('Content Heading')
                             ->required()

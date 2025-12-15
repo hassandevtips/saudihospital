@@ -75,7 +75,7 @@
     align-items: center;
     padding: 25px 30px;
     border-bottom: 2px solid #f0f0f0;
-    background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+    background: linear-gradient(135deg, #02799c 0%, #016a84 100%);
     border-radius: 16px 16px 0 0;
 }
 
@@ -171,14 +171,14 @@
 }
 
 .step.active .step-number {
-    background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+    background: linear-gradient(135deg, #02799c 0%, #016a84 100%);
     color: #ffffff;
     transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.4);
+    box-shadow: 0 4px 12px rgba(2, 121, 156, 0.4);
 }
 
 .step.active .step-label {
-    color: #0066cc;
+    color: #02799c;
 }
 
 .step.completed .step-number {
@@ -238,8 +238,8 @@
 
 .form-control:focus {
     outline: none;
-    border-color: #0066cc;
-    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    border-color: #02799c;
+    box-shadow: 0 0 0 3px rgba(2, 121, 156, 0.1);
 }
 
 .appointment-date-input {
@@ -286,17 +286,17 @@
 }
 
 .time-slot-btn:hover {
-    border-color: #0066cc;
-    background-color: #f0f7ff;
+    border-color: #02799c;
+    background-color: #e6f5f8;
     transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.15);
+    box-shadow: 0 2px 8px rgba(2, 121, 156, 0.15);
 }
 
 .time-slot-option input[type="radio"]:checked+.time-slot-btn {
-    border-color: #0066cc;
-    background-color: #0066cc;
+    border-color: #02799c;
+    background-color: #02799c;
     color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+    box-shadow: 0 4px 12px rgba(2, 121, 156, 0.3);
 }
 
 .time-slot-option input[type="radio"]:disabled+.time-slot-btn {
@@ -392,7 +392,7 @@
     margin: 0 0 15px;
     font-size: 16px;
     font-weight: 700;
-    color: #0066cc;
+    color: #02799c;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -460,14 +460,14 @@
 }
 
 .step-actions .btn-primary {
-    background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+    background: linear-gradient(135deg, #02799c 0%, #016a84 100%);
     color: #ffffff;
     flex: 1;
 }
 
 .step-actions .btn-primary:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+    box-shadow: 0 6px 20px rgba(2, 121, 156, 0.4);
 }
 
 .step-actions .btn-primary:disabled {

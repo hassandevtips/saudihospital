@@ -268,11 +268,27 @@
                                         </div>
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                            <label>{{ gt('resume_upload_label', 'Upload Resume/CV (PDF, DOC, DOCX, or Image)') }}</label>
+                                            <input type="file" wire:model="form.resume_file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif">
+                                            <div wire:loading wire:target="form.resume_file" class="mt-2">
+                                                <small class="text-info">{{ gt('uploading', 'Uploading...') }}</small>
+                                            </div>
+                                            @error('form.resume_file')
+                                            <span class="error text-danger">{{ $message }}</span>
+                                            @enderror
+                                            @if(!empty($form['resume_file']))
+                                            <div class="mt-2">
+                                                <small class="text-success">{{ gt('file_selected', 'File selected') }}: {{
+                                                    $form['resume_file']->getClientOriginalName() }}</small>
+                                            </div>
+                                            @endif
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <input type="url" wire:model.defer="form.resume_url"
-                                                placeholder="{{ gt('resume_cv_url', 'Resume/CV URL (LinkedIn, Google Drive, Dropbox, etc.)') }}">
+                                                placeholder="{{ gt('resume_cv_url', 'Or provide Resume/CV URL (LinkedIn, Google Drive, Dropbox, etc.)') }}">
                                             <small class="form-text text-muted">{{ gt('resume_cv_url_description',
-                                                'Please provide a link to your resume or CV (LinkedIn, Google Drive,
-                                                Dropbox, etc.)') }}</small>
+                                                'You can upload a file above or provide a link to your resume or CV') }}</small>
                                             @error('form.resume_url')
                                             <span class="error text-danger">{{ $message }}</span>
                                             @enderror

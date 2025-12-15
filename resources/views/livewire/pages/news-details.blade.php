@@ -21,7 +21,9 @@
                                             <li><i class="icon-35"></i><a href="#">{{ $news->author }}</a>
                                             </li>
                                         </ul>
-                                        <p>{{ $news->content }}</p>
+                                        <div class="news-content">
+                                            {!! $news->content !!}
+                                        </div>
 
                                         @if($news->video_url)
                                         <div class="video-section" style="margin-top: 30px;">

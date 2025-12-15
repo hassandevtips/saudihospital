@@ -267,7 +267,7 @@ return [
     .section-title {
         font-size: 2.8rem;
         font-weight: 700;
-        color: #f5a623;
+        color: #0098ac;
         margin-bottom: 1.5rem;
         line-height: 1.3;
     }

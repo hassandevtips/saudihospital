@@ -46,31 +46,30 @@ class HomePage extends Component
     {
         $validated = $this->validate()['form'];
 
-        $appointment = Appointment::create([
-            'doctor_id' => $this->doctor->id ?? 1,
-            'appointment_date' => Carbon::parse($validated['appointment_date'])->format('Y-m-d'),
-            'patient_name' => $validated['patient_name'],
-            'patient_email' => $validated['patient_email'],
-            'patient_phone' => $validated['patient_phone'],
-            'message' => $validated['message'] ?? null,
-        ]);
+        // Get WhatsApp number from site settings
+        $whatsappNumber = \App\Models\SiteSetting::get('whatsapp_number', '0096265564414');
 
-        $recipient = config('mail.contact_recipient', config('mail.from.address'));
+        // Clean the WhatsApp number (remove spaces, dashes, etc.)
+        $cleanNumber = preg_replace('/[^0-9]/', '', $whatsappNumber);
 
-        if (! empty($recipient)) {
-            Mail::to($recipient)->send(new NewAppointmentNotification($appointment));
+        // Build WhatsApp message
+        $message = "Hello, I would like to book an appointment:\n\n";
+        $message .= "Name: " . $validated['patient_name'] . "\n";
+        $message .= "Email: " . $validated['patient_email'] . "\n";
+        $message .= "Phone: " . $validated['patient_phone'] . "\n";
+        $message .= "Preferred Date: " . $validated['appointment_date'] . "\n";
+
+        if (!empty($validated['message'])) {
+            $message .= "Message: " . $validated['message'] . "\n";
         }
 
-        $this->form = [
-            'appointment_date' => '',
-            'patient_name' => '',
-            'patient_email' => '',
-            'patient_phone' => '',
-            'message' => '',
-        ];
+        // URL encode the message
+        $encodedMessage = urlencode($message);
 
-        session()->flash('appointment_success', __('Your appointment request has been sent successfully.'));
+        // Create WhatsApp URL
+        $whatsappUrl = "https://wa.me/{$cleanNumber}?text={$encodedMessage}";
 
-        $this->dispatch('appointment-created');
+        // Redirect to WhatsApp
+        $this->dispatch('redirect-to-whatsapp', url: $whatsappUrl);
     }
 }

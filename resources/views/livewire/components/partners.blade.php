@@ -6,21 +6,23 @@
                 {{ gt('our_partners', 'Our Partners') }}
             </h2>
         </div>
-        <div class="project-carousel-2 owl-carousel owl-theme owl-dots-none owl-nav-none" style="margin-top: -40px;">
+        <div class="row clearfix" style="margin-top: -40px;">
             @foreach($partners as $partner)
-            <div class="project-block-one">
-                <div class="inner-box">
-                    @if($partner->website_url)
-                    <a href="{{ $partner->website_url }}" target="_blank" rel="noopener noreferrer">
-                        <figure class="image-box">
-                            <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}" title="{{ $partner->name }}">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                <div class="project-block-one">
+                    <div class="inner-box" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        @if($partner->website_url)
+                        <a href="{{ $partner->website_url }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%;">
+                            <figure class="image-box" style="margin: 0; text-align: center;">
+                                <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}" title="{{ $partner->name }}" style="max-width: 100%; height: auto; max-height: 120px; object-fit: contain;">
+                            </figure>
+                        </a>
+                        @else
+                        <figure class="image-box" style="margin: 0; text-align: center;">
+                            <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}" title="{{ $partner->name }}" style="max-width: 100%; height: auto; max-height: 120px; object-fit: contain;">
                         </figure>
-                    </a>
-                    @else
-                    <figure class="image-box">
-                        <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}" title="{{ $partner->name }}">
-                    </figure>
-                    @endif
+                        @endif
+                    </div>
                 </div>
             </div>
             @endforeach
@@ -28,3 +30,16 @@
     </div>
     @endif
 </section>
+
+<style>
+    .project-block-one .inner-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15) !important;
+    }
+
+    @media (max-width: 767px) {
+        .project-block-one .inner-box {
+            padding: 15px !important;
+        }
+    }
+</style>

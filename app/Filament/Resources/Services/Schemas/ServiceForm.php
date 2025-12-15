@@ -14,7 +14,7 @@ class ServiceForm
     protected static function getIconOptions(): array
     {
         $icons = [];
-        for ($i = 1; $i <= 59; $i++) {
+        for ($i = 1; $i <= 80; $i++) {
             $iconClass = "icon-{$i}";
             // Create a visual preview with the icon
             $icons[$iconClass] = "<div style='display: flex; align-items: center; gap: 10px;'>" . "<i class='{$iconClass}' style='font-size: 24px; min-width: 30px;'></i>" . "<span style='font-weight: 500;'>{$iconClass}</span>" . "</div>";
@@ -44,7 +44,7 @@ class ServiceForm
                     ->allowHtml()
                     ->native(false)
                     ->placeholder('Select an icon')
-                    ->helperText('Search by icon number (e.g., "icon-17") or scroll to browse all 59 available icons'),
+                    ->helperText('Search by icon number (e.g., "icon-17") or scroll to browse all 80 available icons'),
 
                 TextInput::make('link'),
                 Toggle::make('is_active')

@@ -134,6 +134,7 @@ class Page extends Model
             'find-a-doctor' => 'Find a Doctor',
             'our-history-template' => 'Our History Timeline',
             'partners-template' => 'Partners Template',
+            'research-template' => 'Research & Articles Template',
         ];
     }
 }

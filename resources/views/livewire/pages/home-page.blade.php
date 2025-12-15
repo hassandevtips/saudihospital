@@ -163,7 +163,7 @@
             <div class="inner-container bg-color-2 p_relative">
                 <div class="counter-block-one wow slideInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="inner-box">
-                        <div class="icon-box p_relative d_block fs_60"><i class="icon-25"></i></div>
+                        <div class="icon-box p_relative d_block fs_60"><i class="{{ $content->stats_doctors_icon ?? 'icon-25' }}"></i></div>
                         <div class="count-outer count-box">
                             <span class="count-text" data-speed="1500"
                                 data-stop="{{ $content->stats_doctors ?? 100 }}">0</span>
@@ -173,7 +173,7 @@
                 </div>
                 <div class="counter-block-one wow slideInUp animated" data-wow-delay="200ms" data-wow-duration="1500ms">
                     <div class="inner-box">
-                        <div class="icon-box p_relative d_block fs_60"><i class="icon-26"></i></div>
+                        <div class="icon-box p_relative d_block fs_60"><i class="{{ $content->stats_beds_icon ?? 'icon-26' }}"></i></div>
                         <div class="count-outer count-box">
                             <span class="count-text" data-speed="1500"
                                 data-stop="{{ $content->stats_beds ?? 120 }}">0</span>
@@ -183,7 +183,7 @@
                 </div>
                 <div class="counter-block-one wow slideInUp animated" data-wow-delay="400ms" data-wow-duration="1500ms">
                     <div class="inner-box">
-                        <div class="icon-box p_relative d_block fs_60"><i class="icon-27"></i></div>
+                        <div class="icon-box p_relative d_block fs_60"><i class="{{ $content->stats_clinics_icon ?? 'icon-27' }}"></i></div>
                         <div class="count-outer count-box">
                             <span class="count-text" data-speed="1500"
                                 data-stop="{{ $content->stats_clinics ?? 20 }}">0</span>
@@ -193,7 +193,7 @@
                 </div>
                 <div class="counter-block-one wow slideInUp animated" data-wow-delay="600ms" data-wow-duration="1500ms">
                     <div class="inner-box">
-                        <div class="icon-box p_relative d_block fs_60"><i class="icon-28"></i></div>
+                        <div class="icon-box p_relative d_block fs_60"><i class="{{ $content->stats_centers_icon ?? 'icon-28' }}"></i></div>
                         <div class="count-outer count-box">
                             <span class="count-text" data-speed="1500"
                                 data-stop="{{ $content->stats_centers ?? 5 }}">0</span>
@@ -318,7 +318,7 @@
                 <div class="col-lg-8 col-md-12 col-sm-12 video-column">
                     <div class="video-inner" style="background-image: url(assets/images/background/video-bg.jpg);">
                         <div class="video-btn">
-                            <a href="#" class="lightbox-image" data-caption=""><i class="fas fa-play"></i></a>
+                            <a href="{{ $content->video_url ?? '#' }}" class="lightbox-image" data-caption=""><i class="fas fa-play"></i></a>
                         </div>
                     </div>
                 </div>
@@ -567,4 +567,12 @@
             }
         }
     </style>
+
+    @script
+    <script>
+        $wire.on('redirect-to-whatsapp', (event) => {
+            window.open(event.url, '_blank');
+        });
+    </script>
+    @endscript
 </div>
