@@ -249,13 +249,13 @@
                 <div class="row g-3 align-items-center">
                     {{-- Search Bar --}}
                     <div class="col-lg-4 col-md-4">
-                        <div class="input-group input-group-lg">
-                            <span class="input-group-text" style="background: #f8f9fa; border-right: none;">
+                        <div class="input-group input-group-lg" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                            <span class="input-group-text" style="background: #f8f9fa; {{ app()->getLocale() === 'ar' ? 'border-left: none;' : 'border-right: none;' }}">
                                 <i class="fas fa-search" style="color: #02799c;"></i>
                             </span>
                             <input type="text" class="form-control"
                                 placeholder="{{ gt('search_doctor_placeholder', 'Search by doctor name or specialization...') }}"
-                                wire:model.live.debounce.500ms="search" style="border-left: none; font-size: 16px;">
+                                wire:model.live.debounce.500ms="search" style="{{ app()->getLocale() === 'ar' ? 'border-right: none;' : 'border-left: none;' }} font-size: 16px;">
                         </div>
                     </div>
 
@@ -379,8 +379,6 @@
                                         <a wire:navigate href="{{ $doctor->facebook }}"
                                             class="share-icon fs_14 d_iblock"><i class="icon-37"></i></a>
                                         <ul class="share-links p_absolute clearfix">
-                                            <li><a href="mailto:{{ $doctor->email }}"><i
-                                                        class="fas fa-envelope"></i></a></li>
                                             <li><a href="tel:{{ $doctor->phone }}"><i class="fas fa-phone"></i></a></li>
                                         </ul>
                                     </div>

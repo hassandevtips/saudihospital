@@ -8,8 +8,8 @@
                     <div class="blog-details-content">
                         <div class="news-block-one">
                             <div class="inner-box">
-                                <figure class="image-box">
-                                    <img src="{{ $news->image_url }}" alt="{{ $news->title }}">
+                                <figure class="image-box" style="max-width: 1200px; margin: 0 auto;">
+                                    <img src="{{ $news->image_url }}" alt="{{ $news->title }}" style="width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
                                 </figure>
                                 <div class="lower-content">
                                     <div class="inner">
@@ -28,23 +28,27 @@
                                         @if($news->video_url)
                                         <div class="video-section" style="margin-top: 30px;">
                                             <h4 style="margin-bottom: 15px;">{{ gt('video', 'Video') }}</h4>
-                                            <video controls style="width: 100%; max-width: 100%; border-radius: 8px;">
-                                                <source src="{{ $news->video_url }}" type="video/mp4">
-                                                {{ gt('browser_no_video_support', 'Your browser does not support the video tag.') }}
-                                            </video>
+                                            <div style="max-width: 900px; margin: 0 auto;">
+                                                <video controls style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                                                    <source src="{{ $news->video_url }}" type="video/mp4">
+                                                    {{ gt('browser_no_video_support', 'Your browser does not support the video tag.') }}
+                                                </video>
+                                            </div>
                                         </div>
                                         @endif
 
                                         @if($news->gallery_urls && count($news->gallery_urls) > 0)
                                         <div class="gallery-section" style="margin-top: 30px;">
                                             <h4 style="margin-bottom: 15px;">{{ gt('gallery', 'Gallery') }}</h4>
-                                            <div class="row clearfix">
+                                            <div class="row clearfix" style="max-width: 1200px; margin: 0 auto;">
                                                 @foreach($news->gallery_urls as $galleryImage)
-                                                <div class="col-lg-3 col-md-4 col-sm-12" style="margin-bottom: 20px;">
-                                                    <figure class="image-box" style="margin: 0;">
+                                                <div class="col-lg-4 col-md-6 col-sm-12" style="margin-bottom: 25px;">
+                                                    <figure class="image-box" style="margin: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
                                                         <img src="{{ $galleryImage }}" alt="Gallery Image"
-                                                            style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; cursor: pointer;"
-                                                            onclick="openGalleryModal('{{ $galleryImage }}')">
+                                                            style="width: 100%; height: 300px; object-fit: cover; cursor: pointer; transition: transform 0.3s ease;"
+                                                            onclick="openGalleryModal('{{ $galleryImage }}')"
+                                                            onmouseover="this.style.transform='scale(1.05)'"
+                                                            onmouseout="this.style.transform='scale(1)'">
                                                     </figure>
                                                 </div>
                                                 @endforeach
@@ -99,4 +103,48 @@
             }
         });
     </script>
+
+    <style>
+        /* Desktop optimizations for news page */
+        @media (min-width: 992px) {
+            .news-block-one .image-box {
+                max-height: 600px;
+                overflow: hidden;
+            }
+
+            .video-section video {
+                max-height: 600px;
+            }
+
+            .gallery-section .image-box {
+                height: 300px;
+            }
+        }
+
+        /* Tablet optimizations */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .gallery-section .image-box {
+                height: 250px;
+            }
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 767px) {
+            .video-section > div {
+                max-width: 100% !important;
+            }
+
+            .gallery-section .row {
+                max-width: 100% !important;
+            }
+
+            .gallery-section .image-box {
+                height: 200px;
+            }
+
+            .news-block-one .image-box img {
+                border-radius: 4px;
+            }
+        }
+    </style>
 </section>

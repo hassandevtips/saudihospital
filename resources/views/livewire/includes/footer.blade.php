@@ -13,9 +13,11 @@
                                 <p>{{ gt('footer_about') }}</p>
                                 <ul class="social-links clearfix">
                                     <li><a href="{{ $settings['facebook'] }}"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="{{ $settings['twitter'] }}"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="{{ $settings['twitter'] }}" style="font-weight: bold; font-size: 14px; font-family: Arial, sans-serif;">𝕏</a></li>
                                     <li><a href="{{ $settings['linkedin'] }}"><i class="fab fa-linkedin-in"></i></a>
                                     </li>
+                                    <li><a href="{{ $settings['instagram'] }}"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="{{ $settings['youtube'] }}"><i class="fab fa-youtube"></i></a></li>
                                 </ul>
                             </div>
                         </div>

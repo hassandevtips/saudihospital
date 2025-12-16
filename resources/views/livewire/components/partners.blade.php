@@ -31,15 +31,4 @@
     @endif
 </section>
 
-<style>
-    .project-block-one .inner-box:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 5px 20px rgba(0,0,0,0.15) !important;
-    }
 
-    @media (max-width: 767px) {
-        .project-block-one .inner-box {
-            padding: 15px !important;
-        }
-    }
-</style>

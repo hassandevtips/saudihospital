@@ -29,7 +29,7 @@
                         <div class="content-one mb-0">
                             <div class="text mb-0">
 
-                                <h2>{{ $currentDepartment->name }} {{ gt('doctors', 'Doctors') }}</h2>
+                                <h2>{{ $currentDepartment->name }}</h2>
                                 {!! $currentDepartment->description !!}
                             </div>
                         </div>
@@ -55,8 +55,6 @@
                                                                 class="share-icon fs_14 d_iblock"><i
                                                                     class="icon-37"></i></a>
                                                             <ul class="share-links p_absolute clearfix">
-                                                                <li><a href="mailto:{{ $doctor->email }}"><i
-                                                                            class="fas fa-envelope"></i></a></li>
                                                                 <li><a href="tel:{{ $doctor->phone }}"><i
                                                                             class="fas fa-phone"></i></a></li>
                                                             </ul>

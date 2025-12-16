@@ -480,21 +480,22 @@
 
  /** scroll-to-top **/
 
- .scroll-top {
-     width: 50px;
-     height: 50px;
-     line-height: 50px;
-     position: fixed;
-     bottom: 105%;
-     right: 50px;
-     font-size: 24px;
-     z-index: 99;
-     color: #ffffff;
-     text-align: center;
-     cursor: pointer;
-     transition: 1s ease;
-     border-radius: 50%;
- }
+.scroll-top {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    position: fixed;
+    bottom: 105%;
+    right: 50px;
+    font-size: 24px;
+    z-index: 10000;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    transition: 1s ease;
+    text-align: center !important;
+    border-radius: 50%;
+}
 
  .scroll-top:hover {
      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
@@ -1415,7 +1416,7 @@
 
  .floating-btn {
      position: fixed;
-     bottom: 20px;
+     bottom: 100px;
      right: 20px;
      background: #0098ac;
      color: #fff;
@@ -8725,3 +8726,16 @@
 
      direction: ltr !important;
  }
+
+
+.project-block-one .inner-box:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15) !important;
+ }
+
+ @media (max-width: 767px) {
+     .project-block-one .inner-box {
+         padding: 15px !important;
+     }
+ }
+

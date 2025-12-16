@@ -33,9 +33,6 @@
                                         href=" tel:{{ $doctor->phone }}">{{
                                         $doctor->phone }}</a>
                                 </li>
-                                <li><span>{{ gt('email', 'Email') }}:</span><a href="mailto:{{ $doctor->email }}">{{
-                                        $doctor->email }}</a>
-                                </li>
                             </ul>
                         </div>
                         <div class="skills-box">

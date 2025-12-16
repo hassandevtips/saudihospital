@@ -58,3 +58,4 @@ $news = \App\Models\News::active()->paginate(10);
     <!-- research-section end -->
 </section>
 
+

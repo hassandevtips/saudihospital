@@ -21,6 +21,8 @@ class Footer extends Component
             'facebook' => SiteSetting::get('facebook', '#'),
             'twitter' => SiteSetting::get('twitter', '#'),
             'linkedin' => SiteSetting::get('linkedin', '#'),
+            'instagram' => SiteSetting::get('instagram', '#'),
+            'youtube' => SiteSetting::get('youtube', '#'),
         ];
 
         // Load active departments for footer
