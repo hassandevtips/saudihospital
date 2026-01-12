@@ -2,10 +2,7 @@
 
 <!-- faq-page-section -->
 <section class="faq-page-section p_relative">
-    <div class="pattern-layer">
-        <div class="pattern-1" style="background-image: url(assets/images/shape/shape-52.png);"></div>
-        <div class="pattern-2" style="background-image: url(assets/images/shape/shape-53.png);"></div>
-    </div>
+
     <div class="auto-container">
         @php
         $faqs = collect($faqs ?? []);

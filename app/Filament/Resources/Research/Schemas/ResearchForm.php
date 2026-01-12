@@ -1,23 +1,25 @@
 <?php
 
-namespace App\Filament\Resources\News\Schemas;
+namespace App\Filament\Resources\Research\Schemas;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
-use Filament\Forms\Components\RichEditor;
 
-class NewsForm
+class ResearchForm
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
                 TextInput::make('title')
-                    ->required(),
+                    ->required()
+                    ->translateLabel()
+                    ->columnSpanFull(),
             RichEditor::make('content')
                 ->required()
                 ->toolbarButtons([
@@ -39,20 +41,20 @@ class NewsForm
                 ->columnSpanFull(),
                 FileUpload::make('image')
                     ->image()
-                    ->label('News Image')
-                    ->directory('news')
+                    ->label('Research Image')
+                    ->directory('research')
                     ->disk('public')
                     ->columnSpanFull(),
                 FileUpload::make('banner_image')
                     ->image()
                     ->label('Breadcrumb Banner Image')
-                    ->directory('news/banners')
+                    ->directory('research/banners')
                     ->disk('public')
-                    ->helperText('Image displayed in the breadcrumb section at the top of the news detail page')
+                    ->helperText('Image displayed in the breadcrumb section at the top of the research detail page')
                     ->columnSpanFull(),
                 FileUpload::make('video')
                     ->label('Video')
-                    ->directory('news/videos')
+                    ->directory('research/videos')
                     ->disk('public')
                     ->acceptedFileTypes(['video/mp4', 'video/mpeg', 'video/quicktime', 'video/x-msvideo', 'video/webm'])
                     ->maxSize(102400)
@@ -60,7 +62,7 @@ class NewsForm
                     ->columnSpanFull(),
                 FileUpload::make('gallery')
                     ->label('Gallery Images')
-                    ->directory('news/gallery')
+                    ->directory('research/gallery')
                     ->disk('public')
                     ->image()
                     ->multiple()
@@ -78,3 +80,4 @@ class NewsForm
             ]);
     }
 }
+

@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('research', function (Blueprint $table) {
             $table->id();
+            $table->json('title');
+            $table->json('content');
+            $table->string('image')->nullable();
+            $table->string('banner_image')->nullable();
+            $table->string('video')->nullable();
+            $table->json('gallery')->nullable();
+            $table->string('author')->default('admin');
+            $table->date('published_date');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

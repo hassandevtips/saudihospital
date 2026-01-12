@@ -100,6 +100,8 @@ class PageView extends Component
             ];
         });
 
+
+
         return view('livewire.page-view', [
             'page' => $this->page,
             'settings' => $this->settings,

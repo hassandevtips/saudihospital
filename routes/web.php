@@ -8,6 +8,7 @@ use App\Livewire\DoctorsTemplate;
 use App\Livewire\DoctorDetails;
 use Illuminate\Support\Facades\Artisan;
 use App\Livewire\NewsDetails;
+use App\Livewire\ResearchDetails;
 use App\Livewire\Career\CareerDetails;
 use App\Livewire\FormSubmissionComponent;
 use App\Livewire\ClinicDetails;
@@ -20,6 +21,7 @@ Route::get('/departments', DepartmentDoctors::class)->name('department-doctors')
 Route::get('/departments/{department}', DoctorsTemplate::class)->name('doctors');
 Route::get('/doctors/{doctor}', DoctorDetails::class)->name('doctor-details');
 Route::get('/news/{id}', NewsDetails::class)->name('news-details');
+Route::get('/research/{id}', ResearchDetails::class)->name('research-details');
 Route::get('/careers/{slug}', CareerDetails::class)->name('career-details');
 Route::get('/clinics/{slug}', ClinicDetails::class)->name('clinic.details');
 

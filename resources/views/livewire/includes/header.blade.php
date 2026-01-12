@@ -224,7 +224,6 @@ $isHomePage = $currentRouteName === 'home';
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
         .header-lower .nav-right {
