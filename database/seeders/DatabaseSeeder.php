@@ -200,7 +200,7 @@ class DatabaseSeeder extends Seeder
 
         SiteSetting::create([
             'key' => 'phone',
-            'value' => '0096265564414',
+            'value' => '0096265564400',
             'type' => 'text'
         ]);
 

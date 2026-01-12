@@ -17,6 +17,7 @@ class News extends Model
         'image',
         'banner_image',
         'video',
+        'video_thumbnail',
         'gallery',
         'author',
         'published_date',
@@ -70,6 +71,18 @@ class News extends Model
             return asset($this->video);
         }
         return asset('storage/' . $this->video);
+    }
+
+    public function getVideoThumbnailUrlAttribute()
+    {
+        if (!$this->video_thumbnail) {
+            return null;
+        }
+
+        if (str_starts_with($this->video_thumbnail, 'assets')) {
+            return asset($this->video_thumbnail);
+        }
+        return asset('storage/' . $this->video_thumbnail);
     }
 
     public function getGalleryUrlsAttribute()

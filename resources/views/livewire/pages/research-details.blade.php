@@ -29,7 +29,7 @@
                                         <div class="video-section" style="margin-top: 30px;">
                                             <h4 style="margin-bottom: 15px;">{{ gt('video', 'Video') }}</h4>
                                             <div style="max-width: 900px; margin: 0 auto;">
-                                                <video controls style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                                                <video controls style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);" @if($research->video_thumbnail_url) poster="{{ $research->video_thumbnail_url }}" @endif>
                                                     <source src="{{ $research->video_url }}" type="video/mp4">
                                                     {{ gt('browser_no_video_support', 'Your browser does not support the video tag.') }}
                                                 </video>

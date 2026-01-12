@@ -163,7 +163,8 @@
             <div class="inner-container bg-color-2 p_relative">
                 <div class="counter-block-one wow slideInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="inner-box">
-                        <div class="icon-box p_relative d_block fs_60"><i class="{{ $content->stats_doctors_icon ?? 'icon-25' }}"></i></div>
+                        <div class="icon-box p_relative d_block fs_60"><i
+                                class="{{ $content->stats_doctors_icon ?? 'icon-25' }}"></i></div>
                         <div class="count-outer count-box">
                             <span class="count-text" data-speed="1500"
                                 data-stop="{{ $content->stats_doctors ?? 100 }}">0</span>
@@ -173,7 +174,8 @@
                 </div>
                 <div class="counter-block-one wow slideInUp animated" data-wow-delay="200ms" data-wow-duration="1500ms">
                     <div class="inner-box">
-                        <div class="icon-box p_relative d_block fs_60"><i class="{{ $content->stats_beds_icon ?? 'icon-26' }}"></i></div>
+                        <div class="icon-box p_relative d_block fs_60"><i
+                                class="{{ $content->stats_beds_icon ?? 'icon-26' }}"></i></div>
                         <div class="count-outer count-box">
                             <span class="count-text" data-speed="1500"
                                 data-stop="{{ $content->stats_beds ?? 120 }}">0</span>
@@ -183,7 +185,8 @@
                 </div>
                 <div class="counter-block-one wow slideInUp animated" data-wow-delay="400ms" data-wow-duration="1500ms">
                     <div class="inner-box">
-                        <div class="icon-box p_relative d_block fs_60"><i class="{{ $content->stats_clinics_icon ?? 'icon-27' }}"></i></div>
+                        <div class="icon-box p_relative d_block fs_60"><i
+                                class="{{ $content->stats_clinics_icon ?? 'icon-27' }}"></i></div>
                         <div class="count-outer count-box">
                             <span class="count-text" data-speed="1500"
                                 data-stop="{{ $content->stats_clinics ?? 20 }}">0</span>
@@ -193,7 +196,8 @@
                 </div>
                 <div class="counter-block-one wow slideInUp animated" data-wow-delay="600ms" data-wow-duration="1500ms">
                     <div class="inner-box">
-                        <div class="icon-box p_relative d_block fs_60"><i class="{{ $content->stats_centers_icon ?? 'icon-28' }}"></i></div>
+                        <div class="icon-box p_relative d_block fs_60"><i
+                                class="{{ $content->stats_centers_icon ?? 'icon-28' }}"></i></div>
                         <div class="count-outer count-box">
                             <span class="count-text" data-speed="1500"
                                 data-stop="{{ $content->stats_centers ?? 5 }}">0</span>
@@ -267,8 +271,8 @@
             </div>
             <div class="support-box p_relative centred">
                 <div class="icon-box"><img src="assets/images/icons/icon-2.png" alt=""></div>
-                <h3 class="text-white text-center">{{ gt('call', 'Call') }}: <a href="#"
-                        class="text-white">0096265564414</a></h3>
+                <h3 class="text-white text-center">{{ gt('call', 'Call') }}: <a href="tel:0096265564400"
+                        class="text-white">00962 5564400</a></h3>
             </div>
             <div class="row clearfix">
                 <div class="col-lg-4 col-md-12 col-sm-12 form-column">
@@ -318,7 +322,8 @@
                 <div class="col-lg-8 col-md-12 col-sm-12 video-column">
                     <div class="video-inner" style="background-image: url(assets/images/background/video-bg.jpg);">
                         <div class="video-btn">
-                            <a href="{{ $content->video_url ?? '#' }}" class="lightbox-image" data-caption=""><i class="fas fa-play"></i></a>
+                            <a href="{{ $content->video_url ?? '#' }}" class="lightbox-image" data-caption=""><i
+                                    class="fas fa-play"></i></a>
                         </div>
                     </div>
                 </div>

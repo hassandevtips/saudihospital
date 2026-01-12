@@ -47,7 +47,7 @@ class HomePage extends Component
         $validated = $this->validate()['form'];
 
         // Get WhatsApp number from site settings
-        $whatsappNumber = \App\Models\SiteSetting::get('whatsapp_number', '0096265564414');
+        $whatsappNumber = \App\Models\SiteSetting::get('whatsapp_number', '0096265564400');
 
         // Clean the WhatsApp number (remove spaces, dashes, etc.)
         $cleanNumber = preg_replace('/[^0-9]/', '', $whatsappNumber);

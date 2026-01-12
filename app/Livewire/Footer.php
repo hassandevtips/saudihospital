@@ -15,7 +15,7 @@ class Footer extends Component
     {
         $this->settings = [
             'site_name' => SiteSetting::get('site_name', 'Saudi Hospital'),
-            'phone' => SiteSetting::get('phone', '0096265564414'),
+            'phone' => SiteSetting::get('phone', '0096265564400'),
             'email' => SiteSetting::get('email', 'info@alsaudihospital.com'),
             'address' => SiteSetting::get('address', 'Jordan - Amman - Khalda - Wasfi Al-Tall St.'),
             'facebook' => SiteSetting::get('facebook', '#'),

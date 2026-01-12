@@ -11,7 +11,7 @@ $isRTL = app()->getLocale() === 'ar';
     </li>
     @else
     <li>
-        <a wire:navigate href="{{ $paginator->previousPageUrl() }}" rel="prev">
+        <a wire:click="previousPage" style="cursor: pointer;">
             <i class="fas fa-angle-{{ $isRTL ? 'right' : 'left' }}"></i>
         </a>
     </li>
@@ -35,7 +35,7 @@ $isRTL = app()->getLocale() === 'ar';
     </li>
     @else
     <li>
-        <a wire:navigate href="{{ $url }}">{{ $page }}</a>
+        <a wire:click="gotoPage({{ $page }})" style="cursor: pointer;">{{ $page }}</a>
     </li>
     @endif
     @endforeach
@@ -45,7 +45,7 @@ $isRTL = app()->getLocale() === 'ar';
     {{-- Next Page Link --}}
     @if ($paginator->hasMorePages())
     <li>
-        <a wire:navigate href="{{ $paginator->nextPageUrl() }}" rel="next">
+        <a wire:click="nextPage" style="cursor: pointer;">
             <i class="fas fa-angle-{{ $isRTL ? 'left' : 'right' }}"></i>
         </a>
     </li>

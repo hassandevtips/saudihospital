@@ -18,25 +18,25 @@ class NewsForm
             ->components([
                 TextInput::make('title')
                     ->required(),
-            RichEditor::make('content')
-                ->required()
-                ->toolbarButtons([
-                    'attachFiles',
-                    'blockquote',
-                    'bold',
-                    'bulletList',
-                    'codeBlock',
-                    'h2',
-                    'h3',
-                    'italic',
-                    'link',
-                    'orderedList',
-                    'redo',
-                    'strike',
-                    'underline',
-                    'undo',
-                ])
-                ->columnSpanFull(),
+                RichEditor::make('content')
+                    ->required()
+                    ->toolbarButtons([
+                        'attachFiles',
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'codeBlock',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ])
+                    ->columnSpanFull(),
                 FileUpload::make('image')
                     ->image()
                     ->label('News Image')
@@ -57,6 +57,14 @@ class NewsForm
                     ->acceptedFileTypes(['video/mp4', 'video/mpeg', 'video/quicktime', 'video/x-msvideo', 'video/webm'])
                     ->maxSize(102400)
                     ->helperText('Upload a video file (MP4, MOV, AVI, WebM). Max size: 100MB')
+                    ->columnSpanFull(),
+                FileUpload::make('video_thumbnail')
+                    ->label('Video Thumbnail/Cover Photo')
+                    ->directory('news/video-thumbnails')
+                    ->disk('public')
+                    ->image()
+                    ->imageEditor()
+                    ->helperText('Upload a cover photo/thumbnail for the video. This will be displayed before the video plays.')
                     ->columnSpanFull(),
                 FileUpload::make('gallery')
                     ->label('Gallery Images')

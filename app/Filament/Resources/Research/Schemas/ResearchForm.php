@@ -60,6 +60,14 @@ class ResearchForm
                     ->maxSize(102400)
                     ->helperText('Upload a video file (MP4, MOV, AVI, WebM). Max size: 100MB')
                     ->columnSpanFull(),
+                FileUpload::make('video_thumbnail')
+                    ->label('Video Thumbnail/Cover Photo')
+                    ->directory('research/video-thumbnails')
+                    ->disk('public')
+                    ->image()
+                    ->imageEditor()
+                    ->helperText('Upload a cover photo/thumbnail for the video. This will be displayed before the video plays.')
+                    ->columnSpanFull(),
                 FileUpload::make('gallery')
                     ->label('Gallery Images')
                     ->directory('research/gallery')

@@ -173,14 +173,20 @@ class HomePageContentForm
                             ->required()
                             ->placeholder('e.g., Patient Relations'),
                         Select::make('icon')
-                            ->label('Icon')
-                            ->required()
+                            ->label('Icon (Select from library)')
                             ->options(self::getIconOptions())
                             ->searchable()
                             ->allowHtml()
                             ->native(false)
                             ->placeholder('Select an icon')
-                            ->helperText('Search by icon number (e.g., "icon-17") or scroll to browse all 80 available icons'),
+                            ->helperText('Search by icon number (e.g., "icon-17") or scroll to browse all 80 available icons. Or upload a custom icon below.'),
+                        FileUpload::make('icon_image')
+                            ->label('Custom Icon (Upload)')
+                            ->directory('home-page/tab-icons')
+                            ->disk('public')
+                            ->image()
+                            ->imageEditor()
+                            ->helperText('Optional: Upload a custom icon image. This will be used instead of the icon class if provided.'),
                         TextInput::make('heading')
                             ->label('Content Heading')
                             ->required()
